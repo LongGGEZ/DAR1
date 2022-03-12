@@ -1,0 +1,46 @@
+.home{
+  display: flex;
+}
+ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.topnav{
+  display: flex;
+  position: sticky;
+}
+.topnav a {
+  width: 80px;
+  height: 80px;
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+  text-decoration: none;
+  font-size: 11px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  border-radius: 15px;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #ddd;
+  border-radius: 15px;
+  color: black;
+}
+
+.content{
+  background-color: white;
+}
+.nav-menu{
+  border-radius: 5px;
+}
+.nav-menu img {
+  display: flex;
+  margin: 10px auto;
+}

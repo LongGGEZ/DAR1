@@ -1,0 +1,13 @@
+.movie-item {
+    position: relative;
+    padding-top: 10px;
+    margin: 0 20px;
+    height: 550px;
+}
+
+.movie-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
