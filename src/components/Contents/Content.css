@@ -1,7 +1,54 @@
-.title{
+.main-content {
+    width: 100%;
+}
+
+.title {
     display: flex;
     padding-left: 20px;
 }
-.movie{
+
+.movie-rank {
+    padding: 0 20px;
+}
+
+.slide-fix {
+    display: inline;
+    width: 100%;
+    height: 100%;
+}
+
+.movie {
     display: flex;
+}
+
+.table-container {
+
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: auto;
+    caption-side: top;
+    empty-cells: hide;
+    table-layout: auto;
+    font-size: large;
+}
+
+th,
+td {
+    padding: 15px;
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table-container img {
+    width: 25%;
+}
+.top-film:hover{
+    cursor: pointer;
 }
