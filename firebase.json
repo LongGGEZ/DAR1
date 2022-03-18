@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "site": "dar-1-pro",
+
+    "public": "./build"
+  },
+  "database": {
+    "rules": "database.rules.json"
+  }
+}

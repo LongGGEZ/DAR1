@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import MovieCard from "../MovieCard/MovieCard";
 import SlideBanner from "../SlideBanner/SlideBanner";
 import axios from "axios";
-import 'react-loading-skeleton/dist/skeleton.css'
+import "react-loading-skeleton/dist/skeleton.css";
 import "./Content.css";
 function Content({ title, posterMovieUrl, movie_id }) {
   useEffect(() => {
     document.title = title;
   });
-const [loading,setLoading]=useState(false)
   //phim de cu
   const [movies, setMovies] = useState([]);
   useEffect(() => {
@@ -22,9 +21,10 @@ const [loading,setLoading]=useState(false)
         console.error(error);
       }
     };
-    fetchMovie();
+    setTimeout(() => {
+      fetchMovie();
+    }, 1300);
   }, []);
-
   //phim le moi
   const [movies1, setMovies1] = useState([]);
   useEffect(() => {
@@ -55,7 +55,7 @@ const [loading,setLoading]=useState(false)
     };
     fetchMovie();
   }, []);
-  
+
   return (
     <div className="main-content">
       <div className="slide-fix">

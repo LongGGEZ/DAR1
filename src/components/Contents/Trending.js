@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import MovieCard from "../MovieCard/MovieCard";
-
 import Grid from "@mui/material/Grid";
 
 function Trending({ title, posterMovieUrl }) {
@@ -23,24 +22,25 @@ function Trending({ title, posterMovieUrl }) {
     };
     fetchMovie();
   }, []);
-
   return (
     <div>
-      <div className="title">
-        <h1>Phim thịnh hành</h1>
-      </div>
-      <div className="movie">
-        <Grid container>
-          {movies.map((movie) => (
-            <Grid item xs={2} key={movie.id}>
-              <MovieCard
-                title={movie.original_title}
-                image={`${posterMovieUrl}${movie.poster_path}`}
-                release_date={movie.release_date}
-              />
-            </Grid>
-          ))}
-        </Grid>
+      <div>
+        <div className="title">
+          <h1>Phim thịnh hành</h1>
+        </div>
+        <div className="movie">
+          <Grid container>
+            {movies.map((movie) => (
+              <Grid item xs={2} key={movie.id}>
+                <MovieCard
+                  title={movie.original_title}
+                  image={`${posterMovieUrl}${movie.poster_path}`}
+                  release_date={movie.release_date}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </div>
       </div>
     </div>
   );

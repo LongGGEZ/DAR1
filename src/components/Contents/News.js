@@ -3,7 +3,8 @@ import axios from "axios";
 import MovieCard from "../MovieCard/MovieCard";
 import "./Content.css";
 import { Grid } from "@mui/material";
-function News({ title,posterMovieUrl }) {
+
+function News({ title, posterMovieUrl }) {
   //fecth new movie
   useEffect(() => {
     document.title = title;
@@ -22,23 +23,23 @@ function News({ title,posterMovieUrl }) {
     };
     fetchMovie();
   }, []);
+
   return (
     <div>
       <div className="title">
         <h1>Phim mới</h1>
       </div>
       <div className="movie">
-      <Grid container>
-        {movies.map((movie) => (
-          <Grid item xs={2} key={movie.id}>
-
+        <Grid container>
+          {movies.map((movie) => (
+            <Grid item xs={2} key={movie.id}>
               <MovieCard
                 title={movie.original_title}
                 image={`${posterMovieUrl}${movie.poster_path}`}
                 release_date={movie.release_date}
               />
-          </Grid>
-        ))}
+            </Grid>
+          ))}
         </Grid>
       </div>
     </div>

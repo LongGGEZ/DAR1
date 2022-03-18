@@ -5,6 +5,7 @@ import TrendingPage from "../Contents/Trending";
 import ContentPage from "../Contents/Content";
 import SiderBar from "../SiderBar/SiderBar";
 import { Grid } from "@mui/material";
+import StickyBox from "react-sticky-box";
 import "./Home.css";
 
 function Home() {
@@ -12,8 +13,12 @@ function Home() {
   return (
     <div className="home">
       <Grid container>
-          <SiderBar />
-        <Grid xs={11}>
+        <Grid item xs={1}>
+          <StickyBox>
+            <SiderBar />
+          </StickyBox>
+        </Grid>
+        <Grid item xs={11}>
           <div className="content">
             <Routes>
               <Route
