@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
-import MovieCard from "../MovieCard/MovieCard";
+import apiMovie from "../../../api/axios";
+import requests from "../../../FecthDataMovie/FecthDataAll";
+import MovieCard from "../../MovieCard/MovieCard";
 import Grid from "@mui/material/Grid";
+import "../../Container/Container.css";
 
 function Trending({ title, posterMovieUrl }) {
   useEffect(() => {
@@ -12,9 +14,7 @@ function Trending({ title, posterMovieUrl }) {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const { data } = await axios.get(
-          `https://api.themoviedb.org/3/trending/all/day?api_key=b4537afeaad3af17fa8676533391f855`
-        );
+        const { data } = await apiMovie.get(requests.fetchTrendingMovies);
         setMovies(data && data.results);
       } catch (error) {
         console.error(error);

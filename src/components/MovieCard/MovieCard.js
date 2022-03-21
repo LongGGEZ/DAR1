@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import "./MovieCard.css";
-function MovieCrad({ title, image, release_date }) {
+function MovieCard({id, title, image, release_date }) {
   return (
       <div className="card-item">
-        <Link to="/">
+        <Link to={`/movie/${id}`}>
           <div className="card-content">
             <img src={image} alt="Poster" />
             <div className="card-info">
@@ -17,4 +17,4 @@ function MovieCrad({ title, image, release_date }) {
     </div>
   );
 }
-export default MovieCrad;
+export default MovieCard;

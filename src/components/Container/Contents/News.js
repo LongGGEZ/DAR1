@@ -1,21 +1,20 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
-import MovieCard from "../MovieCard/MovieCard";
-import "./Content.css";
 import { Grid } from "@mui/material";
+import apiMovie from "../../../api/axios";
+import requests from "../../../FecthDataMovie/FecthDataAll";
+import MovieCard from "../../MovieCard/MovieCard";
+import "../../Container/Container.css";
 
 function News({ title, posterMovieUrl }) {
-  //fecth new movie
   useEffect(() => {
     document.title = title;
   });
+  //fecth new movie
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const { data } = await axios.get(
-          `https://api.themoviedb.org/3/movie/upcoming?api_key=b4537afeaad3af17fa8676533391f855&language=en-US&page=1`
-        );
+        const { data } = await apiMovie.get(requests.fetchNewMovies);
         setMovies(data && data.results);
       } catch (error) {
         console.error(error);

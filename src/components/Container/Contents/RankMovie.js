@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import requests from "../../../FecthDataMovie/FecthDataAll";
+import apiMovie from "../../../api/axios";
+import "../../Container/Container.css";
 function RankMovie({ title, posterMovieUrl }) {
   useEffect(() => {
     document.title = title;
@@ -8,8 +10,8 @@ function RankMovie({ title, posterMovieUrl }) {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const { data } = await axios.get(
-          `https://api.themoviedb.org/3/movie/top_rated?api_key=b4537afeaad3af17fa8676533391f855&language=en-US&page=1`
+        const { data } = await apiMovie.get(
+          requests.fetchTopRateMovies
         );
         setMovies(data && data.results);
       } catch (error) {

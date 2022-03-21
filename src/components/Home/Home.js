@@ -1,12 +1,13 @@
 import { Routes, Route } from "react-router-dom";
-import RankMoviePage from "../Contents/RankMovie";
-import NewsPage from "../Contents/News";
-import TrendingPage from "../Contents/Trending";
-import ContentPage from "../Contents/Content";
-import SiderBar from "../SiderBar/SiderBar";
 import { Grid } from "@mui/material";
+import RankMoviePage from "../Container/Contents/RankMovie";
+import NewsPage from "../Container/Contents/News";
+import TrendingPage from "../Container/Contents/Trending";
+import ContentPage from "../Container/Container";
+import SiderBar from "../SiderBar/SiderBar";
 import StickyBox from "react-sticky-box";
 import "./Home.css";
+import MovieDetail from "../MovieDetail/MovieDetail";
 
 function Home() {
   const posterMovieUrl = "https://image.tmdb.org/t/p/w500";
@@ -52,6 +53,12 @@ function Home() {
                     title={"Xếp hạng phim"}
                     posterMovieUrl={posterMovieUrl}
                   />
+                }
+              />
+                <Route
+                path="/movie/:id"
+                element={
+                  <MovieDetail />
                 }
               />
             </Routes>

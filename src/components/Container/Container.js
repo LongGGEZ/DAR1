@@ -3,8 +3,8 @@ import MovieCard from "../MovieCard/MovieCard";
 import SlideBanner from "../SlideBanner/SlideBanner";
 import axios from "axios";
 import "react-loading-skeleton/dist/skeleton.css";
-import "./Content.css";
-function Content({ title, posterMovieUrl, movie_id }) {
+import "../Container/Container.css";
+function Content({ title, posterMovieUrl }) {
   useEffect(() => {
     document.title = title;
   });
@@ -21,9 +21,7 @@ function Content({ title, posterMovieUrl, movie_id }) {
         console.error(error);
       }
     };
-    setTimeout(() => {
       fetchMovie();
-    }, 1300);
   }, []);
   //phim le moi
   const [movies1, setMovies1] = useState([]);
@@ -88,6 +86,7 @@ function Content({ title, posterMovieUrl, movie_id }) {
             {movies1.slice(0, 5).map((movie) => (
               <div key={movie.id}>
                 <MovieCard
+                  id={movie.id}
                   title={movie.original_title}
                   image={`${posterMovieUrl}${movie.poster_path}`}
                   release_date={movie.release_date}
