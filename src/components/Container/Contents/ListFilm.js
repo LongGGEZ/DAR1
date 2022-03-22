@@ -15,7 +15,7 @@ function ListFilm({ title, fetchData, posterMovieUrl }) {
       }
     };
     fetchMovie();
-  }, [fetchData]);
+  }, []);
 
   return (
     <div>
@@ -24,7 +24,7 @@ function ListFilm({ title, fetchData, posterMovieUrl }) {
             <h1>{title}</h1>
           </div>
           <div className="movie-flex">
-            {movies.slice(0,5).map(movie => 
+            {movies.slice(0,6).map(movie => 
               <div key={movie.id}>
                 <MovieCard
                   title={movie.original_title}
