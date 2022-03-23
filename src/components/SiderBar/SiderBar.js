@@ -6,11 +6,11 @@ function SiderBar() {
       <ul className="siderbar">
         <li className="siderbar-menu">
           <NavLink activeclassname="active" to="/">
-            <img
-              src="https://img.icons8.com/material-outlined/48/000000/home--v2.png"
-              alt="Icon Menu"
-            />
-            Home
+              <img
+                src="https://img.icons8.com/material-outlined/48/000000/home--v2.png"
+                alt="Icon Menu"
+              />
+              Home
           </NavLink>
         </li>
         <li className="siderbar-menu">

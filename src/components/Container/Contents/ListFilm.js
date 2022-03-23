@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import apiMovie from "../../../api/axios";
 import MovieCard from "../../MovieCard/MovieCard";
+import Grid from "@mui/material/Grid";
 
 function ListFilm({ title, fetchData, posterMovieUrl }) {
   const [movies, setMovies] = useState([]);
@@ -18,24 +19,27 @@ function ListFilm({ title, fetchData, posterMovieUrl }) {
   }, []);
 
   return (
-    <div>
+    <>
       <div className="list-film">
-          <div className="title">
-            <h1>{title}</h1>
-          </div>
-          <div className="movie-flex">
-            {movies.slice(0,6).map(movie => 
-              <div key={movie.id}>
+        <div className="title">
+          <h1>{title}</h1>
+        </div>
+        <div className="movie-flex">
+          <Grid container>
+            {movies.slice(0, 6).map((movie) => (
+              <Grid item xs={2} key={movie.id}>
                 <MovieCard
+                  movie_id={movie.id}
                   title={movie.original_title}
                   image={`${posterMovieUrl + movie.poster_path}`}
                   release_date={movie.release_date}
                 />
-              </div>
-            )}
-          </div>
+              </Grid>
+            ))}
+          </Grid>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 export default ListFilm;

@@ -24,7 +24,7 @@ function News({ title, posterMovieUrl }) {
   }, []);
 
   return (
-    <div>
+    <div className="main-content">
       <div className="title">
         <h1>Phim mới</h1>
       </div>
@@ -33,8 +33,9 @@ function News({ title, posterMovieUrl }) {
           {movies.map((movie) => (
             <Grid item xs={2} key={movie.id}>
               <MovieCard
+                movie_id={movie.id}
                 title={movie.original_title}
-                image={`${posterMovieUrl}${movie.poster_path}`}
+                image={`${posterMovieUrl+movie.poster_path}`}
                 release_date={movie.release_date}
               />
             </Grid>

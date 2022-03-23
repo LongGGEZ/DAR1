@@ -11,15 +11,10 @@
     text-decoration: none
 }
 
-.card-content {
-    display: grid;
-}
-
 .card-content img {
     display: block;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit:cover;
+    width: 100%;
+    object-fit: cover;
 }
 
 .card-info {
@@ -28,15 +23,15 @@
     background-color: rgba(0, 0, 0, .8);
     color: white;
     font-size: 13px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
 }
 
 .card-info .movie-title {
-    display: flex;
+    width: 100%;
     text-transform: uppercase;
     color: orange;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .card-info .movie-release {

@@ -23,7 +23,7 @@ function Trending({ title, posterMovieUrl }) {
     fetchMovie();
   }, []);
   return (
-    <div>
+    <div className="main-content">
       <div>
         <div className="title">
           <h1>Phim thịnh hành</h1>
@@ -33,6 +33,7 @@ function Trending({ title, posterMovieUrl }) {
             {movies.map((movie) => (
               <Grid item xs={2} key={movie.id}>
                 <MovieCard
+                  movie_id={movie.id}
                   title={movie.original_title}
                   image={`${posterMovieUrl}${movie.poster_path}`}
                   release_date={movie.release_date}

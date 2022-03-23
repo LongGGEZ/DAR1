@@ -1,7 +1,6 @@
 .main-content {
-    width: 100%;
+    margin: 10px 40px 0px 40px;
 }
-
 .title {
     display: flex;
     padding-left: 20px;
