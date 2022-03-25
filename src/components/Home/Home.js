@@ -14,7 +14,7 @@ function Home() {
   return (
     <div className="home">
       <Grid container>
-        <Grid item xs={1}>
+        <Grid item xs={1} style={{display: "flex", alignItems: "flex-start"}}>
           <StickyBox>
             <SiderBar />
           </StickyBox>
