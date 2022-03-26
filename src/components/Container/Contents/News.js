@@ -16,6 +16,7 @@ function News({ title, posterMovieUrl }) {
       try {
         const { data } = await apiMovie.get(requests.fetchNewMovies);
         setMovies(data && data.results);
+        console.log(data && data.results)
       } catch (error) {
         console.error(error);
       }
@@ -34,7 +35,7 @@ function News({ title, posterMovieUrl }) {
             <Grid item xs={2} key={movie.id}>
               <MovieCard
                 movie_id={movie.id}
-                title={movie.original_title}
+                title={movie.title}
                 image={`${posterMovieUrl+movie.poster_path}`}
                 release_date={movie.release_date}
               />

@@ -1,28 +1,85 @@
-.movie-detail{
+.movie-detail {
     display: flex;
-    margin: 0 20px  ;
+    margin: 0 15px 10px;
 }
-.title-overview{
+
+.detail-left {
+    width: 75%;
+    margin-right: 15px;
+}
+
+.detail-right {
+    width: 25%;
+}
+
+.title-overview {
+    font-weight: 600;
     display: flex;
-    font-size: 22px;
-    color: orange;
+    font-size: 30px;
+    color: #FB9902;
 }
-.overview-detail{
+
+.overview-detail {
     font-size: 20px;
+    padding: 10px 0;
     text-align: justify;
 }
-.moviedetail-title{
+
+.moviedetail-title {
     display: flex;
+    font-weight: 600;
     font-size: 40px;
+    background-color: #FB9902;
+    color: white;
+    margin-top: 10px;
 }
-.right{
+
+.moviedetail-title label {
+    margin-left: 10px;
+}
+
+.right {
     margin-left: 40px;
 }
+
 .poster-img {
-    width: 300px;
-    height: 450px;
-    padding: 10px;
+    width: 100%;
+    padding-top: 10px;
 }
-.poster-img img{
-   width: 100%;
+
+.poster-img img {
+    width: 100%;
+}
+
+.production-countries,
+.runtime,
+.genre,
+.release-date {
+
+    padding: 5px 0;
+}
+
+.production-countries label,
+.runtime label,
+.release-date label,
+.genre label {
+    font-weight: 500;
+    color: #FB9902;
+}
+
+.countries-name,
+.genre-name {
+    display: inline-block;
+}
+
+.countries-name a,
+.genre-name a {
+    color: black;
+    text-decoration: none
+}
+
+.bottom-line {
+    border-bottom: 1px solid #3a3a3a;
+    padding: 0 0 10px;
+    margin: 20px 0px 0px;
 }

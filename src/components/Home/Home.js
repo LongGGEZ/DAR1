@@ -55,7 +55,7 @@ function Home() {
                   />
                 }
               />
-              <Route path="/movie/:movie_id" element={<MovieDetail />} />
+              <Route path="/movie/:movie_id" element={<MovieDetail posterMovieUrl={posterMovieUrl} />} />
             </Routes>
           </div>
         </Grid>

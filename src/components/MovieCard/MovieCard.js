@@ -8,8 +8,8 @@ function MovieCard({ movie_id, title, image, release_date }) {
           <img src={image} alt="Poster" />
         </div>
         <div className="card-info">
-          <div className="movie-title">{title}</div>
-          <div className="movie-release">Ngày khởi chiếu: {release_date}</div>
+          <div className="movie-title">{title||"Đang cập nhật..."}</div>
+          <div className="movie-release">Khởi chiếu: {release_date||"Đang cập nhật..."}</div>
         </div>
       </Link>
     </div>

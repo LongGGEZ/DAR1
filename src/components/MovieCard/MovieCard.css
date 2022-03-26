@@ -28,6 +28,7 @@
 .card-info .movie-title {
     width: 100%;
     text-transform: uppercase;
+    text-align: left;
     color: orange;
     overflow: hidden;
     white-space: nowrap;
@@ -35,5 +36,5 @@
 }
 
 .card-info .movie-release {
-    display: flex;
+   text-align: left;
 }

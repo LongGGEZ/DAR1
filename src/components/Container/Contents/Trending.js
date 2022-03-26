@@ -34,7 +34,7 @@ function Trending({ title, posterMovieUrl }) {
               <Grid item xs={2} key={movie.id}>
                 <MovieCard
                   movie_id={movie.id}
-                  title={movie.original_title}
+                  title={movie.title}
                   image={`${posterMovieUrl}${movie.poster_path}`}
                   release_date={movie.release_date}
                 />

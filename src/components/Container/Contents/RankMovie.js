@@ -42,7 +42,7 @@ function RankMovie({ movie_id, title, posterMovieUrl }) {
                     alt="Poster"
                   />
                 </td>
-                <td>{movie.original_title}</td>
+                <td>{movie.title}</td>
                 <td>
                   {movie.vote_average}{" "}
                   <img
