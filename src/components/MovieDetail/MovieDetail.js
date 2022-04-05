@@ -60,7 +60,6 @@ function MovieDetail({ posterMovieUrl }) {
               movies.production_countries.map((pc, index) => (
                 <div className="countries-name" key={index}>
                   <a href="">
-                    {" "}
                     {(index ? ", " : "") + `${pc.name}` || "Đang cập nhật..."}
                   </a>
                 </div>
@@ -68,7 +67,9 @@ function MovieDetail({ posterMovieUrl }) {
           </div>
           <div className="runtime">
             <label>Thời lượng: </label>
-            {movies.runtime + " phút" || "Đang cập nhật..."}
+            {movies.runtime === undefined
+              ? "Đang cập nhật..."
+              : movies.runtime + " phút"|| "Đang cập nhật..."}
           </div>
           <div className="release-date">
             <label>Ngày khởi chiếu:</label>{" "}

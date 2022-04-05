@@ -1,14 +1,14 @@
 .main-content {
-    margin: 10px 40px 0px 40px;
+    margin: 0 25px;
 }
 .title {
     display: flex;
-    padding-left: 20px;
+    /* padding-left: 20px; */
 }
 
-.movie-rank {
+/* .movie-rank {
     padding: 0 20px;
-}
+} */
 
 .movie-flex {
     display: flex;

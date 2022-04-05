@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Header.css";
 function Header() {
   return (
@@ -6,7 +7,7 @@ function Header() {
         <div className="logo">
           <a href={"/"}>
             <img
-              src="https://img.icons8.com/external-xnimrodx-lineal-xnimrodx/48/ffffff/external-film-art-and-design-studio-xnimrodx-lineal-xnimrodx-2.png"
+              src="https://img.icons8.com/stickers/50/000000/pixar-lamp.png"
               alt="Logo"
             />
           </a>
@@ -18,12 +19,15 @@ function Header() {
               alt="Thông báo"
             />
           </div> */}
-          <div className="user_info">
-            <img
+          <Link to={"/login"}>
+            <div className="user_info">
+              {/* <img
               src="https://img.icons8.com/ios-glyphs/34/ffffff/user--v1.png"
               alt="User"
-            />
-          </div>
+            /> */}
+              Login
+            </div>
+          </Link>
         </div>
       </div>
     </div>

@@ -11,15 +11,29 @@ import MovieDetail from "../MovieDetail/MovieDetail";
 
 function Home() {
   const posterMovieUrl = "https://image.tmdb.org/t/p/w500";
+
+  // useEffect(() => {
+  //   const fetchPoster = async () => {
+  //     try {
+  //       const urlPoster= apiPoster.get(``)
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  // }, []);
+
   return (
     <div className="home">
       <Grid container>
-        <Grid item xs={1} style={{display: "flex", alignItems: "flex-start"}}>
-          <StickyBox>
+        <Grid
+          item
+          style={{ display: "flex", alignItems: "flex-start", width: "105px" }}
+        >
+          <StickyBox offsetTop={10}>
             <SiderBar />
           </StickyBox>
         </Grid>
-        <Grid item xs={11}>
+        <Grid item style={{ width: "calc(100% - 105px)" }}>
           <div className="content">
             <Routes>
               <Route
@@ -55,7 +69,10 @@ function Home() {
                   />
                 }
               />
-              <Route path="/movie/:movie_id" element={<MovieDetail posterMovieUrl={posterMovieUrl} />} />
+              <Route
+                path="/movie/:movie_id"
+                element={<MovieDetail posterMovieUrl={posterMovieUrl} />}
+              />
             </Routes>
           </div>
         </Grid>
