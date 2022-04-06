@@ -27,13 +27,13 @@ function Home() {
       <Grid container>
         <Grid
           item
-          style={{ display: "flex", alignItems: "flex-start", width: "105px" }}
+          style={{ display: "flex", alignItems: "flex-start", width: "100px" }}
         >
           <StickyBox offsetTop={10}>
             <SiderBar />
           </StickyBox>
         </Grid>
-        <Grid item style={{ width: "calc(100% - 105px)" }}>
+        <Grid item style={{ width: "calc(100% - 100px)" }}>
           <div className="content">
             <Routes>
               <Route
