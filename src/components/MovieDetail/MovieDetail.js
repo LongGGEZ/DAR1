@@ -31,12 +31,13 @@ function MovieDetail({ posterMovieUrl }) {
         let trailerIndex =
           data && data.results.findIndex((ti) => ti.type === "Trailer");
         setTrailers(data && data.results[trailerIndex]);
+        // console.log(data && data.results[trailerIndex]);
       } catch (error) {
         console.error(error);
       }
     };
     fetchTrailers();
-  }, []);
+  }, [movie_id]);
   return (
     <div className="movie-detail">
       <div className="detail-left">
@@ -92,25 +93,38 @@ function MovieDetail({ posterMovieUrl }) {
             {movies.release_date || "Đang cập nhật..."}
           </div>
         </div>
-        <div className="trailer">
-          <div className="title-trailer">
-            <label>Trailer</label>
+        {trailers === undefined || trailers.key === undefined ? (
+          ""
+        ) : (
+          <div className="trailer">
+            <div className="title-trailer">
+              <label>Trailer</label>
+            </div>
+            <iframe
+              width="100%"
+              height="615"
+              src={`https://www.youtube.com/embed/${trailers.key}`}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
           </div>
-          <iframe
-            width="100%"
-            height="615"
-            src={`https://www.youtube.com/embed/${trailers.key}`}
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
-        </div>
+        )}
       </div>
       <div className="detail-right">
         <div className="poster-img">
-          <img src={`${posterMovieUrl + movies.poster_path}`} alt="Poster" />
+          {movies.poster_path === undefined || movies.poster_path === null ? (
+            <div>Đang cập nhật poster...</div>
+          ) : (
+            <img src={`${posterMovieUrl + movies.poster_path}`} alt="Poster" />
+          )}
         </div>
+        {movies === null ? (
+          ""
+        ) : (
+          <div className="btn-wacth-movie">Xem Phim</div>
+        )}
       </div>
     </div>
   );

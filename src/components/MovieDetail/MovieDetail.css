@@ -11,6 +11,7 @@
 .detail-right {
     width: 25%;
 }
+
 .title-trailer,
 .title-overview {
     font-weight: 600;
@@ -83,4 +84,17 @@
     border-bottom: 1px solid #3a3a3a;
     padding: 0 0 10px;
     /* margin: 20px 0px 0px; */
+}
+
+.btn-wacth-movie {
+    cursor: pointer;
+    font-size: 15px;
+    background: #01d28e;
+    border: 1px solid #01d28e;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.btn-wacth-movie:hover {
+    background: #6cf0c2;
 }

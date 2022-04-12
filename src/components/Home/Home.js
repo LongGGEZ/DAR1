@@ -10,7 +10,7 @@ import "./Home.css";
 import MovieDetail from "../MovieDetail/MovieDetail";
 
 function Home() {
-  const posterMovieUrl = "https://image.tmdb.org/t/p/w500";
+  const posterMovieUrl = process.env.REACT_APP_POSTER_URL;
 
   // useEffect(() => {
   //   const fetchPoster = async () => {
