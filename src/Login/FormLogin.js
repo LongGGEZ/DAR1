@@ -10,13 +10,16 @@ const uiConfig = {
   // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
   signInSuccessUrl: "/",
   // We will display Google and Facebook as auth providers.
-  signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+  ],
 };
 function FormLogin() {
   return (
     <>
       <div className="login-title">LOGIN</div>
-      <div className="form">
+      {/* <div className="form">
         <form>
           <div className="input-container">
             <label>Username: </label>
@@ -30,7 +33,7 @@ function FormLogin() {
             <input type="submit" />
           </div>
         </form>
-      </div>
+      </div> */}
       <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
     </>
   );

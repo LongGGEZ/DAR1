@@ -11,17 +11,18 @@
 .detail-right {
     width: 25%;
 }
-
+.title-trailer,
 .title-overview {
     font-weight: 600;
     display: flex;
     font-size: 30px;
     color: #FB9902;
+    padding: 10px 0;
 }
 
 .overview-detail {
     font-size: 20px;
-    padding: 10px 0;
+    /* padding: 10px 0; */
     text-align: justify;
 }
 
@@ -81,5 +82,5 @@
 .bottom-line {
     border-bottom: 1px solid #3a3a3a;
     padding: 0 0 10px;
-    margin: 20px 0px 0px;
+    /* margin: 20px 0px 0px; */
 }

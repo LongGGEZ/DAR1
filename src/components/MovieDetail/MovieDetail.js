@@ -5,22 +5,38 @@ import { APIKey } from "../../api/apikey";
 import "./MovieDetail.css";
 
 function MovieDetail({ posterMovieUrl }) {
-  const [movies, setMovies] = useState([]);
   const { movie_id } = useParams();
+  const [movies, setMovies] = useState([]);
+  const [trailers, setTrailers] = useState({});
   useEffect(() => {
-    const fetchMovie = async () => {
+    const fetchMovies = async () => {
       try {
         const { data } = await apiMovie.get(
           `/movie/${movie_id}?api_key=${APIKey}&language=en-US`
         );
         setMovies(data);
-        console.log(data);
+        // console.log(data);
       } catch (error) {
         console.error(error);
       }
     };
-    fetchMovie();
+    fetchMovies();
   }, [movie_id]);
+  useEffect(() => {
+    const fetchTrailers = async () => {
+      try {
+        const { data } = await apiMovie.get(
+          `movie/${movie_id}/videos?api_key=${APIKey}&language=en-US`
+        );
+        let trailerIndex =
+          data && data.results.findIndex((ti) => ti.type === "Trailer");
+        setTrailers(data && data.results[trailerIndex]);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchTrailers();
+  }, []);
   return (
     <div className="movie-detail">
       <div className="detail-left">
@@ -69,12 +85,26 @@ function MovieDetail({ posterMovieUrl }) {
             <label>Thời lượng: </label>
             {movies.runtime === undefined
               ? "Đang cập nhật..."
-              : movies.runtime + " phút"|| "Đang cập nhật..."}
+              : movies.runtime + " phút" || "Đang cập nhật..."}
           </div>
           <div className="release-date">
             <label>Ngày khởi chiếu:</label>{" "}
             {movies.release_date || "Đang cập nhật..."}
           </div>
+        </div>
+        <div className="trailer">
+          <div className="title-trailer">
+            <label>Trailer</label>
+          </div>
+          <iframe
+            width="100%"
+            height="615"
+            src={`https://www.youtube.com/embed/${trailers.key}`}
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
         </div>
       </div>
       <div className="detail-right">

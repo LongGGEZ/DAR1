@@ -16,7 +16,7 @@ function News({ title, posterMovieUrl }) {
       try {
         const { data } = await apiMovie.get(requests.fetchNewMovies);
         setMovies(data && data.results);
-        console.log(data && data.results)
+        // console.log(data && data.results)
       } catch (error) {
         console.error(error);
       }
