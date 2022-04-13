@@ -48,4 +48,5 @@ tr:nth-child(even) {
 td a{
     display: block;
     text-decoration: none;
+    color: black;
 }
