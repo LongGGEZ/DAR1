@@ -102,7 +102,7 @@ function MovieDetail({ posterMovieUrl }) {
             </div>
             <iframe
               width="100%"
-              height="615"
+              height="600"
               src={`https://www.youtube.com/embed/${trailers.key}`}
               title="YouTube video player"
               frameBorder="0"

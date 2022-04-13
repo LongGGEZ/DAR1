@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import requests from "../../../FecthDataMovie/FecthDataAll";
 import apiMovie from "../../../api/axios";
 import "../../Container/Container.css";
-function RankMovie({ movie_id, title, posterMovieUrl }) {
+function RankMovie({ title, posterMovieUrl }) {
   useEffect(() => {
     document.title = title;
   });
@@ -18,6 +19,7 @@ function RankMovie({ movie_id, title, posterMovieUrl }) {
     };
     fetchMovie();
   }, []);
+
   return (
     <div className="main-content">
       <div className="title">
@@ -37,12 +39,17 @@ function RankMovie({ movie_id, title, posterMovieUrl }) {
               <tr className="top-film" key={movie.id}>
                 <td>{index + 1}</td>
                 <td>
-                  <img
-                    src={`${posterMovieUrl + movie.poster_path}`}
-                    alt="Poster"
-                  />
+                  {" "}
+                  <Link to={`/movie/${movie.id}`}>
+                    <img
+                      src={`${posterMovieUrl + movie.poster_path}`}
+                      alt="Poster"
+                    />
+                  </Link>
                 </td>
-                <td>{movie.title}</td>
+                <td>
+                  <Link to={`/movie/${movie.id}`}>{movie.title}</Link>
+                </td>
                 <td>
                   {movie.vote_average}{" "}
                   <img

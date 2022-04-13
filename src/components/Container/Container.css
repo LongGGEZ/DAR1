@@ -45,3 +45,7 @@ tr:nth-child(even) {
 .top-film:hover{
     cursor: pointer;
 }
+td a{
+    display: block;
+    text-decoration: none;
+}
