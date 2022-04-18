@@ -2,13 +2,12 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import apiMovie from "../../api/axios";
 import { APIKey } from "../../api/apikey";
-import "./MovieDetail.css";
+import "./Details.css";
 
 function MovieDetail({ posterMovieUrl }) {
   const { movie_id } = useParams();
   const [movies, setMovies] = useState([]);
   const [moviesVI, setMoviesVI] = useState([]);
-  const [tv, setTv] = useState([]);
   const [trailers, setTrailers] = useState({});
 
   useEffect(() => {
@@ -18,7 +17,7 @@ function MovieDetail({ posterMovieUrl }) {
           `/movie/${movie_id}?api_key=${APIKey}&language=en-US`
         );
         setMovies(data);
-        // console.log(data);
+        console.log(data);
       } catch (error) {
         console.error(error);
       }
@@ -33,6 +32,7 @@ function MovieDetail({ posterMovieUrl }) {
           `/movie/${movie_id}?api_key=${APIKey}&language=VI`
         );
         setMoviesVI(data);
+        // console.log(data);
       } catch (error) {
         console.error(error);
       }
@@ -40,19 +40,6 @@ function MovieDetail({ posterMovieUrl }) {
     fetchMoviesVI();
   }, [movie_id]);
 
-  useEffect(() => {
-    const fetchTv = async () => {
-      try {
-        const { data } = await apiMovie.get(
-          `/tv/${movie_id}?api_key=${APIKey}&language=VI`
-        );
-        setTv(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchTv();
-  }, [movie_id]);
   useEffect(() => {
     const fetchTrailers = async () => {
       try {
@@ -74,10 +61,7 @@ function MovieDetail({ posterMovieUrl }) {
       <div className="detail-left">
         <div className="moviedetail-title">
           <label>
-            {moviesVI.title || movies.title || tv.name || "Đang cập nhật..."}
-            {/* {movies.title !== movies.original_title
-              ? `/${movies.original_title}` || "Đang cập nhật..."
-              : ""} */}
+            {moviesVI.title || movies.title || movies.original_title|| "Đang cập nhật..."}
           </label>
         </div>
         <div className="bottom-line">
@@ -86,7 +70,6 @@ function MovieDetail({ posterMovieUrl }) {
             <div className="overview-detail">
               {moviesVI.overview ||
                 movies.overview ||
-                tv.overview ||
                 "Nội dung đang cập nhật..."}
             </div>
           </div>
@@ -119,7 +102,7 @@ function MovieDetail({ posterMovieUrl }) {
             <label>Thời lượng: </label>
             {movies.runtime === undefined
               ? "Đang cập nhật..."
-              : movies.runtime + " phút" || "Đang cập nhật..."}
+              : movies.runtime + " phút"}
           </div>
           <div className="release-date">
             <label>Ngày khởi chiếu:</label>{" "}
@@ -147,11 +130,7 @@ function MovieDetail({ posterMovieUrl }) {
       </div>
       <div className="detail-right">
         <div className="poster-img">
-          {movies.poster_path ? (
-            <img src={`${posterMovieUrl + movies.poster_path}`} alt="Poster" />
-          ) : (
-            <img src={`${posterMovieUrl + tv.poster_path}`} alt="Poster" />
-          )}
+          <img src={`${posterMovieUrl + movies.poster_path}`} alt="Poster" />
         </div>
         {movies === null ? "" : <div className="btn-wacth-movie">Xem Phim</div>}
       </div>

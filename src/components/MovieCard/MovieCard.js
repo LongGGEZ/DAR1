@@ -1,9 +1,17 @@
 import { Link } from "react-router-dom";
 import "./MovieCard.css";
-function MovieCard({ movie_id, title, original_name, poster, release_date, first_air_date }) {
+function MovieCard({
+  movie_id,
+  media_type,
+  title,
+  original_name,
+  poster,
+  release_date,
+  first_air_date,
+}) {
   return (
     <div className="card-item">
-      <Link to={`/movie/${movie_id}`}>
+      <Link to={`/${media_type || "movie"}/${movie_id}`}>
         <div className="card-content">
           <img src={poster} alt="Poster" />
         </div>
@@ -12,7 +20,7 @@ function MovieCard({ movie_id, title, original_name, poster, release_date, first
             {title || original_name || "Đang cập nhật..."}
           </div>
           <div className="movie-release">
-            Khởi chiếu: {release_date ||first_air_date|| "Đang cập nhật..."}
+            Khởi chiếu: {release_date || first_air_date || "Đang cập nhật..."}
           </div>
         </div>
       </Link>

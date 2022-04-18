@@ -7,7 +7,8 @@ import ContentPage from "../Container/Container";
 import SiderBar from "../SiderBar/SiderBar";
 import StickyBox from "react-sticky-box";
 import "./Home.css";
-import MovieDetail from "../MovieDetail/MovieDetail";
+import MovieDetail from "../Details/MovieDetail";
+import TvDetail from "../Details/TvDetail";
 
 function Home() {
   const posterMovieUrl = process.env.REACT_APP_POSTER_URL;
@@ -72,6 +73,10 @@ function Home() {
               <Route
                 path="/movie/:movie_id"
                 element={<MovieDetail posterMovieUrl={posterMovieUrl} />}
+              />
+              <Route
+                path="/tv/:movie_id"
+                element={<TvDetail posterMovieUrl={posterMovieUrl} />}
               />
             </Routes>
           </div>

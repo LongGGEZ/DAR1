@@ -35,6 +35,7 @@ function Trending({ title, posterMovieUrl }) {
               <Grid item width={"20%"} key={movie.id}>
                 <MovieCard
                   movie_id={movie.id}
+                  media_type={movie.media_type}
                   title={movie.title}
                   original_name={movie.original_name}
                   first_air_date={movie.first_air_date}
