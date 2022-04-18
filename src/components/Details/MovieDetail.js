@@ -17,7 +17,7 @@ function MovieDetail({ posterMovieUrl }) {
           `/movie/${movie_id}?api_key=${APIKey}&language=en-US`
         );
         setMovies(data);
-        console.log(data);
+        // console.log(data);
       } catch (error) {
         console.error(error);
       }

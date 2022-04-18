@@ -16,7 +16,7 @@ function Trending({ title, posterMovieUrl }) {
       try {
         const { data } = await apiMovie.get(requests.fetchTrendingMovies);
         setMovies(data && data.results);
-        console.log(data && data.results);
+        // console.log(data && data.results);
       } catch (error) {
         console.error(error);
       }
