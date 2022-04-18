@@ -5,7 +5,6 @@ import Grid from "@mui/material/Grid";
 
 function ListFilm({ title, fetchData, posterMovieUrl }) {
   const [movies, setMovies] = useState([]);
-  //phim de cu
   useEffect(() => {
     const fetchMovie = async () => {
       try {
@@ -31,7 +30,7 @@ function ListFilm({ title, fetchData, posterMovieUrl }) {
                 <MovieCard
                   movie_id={movie.id}
                   title={movie.title}
-                  image={`${posterMovieUrl + movie.poster_path}`}
+                  poster={`${posterMovieUrl + movie.poster_path}`}
                   release_date={movie.release_date}
                 />
               </Grid>

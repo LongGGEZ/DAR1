@@ -7,7 +7,10 @@ import "./MovieDetail.css";
 function MovieDetail({ posterMovieUrl }) {
   const { movie_id } = useParams();
   const [movies, setMovies] = useState([]);
+  const [moviesVI, setMoviesVI] = useState([]);
+  const [tv, setTv] = useState([]);
   const [trailers, setTrailers] = useState({});
+
   useEffect(() => {
     const fetchMovies = async () => {
       try {
@@ -21,6 +24,34 @@ function MovieDetail({ posterMovieUrl }) {
       }
     };
     fetchMovies();
+  }, [movie_id]);
+  //Tieng Viet
+  useEffect(() => {
+    const fetchMoviesVI = async () => {
+      try {
+        const { data } = await apiMovie.get(
+          `/movie/${movie_id}?api_key=${APIKey}&language=VI`
+        );
+        setMoviesVI(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchMoviesVI();
+  }, [movie_id]);
+
+  useEffect(() => {
+    const fetchTv = async () => {
+      try {
+        const { data } = await apiMovie.get(
+          `/tv/${movie_id}?api_key=${APIKey}&language=VI`
+        );
+        setTv(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchTv();
   }, [movie_id]);
   useEffect(() => {
     const fetchTrailers = async () => {
@@ -43,28 +74,30 @@ function MovieDetail({ posterMovieUrl }) {
       <div className="detail-left">
         <div className="moviedetail-title">
           <label>
-            {movies.title || "Đang cập nhật..."}
-            {movies.title !== movies.original_title
+            {moviesVI.title || movies.title || tv.name || "Đang cập nhật..."}
+            {/* {movies.title !== movies.original_title
               ? `/${movies.original_title}` || "Đang cập nhật..."
-              : ""}
+              : ""} */}
           </label>
         </div>
         <div className="bottom-line">
           <div className="overview">
             <div className="title-overview">Nội dung</div>
             <div className="overview-detail">
-              {movies.overview || "Nội dung đang cập nhật..."}
+              {moviesVI.overview ||
+                movies.overview ||
+                tv.overview ||
+                "Nội dung đang cập nhật..."}
             </div>
           </div>
         </div>
         <div className="bottom-line">
           <div className="genre">
             <label>Thể loại: </label>
-            {movies.genres &&
-              movies.genres.map((genre, index) => (
+            {moviesVI.genres &&
+              moviesVI.genres.map((genre, index) => (
                 <div className="genre-name" key={genre.id}>
                   <a href="">
-                    {" "}
                     {(index ? ", " : "") + `${genre.name}` ||
                       "Đang cập nhật..."}
                   </a>
@@ -114,17 +147,13 @@ function MovieDetail({ posterMovieUrl }) {
       </div>
       <div className="detail-right">
         <div className="poster-img">
-          {movies.poster_path === undefined || movies.poster_path === null ? (
-            <div>Đang cập nhật poster...</div>
-          ) : (
+          {movies.poster_path ? (
             <img src={`${posterMovieUrl + movies.poster_path}`} alt="Poster" />
+          ) : (
+            <img src={`${posterMovieUrl + tv.poster_path}`} alt="Poster" />
           )}
         </div>
-        {movies === null ? (
-          ""
-        ) : (
-          <div className="btn-wacth-movie">Xem Phim</div>
-        )}
+        {movies === null ? "" : <div className="btn-wacth-movie">Xem Phim</div>}
       </div>
     </div>
   );
