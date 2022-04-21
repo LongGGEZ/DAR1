@@ -2,7 +2,9 @@
   display: flex;
   margin: 10px 0 20px;
 }
-
+.right-home{
+  width: calc(100% - 100px)
+}
 .content {
   background-color: white;
   width: 100%;
@@ -10,4 +12,9 @@
 
 .user_info {
   cursor: pointer;
+}
+@media only screen and (max-width: 1024px) {
+  .right-home{
+    width: 100%
+  }
 }

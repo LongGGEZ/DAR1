@@ -23,7 +23,7 @@ function Home() {
             <SiderBar />
           </StickyBox>
         </Grid>
-        <Grid item style={{ width: "calc(100% - 100px)" }}>
+        <Grid item className="right-home">
           <div className="content">
             <Routes>
               <Route
