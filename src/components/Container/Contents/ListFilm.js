@@ -22,9 +22,12 @@ function ListFilm({ title, fetchData, posterMovieUrl }) {
       <div className="list-film">
         <div className="title">
           <h1>{title}</h1>
+          <div className="center">
+            <span className="show-all">Xem tất cả</span>
+          </div>
         </div>
         <div className="movie-flex">
-          <Grid container>
+          <Grid container columns={{ xs: 4, sm: 6, md: 12 }}>
             {movies.slice(0, 6).map((movie) => (
               <Grid item xs={2} key={movie.id}>
                 <MovieCard

@@ -30,7 +30,7 @@ function Main() {
   }, []);
   return (
     <>
-      {widthScreen > 1024 ? (
+      {/* {widthScreen > 1024 ? ( */}
         <div>
           <Routes>
             <Route path="/login" element={<FormLogin />} />
@@ -46,7 +46,7 @@ function Main() {
             />
           </Routes>
         </div>
-      ) : (
+      {/* ) : (
         <div
           style={{ position: "relative", textAlign: "center", color: "white" }}
         >
@@ -69,7 +69,7 @@ function Main() {
             Website chưa hỗ trợ thiết bị di động!
           </h1>
         </div>
-      )}
+      )} */}
     </>
   );
 }

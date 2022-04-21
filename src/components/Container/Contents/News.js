@@ -30,9 +30,9 @@ function News({ title, posterMovieUrl }) {
         <h1>Phim mới</h1>
       </div>
       <div className="movie">
-        <Grid container>
+        <Grid container columns={{ xs: 4.8, sm: 7.2, md: 12 }}>
           {movies.map((movie) => (
-            <Grid item width={"20%"} key={movie.id}>
+            <Grid item xs={2.4} key={movie.id}>
               <MovieCard
                 movie_id={movie.id}
                 title={movie.title}

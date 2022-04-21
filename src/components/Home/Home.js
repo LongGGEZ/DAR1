@@ -12,17 +12,6 @@ import TvDetail from "../Details/TvDetail";
 
 function Home() {
   const posterMovieUrl = process.env.REACT_APP_POSTER_URL;
-
-  // useEffect(() => {
-  //   const fetchPoster = async () => {
-  //     try {
-  //       const urlPoster= apiPoster.get(``)
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  // }, []);
-
   return (
     <div className="home">
       <Grid container>
