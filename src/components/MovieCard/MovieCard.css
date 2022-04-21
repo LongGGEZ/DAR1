@@ -15,7 +15,7 @@
 .card-content img {
     display: block;
     width: 100%;
-    height: 50vh;
+    height: 25vw;
     object-fit: cover;
 }
 
@@ -44,10 +44,37 @@
     text-overflow: ellipsis;
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1600px) {
     .card-content img {
-        height: 30vh;
+        height: 20vw;
     }
+
+    .card-item {
+        margin: 10px;
+    }
+
+    .card-item:hover {
+        transform: none;
+        transition: none;
+    }
+}
+
+@media only screen and (max-width: 1366px) {
+    .card-content img {
+        height: 15vw;
+    }
+
+    .card-item {
+        margin: 10px;
+    }
+
+    .card-item:hover {
+        transform: none;
+        transition: none;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
 
     .card-item {
         margin: 10px;

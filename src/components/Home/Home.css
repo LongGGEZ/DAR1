@@ -13,7 +13,7 @@
 .user_info {
   cursor: pointer;
 }
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 768px) {
   .right-home{
     width: 100%
   }
