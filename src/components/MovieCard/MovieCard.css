@@ -70,6 +70,7 @@
     .card-content img {
         height: 20vw;
     }
+
     .card-item {
         margin: 10px;
     }
@@ -89,6 +90,11 @@
 @media only screen and (max-width: 480px) {
     .card-content img {
         height: 40vw;
+    }
+
+    .card-info .movie-title,
+    .card-info .movie-release {
+        font-size: 9px;
     }
 
 }

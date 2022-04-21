@@ -21,10 +21,10 @@ function Header({ isSignedIn }) {
 
           {isSignedIn === true ? (
             <>
-              <div style={{ marginRight: "10px" }}>
+              <div className="display-user">
                 Chào mừng {firebase.auth().currentUser.displayName}!
               </div>{" "}
-              <div
+              <div className="logout"
                 style={{ cursor: "pointer" }}
                 onClick={() => firebase.auth().signOut()}
               >

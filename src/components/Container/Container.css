@@ -88,3 +88,9 @@ td a {
         margin-bottom: 25px;
     }
 }
+
+@media only screen and (max-width: 480px) {
+    .main-content {
+        margin: 0 15px;
+    }
+}

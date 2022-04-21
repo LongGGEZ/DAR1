@@ -29,3 +29,27 @@ a {
 .user .notification{
 margin-right: 20px;
 }
+.display-user{
+  margin-right: 10px;
+}
+
+@media only screen and (max-width: 480px) {
+  .user {
+    font-size: 13px;
+  }
+  .logo a img{
+    width: 30px;
+  }
+  .logout img{
+    width: 20px;
+  }
+  .display-user{
+    margin-right: 5px;
+  }
+  .user .notification{
+    margin-right: 7px;
+  }
+  .user .notification img{
+    width: 20px;
+  }
+}
