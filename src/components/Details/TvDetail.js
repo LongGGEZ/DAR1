@@ -80,11 +80,7 @@ function MovieDetail({ posterMovieUrl }) {
           </div>
           <div className="detail-right">
             <div className="moviedetail-title">
-              <label>
-                {tvVI.name ||
-                  tv.name ||
-                  "Đang cập nhật..."}
-              </label>
+              <label>{tvVI.name || tv.name || "Đang cập nhật..."}</label>
             </div>
             <div>
               <div className="genre">
@@ -121,7 +117,14 @@ function MovieDetail({ posterMovieUrl }) {
               </div>
               <div className="btn-watch">
                 <div className="btn-wacth-movie">Xem Phim</div>
-                <div className="btn-wacth-trailer">Xem Trailer</div>
+                <div
+                  onClick={() =>
+                    document.getElementById("trailerId").scrollIntoView()
+                  }
+                  className="btn-wacth-trailer"
+                >
+                  Xem Trailer
+                </div>
               </div>
             </div>
           </div>
@@ -138,7 +141,7 @@ function MovieDetail({ posterMovieUrl }) {
       {trailers === undefined || trailers.key === undefined ? (
         ""
       ) : (
-        <div className="trailer">
+        <div id="trailerId" className="trailer">
           <div className="title-trailer">
             <label>Trailer</label>
           </div>

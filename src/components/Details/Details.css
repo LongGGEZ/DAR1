@@ -4,6 +4,9 @@
 
 .detail-container {
     width: 100%;
+    background-position: right -200px top;
+    background-size: cover;
+    background-repeat: no-repeat
 }
 
 .detail-container img {
@@ -61,7 +64,7 @@
 .moviedetail-title {
     display: flex;
     font-weight: 600;
-    font-size: 40px;
+    font-size: 50px;
     background-color: #FB9902;
     color: white;
 }
@@ -86,6 +89,7 @@
     display: flex;
     padding: 5px 0;
     color: white;
+    font-size: 25px;
 }
 
 .production-countries label,
@@ -122,7 +126,7 @@
 .btn-wacth-movie {
     margin-top: 10px;
     margin-right: 10px;
-    width: 100px;
+    width: 120px;
     cursor: pointer;
     font-size: 15px;
     background: #d9534f;
@@ -134,10 +138,10 @@
 .btn-wacth-trailer {
     margin-top: 10px;
     margin-left: 10px;
-    width: 100px;
+    width: 120px;
     cursor: pointer;
     font-size: 15px;
-    background: #428bca;
+    background: #46b8da;
     border: 1px solid #428bca;
     color: #fff;
     padding: 10px 20px;
@@ -154,20 +158,24 @@
 
 @media only screen and (max-width: 1366px) {
     .moviedetail-title {
-        font-size: 25px;
+        font-size: 35px;
     }
 
     .production-countries,
     .runtime,
     .genre,
     .release-date {
-        font-size: 11px;
+        font-size: 18px;
     }
 
     .btn-wacth-movie,
     .btn-wacth-trailer {
         width: 70px;
         font-size: 13px;
+    }
+
+    .detail-container {
+        background-position: right -100px top;
     }
 }
 
@@ -182,7 +190,14 @@
     }
 
     .moviedetail-title {
-        font-size: 15px;
+        font-size: 25px;
+    }
+
+    .production-countries,
+    .runtime,
+    .genre,
+    .release-date {
+        font-size: 13px;
     }
 
     .title-trailer,
@@ -193,6 +208,21 @@
     .detail-right {
         padding-left: 20px;
     }
+
+    .btn-wacth-movie,
+    .btn-wacth-trailer {
+        padding: 5px;
+    }
+
+    .production-countries,
+    .runtime,
+    .genre,
+    .release-date {
+        font-size: 11px;
+        padding: 2px 0;
+    }
+
+
 }
 
 @media only screen and (max-width: 480px) {
@@ -209,7 +239,6 @@
     .genre,
     .release-date {
         font-size: 9px;
-        padding: 1px 0;
     }
 
     .detail-right {
@@ -219,8 +248,14 @@
     .btn-wacth-movie,
     .btn-wacth-trailer {
         margin-top: 5px;
-        width: 35px;
-        font-size: 7px;
+        height: 15px;
+        font-size: 10px;
+        padding: 5px 10px;
+    }
+
+    .title-trailer,
+    .title-overview {
+        font-size: 17px;
     }
 
     .btn-wacth-movie {
@@ -229,6 +264,14 @@
 
     .btn-wacth-trailer {
         margin-left: 5px;
+    }
+
+    .detail-container {
+        background-position: right -50px top;
+    }
+
+    .moviedetail-title {
+        font-size: 20px;
     }
 
 }

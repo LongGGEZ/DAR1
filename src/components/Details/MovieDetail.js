@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import apiMovie from "../../api/axios";
 import { APIKey } from "../../api/apikey";
@@ -56,13 +56,11 @@ function MovieDetail({ posterMovieUrl }) {
     };
     fetchTrailers();
   }, [movie_id]);
+
   return (
     <div className="movie-detail">
       <div
         style={{
-          backgroundPosition: "right -200px top",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
           backgroundImage: `url(${posterMovieUrl}${movies.backdrop_path})`,
         }}
         className="detail-container"
@@ -126,7 +124,14 @@ function MovieDetail({ posterMovieUrl }) {
               </div>
               <div className="btn-watch">
                 <div className="btn-wacth-movie">Xem Phim</div>
-                <div className="btn-wacth-trailer">Xem Trailer</div>
+                <div
+                  onClick={() =>
+                    document.getElementById("trailerId").scrollIntoView()
+                  }
+                  className="btn-wacth-trailer"
+                >
+                  Xem Trailer
+                </div>
               </div>
             </div>
           </div>
@@ -145,7 +150,7 @@ function MovieDetail({ posterMovieUrl }) {
       {trailers === undefined || trailers.key === undefined ? (
         ""
       ) : (
-        <div className="trailer">
+        <div id="trailerId" className="trailer">
           <div className="title-trailer">
             <label>Trailer</label>
           </div>
