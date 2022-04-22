@@ -148,6 +148,7 @@ function MovieDetail({ posterMovieUrl }) {
               </div>
             ))}
         </div>
+
         <div className="release-date">
           <label>Ngày khởi chiếu:</label>{" "}
           {movies.release_date || "Đang cập nhật..."}
@@ -162,33 +163,6 @@ function MovieDetail({ posterMovieUrl }) {
                 </a>
               </div>
             ))}
-        </div>
-        <div className="preview-cast">
-          <label>Diễn viên:</label>
-        </div>
-        <div className="preview-cast">
-          <Grid
-            container
-            spacing={{ xs: 2 }}
-            columns={{ xs: 4, sm: 6, md: 12 }}
-          >
-            {casts.slice(0, 6).map((dv, index) => (
-              <Grid item xs={2} key={dv.id}>
-                <div className="cast">
-                  <img
-                    src={`${posterMovieUrl}${dv.profile_path}`}
-                    alt="Diễn viên"
-                  />
-                  <div className="info-container">
-                    <h4>
-                      <b>{dv.name}</b>
-                    </h4>
-                    <p>{dv.character}</p>
-                  </div>
-                </div>
-              </Grid>
-            ))}
-          </Grid>
         </div>
       </div>
       <div className="bottom-line">
@@ -219,6 +193,29 @@ function MovieDetail({ posterMovieUrl }) {
           ></iframe>
         </div>
       )}
+      <div className="title-cast">
+        <label>Diễn viên:</label>
+      </div>
+      <div className="preview-cast">
+        <Grid container spacing={{ xs: 2 }} columns={{ xs: 4, sm: 6, md: 12 }}>
+          {casts.slice(0, 6).map((dv, index) => (
+            <Grid item xs={2} key={dv.id}>
+              <div className="cast">
+                <img
+                  src={`${posterMovieUrl}${dv.profile_path}`}
+                  alt="Diễn viên"
+                />
+                <div className="info-container">
+                  <h4>
+                    <b>{dv.name}</b>
+                  </h4>
+                  <p>{dv.character}</p>
+                </div>
+              </div>
+            </Grid>
+          ))}
+        </Grid>
+      </div>
     </div>
   );
 }

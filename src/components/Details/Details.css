@@ -52,7 +52,13 @@
     max-width: 1300px;
     margin: 0 auto;
 }
-
+.title-cast{
+    font-weight: 600;
+    display: flex;
+    font-size: 30px;
+    color: #FB9902;
+    padding: 10px 0;  
+}
 .overview-detail {
     font-size: 20px;
     /* padding: 10px 0; */
