@@ -53,17 +53,6 @@
         margin: 10px;
     }
 
-    .card-item:hover {
-        transform: none;
-        transition: none;
-    }
-}
-
-@media only screen and (max-width: 1366px) {
-    .card-content img {
-        height: 15vw;
-    }
-
 }
 
 @media only screen and (max-width: 1024px) {

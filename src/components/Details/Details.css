@@ -1,19 +1,38 @@
 .movie-detail {
-    display: flex;
     margin: 0 15px 10px;
 }
 
+.detail-container {
+    width: 100%;
+}
+
+.detail-container img {
+    width: 100%;
+}
+
 .detail-left {
-    width: 75%;
-    margin-right: 15px;
+    border-radius: 5px;
+    width: 30%;
+
+}
+
+.trailer {
+    max-width: 1300px;
+    margin: 0 auto;
 }
 
 .detail-right {
-    width: 25%;
+    width: 70%;
+    padding-left: 40px;
 }
 
-.title-trailer,
-.title-overview {
+.center-details {
+    display: flex;
+    padding: 50px 40px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 1) 150px, rgba(0, 0, 0, 0.4) 100%)
+}
+
+.title-trailer {
     font-weight: 600;
     display: flex;
     font-size: 30px;
@@ -21,10 +40,22 @@
     padding: 10px 0;
 }
 
+.title-overview {
+    font-weight: 600;
+    display: flex;
+    font-size: 30px;
+    color: #FB9902;
+    padding: 10px 0;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
 .overview-detail {
     font-size: 20px;
     /* padding: 10px 0; */
     text-align: justify;
+    max-width: 1300px;
+    margin: 0 auto;
 }
 
 .moviedetail-title {
@@ -33,23 +64,18 @@
     font-size: 40px;
     background-color: #FB9902;
     color: white;
-    margin-top: 10px;
 }
 
-.moviedetail-title label {
+/* .moviedetail-title label {
     margin-left: 10px;
-}
+} */
 
 .right {
     margin-left: 40px;
 }
 
-.poster-img {
-    width: 100%;
-    padding-top: 10px;
-}
-
 .poster-img img {
+    border-radius: 5px;
     width: 100%;
 }
 
@@ -57,8 +83,9 @@
 .runtime,
 .genre,
 .release-date {
-
+    display: flex;
     padding: 5px 0;
+    color: white;
 }
 
 .production-countries label,
@@ -76,25 +103,132 @@
 
 .countries-name a,
 .genre-name a {
-    color: black;
+    color: white;
     text-decoration: none
 }
 
 .bottom-line {
     border-bottom: 1px solid #3a3a3a;
     padding: 0 0 10px;
+    max-width: 1300px;
+    margin: 0 auto;
     /* margin: 20px 0px 0px; */
 }
 
+.btn-watch {
+    display: flex;
+}
+
 .btn-wacth-movie {
+    margin-top: 10px;
+    margin-right: 10px;
+    width: 100px;
     cursor: pointer;
     font-size: 15px;
-    background: #01d28e;
-    border: 1px solid #01d28e;
+    background: #d9534f;
+    border: 1px solid #d43f3a;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.btn-wacth-trailer {
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 100px;
+    cursor: pointer;
+    font-size: 15px;
+    background: #428bca;
+    border: 1px solid #428bca;
     color: #fff;
     padding: 10px 20px;
 }
 
 .btn-wacth-movie:hover {
-    background: #6cf0c2;
+    background: #d43f3a;
+}
+
+.btn-wacth-trailer:hover {
+    background: #428bca;
+}
+
+
+@media only screen and (max-width: 1366px) {
+    .moviedetail-title {
+        font-size: 25px;
+    }
+
+    .production-countries,
+    .runtime,
+    .genre,
+    .release-date {
+        font-size: 11px;
+    }
+
+    .btn-wacth-movie,
+    .btn-wacth-trailer {
+        width: 70px;
+        font-size: 13px;
+    }
+}
+
+
+@media only screen and (max-width: 768px) {
+    .trailer iframe {
+        height: 300px !important;
+    }
+
+    .overview-detail {
+        font-size: 15px;
+    }
+
+    .moviedetail-title {
+        font-size: 15px;
+    }
+
+    .title-trailer,
+    .title-overview {
+        font-size: 25px;
+    }
+
+    .detail-right {
+        padding-left: 20px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .trailer iframe {
+        height: 200px !important;
+    }
+
+    .center-details {
+        padding: 10px 15px;
+    }
+
+    .production-countries,
+    .runtime,
+    .genre,
+    .release-date {
+        font-size: 9px;
+        padding: 1px 0;
+    }
+
+    .detail-right {
+        padding-left: 10px;
+    }
+
+    .btn-wacth-movie,
+    .btn-wacth-trailer {
+        margin-top: 5px;
+        width: 35px;
+        font-size: 7px;
+    }
+
+    .btn-wacth-movie {
+        margin-right: 5px;
+    }
+
+    .btn-wacth-trailer {
+        margin-left: 5px;
+    }
+
 }

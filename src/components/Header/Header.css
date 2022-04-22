@@ -12,6 +12,7 @@ a {
   justify-content: space-between;
   z-index: 1;
 }
+
 .logo {
   display: flex;
   padding-left: 20px;
@@ -32,22 +33,35 @@ margin-right: 20px;
 .display-user{
   margin-right: 10px;
 }
+.menu-mobile{
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .menu-mobile{
+      display: flex;
+      padding-left: 15px;
+  }
+}
 
 @media only screen and (max-width: 480px) {
   .user {
     font-size: 13px;
   }
   .logo a img{
+    display: none;
     width: 30px;
   }
   .logout img{
+    display: none;
     width: 20px;
   }
   .display-user{
+    display: none;
     margin-right: 5px;
   }
   .user .notification{
-    margin-right: 7px;
+    margin-right: 0;
   }
   .user .notification img{
     width: 20px;

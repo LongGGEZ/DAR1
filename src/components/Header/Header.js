@@ -3,6 +3,12 @@ import "firebase/compat/auth";
 import firebase from "firebase/compat/app";
 import "./Header.css";
 function Header({ isSignedIn }) {
+  // const logo= document.getElementsByClassName("logo")
+  // const widthScreen =  window.innerWidth
+  // if(widthScreen <768){
+  //  //code
+  // }
+  // console.log(logo)
   return (
     <div>
       <div className="header">
@@ -14,6 +20,11 @@ function Header({ isSignedIn }) {
             />
           </a>
         </div>
+        {/* <div className="menu-mobile">
+          <a href={"/"}>
+            <img src="https://img.icons8.com/ios-glyphs/30/000000/menu-rounded.png" alt="menu-mobile"/>
+          </a>
+        </div> */}
         <div className="user">
           <div className="notification" href="/">
           <img src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/24/000000/external-bell-essentials-pack-tanah-basah-glyph-tanah-basah.png" alt="Thông báo"/>
@@ -23,7 +34,7 @@ function Header({ isSignedIn }) {
             <>
               <div className="display-user">
                 Chào mừng {firebase.auth().currentUser.displayName}!
-              </div>{" "}
+              </div>
               <div className="logout"
                 style={{ cursor: "pointer" }}
                 onClick={() => firebase.auth().signOut()}
