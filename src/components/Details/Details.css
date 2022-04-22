@@ -82,33 +82,50 @@
     width: 100%;
 }
 
+.production-companies,
+.preview-cast,
 .production-countries,
 .runtime,
+.vote,
 .genre,
 .release-date {
     display: flex;
     padding: 5px 0;
-    color: white;
-    font-size: 25px;
+    color: black;
+    font-size: 20px;
 }
 
+.vote,
+.runtime {
+    color: white;
+}
+
+.preview-cast label,
+.vote label,
 .production-countries label,
+.production-companies label,
 .runtime label,
 .release-date label,
 .genre label {
-    font-weight: 500;
+    /* font-weight: 500; */
     color: #FB9902;
 }
 
+.companies-name,
 .countries-name,
 .genre-name {
     display: inline-block;
 }
 
+.companies-name a,
 .countries-name a,
 .genre-name a {
-    color: white;
+    color: black;
     text-decoration: none
+}
+
+.genre-name a {
+    color: white;
 }
 
 .bottom-line {
@@ -158,9 +175,12 @@
 
 @media only screen and (max-width: 1366px) {
     .moviedetail-title {
-        font-size: 35px;
+        font-size: 30px;
     }
 
+    .production-companies,
+    .preview-cast,
+    .vote,
     .production-countries,
     .runtime,
     .genre,
@@ -179,6 +199,38 @@
     }
 }
 
+/* card cast */
+.cast {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 100%;
+}
+
+.cast img {
+    width: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.info-container {
+    padding: 2px 16px;
+    height: 250px;
+}
+
+.preview-cast {
+    display: flex;
+}
+
+.cast img {
+    object-fit: cover;
+}
 
 @media only screen and (max-width: 768px) {
     .trailer iframe {
@@ -190,14 +242,15 @@
     }
 
     .moviedetail-title {
-        font-size: 25px;
+        font-size: 20px;
     }
 
+    .production-companies,
+    .preview-cast,
     .production-countries,
-    .runtime,
-    .genre,
     .release-date {
-        font-size: 13px;
+        font-size: 11px;
+        padding: 2px 0;
     }
 
     .title-trailer,
@@ -214,15 +267,13 @@
         padding: 5px;
     }
 
-    .production-countries,
-    .runtime,
-    .genre,
-    .release-date {
-        font-size: 11px;
-        padding: 2px 0;
+    .center-details {
+        padding: 40px 30px;
     }
 
-
+    .info-container {
+        height: 100px;
+    }
 }
 
 @media only screen and (max-width: 480px) {
@@ -234,11 +285,11 @@
         padding: 10px 15px;
     }
 
-    .production-countries,
     .runtime,
-    .genre,
-    .release-date {
+    .vote,
+    .genre {
         font-size: 9px;
+        padding: 2px 0;
     }
 
     .detail-right {
@@ -271,7 +322,7 @@
     }
 
     .moviedetail-title {
-        font-size: 20px;
+        font-size: 15px;
     }
 
 }
