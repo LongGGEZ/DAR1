@@ -125,7 +125,7 @@ function MovieDetail({ posterMovieUrl }) {
               <div className="btn-wacth-movie">Xem Phim</div>
               <div
                 onClick={() =>
-                  document.getElementById("trailerId").scrollIntoView()
+                  document.getElementById("trailerId").scrollIntoView({behavior: "smooth"})
                 }
                 className="btn-wacth-trailer"
               >
@@ -154,7 +154,7 @@ function MovieDetail({ posterMovieUrl }) {
           {movies.release_date || "Đang cập nhật..."}
         </div>
         <div className="production-companies">
-          <label>Công ty sản xuất</label>
+          <label>Công ty sản xuất: </label>
           {movies.production_companies &&
             movies.production_companies.map((pcn, index) => (
               <div className="companies-name" key={index}>

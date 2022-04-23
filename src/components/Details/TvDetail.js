@@ -19,7 +19,7 @@ function MovieDetail({ posterMovieUrl }) {
           `/tv/${movie_id}?api_key=${APIKey}&language=vi`
         );
         setTvVI(data);
-        console.log(data);
+        // console.log(data);
       } catch (error) {
         console.error(error);
       }
@@ -115,7 +115,7 @@ function MovieDetail({ posterMovieUrl }) {
               <div className="btn-wacth-movie">Xem Phim</div>
               <div
                 onClick={() =>
-                  document.getElementById("trailerId").scrollIntoView()
+                  document.getElementById("trailerId").scrollIntoView({behavior: "smooth"})
                 }
                 className="btn-wacth-trailer"
               >
@@ -143,7 +143,7 @@ function MovieDetail({ posterMovieUrl }) {
           {tv.last_air_date || "Đang cập nhật..."}
         </div>
         <div className="production-companies">
-          <label>Công ty sản xuất</label>
+          <label>Công ty sản xuất: </label>
           {tv.production_companies &&
             tv.production_companies.map((pcn, index) => (
               <div className="companies-name" key={index}>

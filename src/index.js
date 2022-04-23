@@ -5,13 +5,13 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ModalProvider } from "./Context/ModalContext";
-// import ScrollToTop from "./components/ScrollTop";
+import ScrollToTop from "./components/ScrollTop";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <ModalProvider>
-        {/* <ScrollToTop /> */}
+        <ScrollToTop />
         <App />
       </ModalProvider>
     </Router>

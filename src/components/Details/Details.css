@@ -34,32 +34,17 @@
     padding: 50px 40px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 1) 150px, rgba(0, 0, 0, 0.4) 100%)
 }
-
+.title-overview,
+.title-cast,
 .title-trailer {
     font-weight: 600;
     display: flex;
     font-size: 30px;
     color: #FB9902;
+    max-width: 1300px;
     padding: 10px 0;
 }
 
-.title-overview {
-    font-weight: 600;
-    display: flex;
-    font-size: 30px;
-    color: #FB9902;
-    padding: 10px 0;
-    max-width: 1300px;
-    margin: 0 auto;
-}
-.title-cast{
-    font-weight: 600;
-    display: flex;
-    font-size: 30px;
-    color: #FB9902;
-    max-width: 1300px;
-    margin: 0 auto;
-}
 .overview-detail {
     font-size: 20px;
     /* padding: 10px 0; */
@@ -74,6 +59,7 @@
     font-size: 50px;
     background-color: #FB9902;
     color: white;
+    padding: 5px 0;
 }
 
 /* .moviedetail-title label {
@@ -96,7 +82,7 @@
 .vote,
 .genre,
 .release-date {
-    display: flex;
+    text-align: initial;
     padding: 5px 0;
     color: black;
     font-size: 20px;
@@ -258,10 +244,10 @@
     .preview-cast,
     .production-countries,
     .release-date {
-        font-size: 11px;
+        font-size: 15px;
         padding: 2px 0;
     }
-
+    .title-cast,
     .title-trailer,
     .title-overview {
         font-size: 25px;
@@ -312,10 +298,11 @@
         font-size: 10px;
         padding: 5px 10px;
     }
-
+    .title-cast,
     .title-trailer,
     .title-overview {
-        font-size: 17px;
+        font-size: 18px;
+        padding: 5px 0;
     }
 
     .btn-wacth-movie {
@@ -332,6 +319,7 @@
 
     .moviedetail-title {
         font-size: 15px;
+        padding: 2px 0;
     }
 
 }
