@@ -1,6 +1,7 @@
-:root{
-    --content-maxwidth:1250px;
+:root {
+    --content-max-width: 1250px;
 }
+
 .movie-detail {
     margin: 0 15px 10px;
 }
@@ -23,8 +24,42 @@
 }
 
 .trailer {
-    max-width: var(--content-maxwidth);
+    max-width: var(--content-max-width);
     margin: 0 auto;
+}
+
+.title-overview,
+.title-cast,
+.title-trailer {
+    font-weight: 600;
+    display: flex;
+    font-size: 30px;
+    color: #FB9902;
+    max-width: var(--content-max-width);
+    padding: 10px 0;
+    margin: 0 auto;
+}
+
+.overview-detail {
+    font-size: 20px;
+    /* padding: 10px 0; */
+    text-align: justify;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+}
+
+.preview-cast {
+    display: flex;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+}
+
+.bottom-line {
+    border-bottom: 1px solid #3a3a3a;
+    padding: 0 0 10px;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    /* margin: 20px 0px 0px; */
 }
 
 .detail-right {
@@ -36,25 +71,6 @@
     display: flex;
     padding: 50px 40px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 1) 150px, rgba(0, 0, 0, 0.4) 100%)
-}
-.title-overview,
-.title-cast,
-.title-trailer {
-    font-weight: 600;
-    display: flex;
-    font-size: 30px;
-    color: #FB9902;
-    max-width: var(--content-maxwidth);
-    padding: 10px 0;
-    margin: 0 auto;
-}
-
-.overview-detail {
-    font-size: 20px;
-    /* padding: 10px 0; */
-    text-align: justify;
-    max-width: var(--content-maxwidth);
-    margin: 0 auto;
 }
 
 .moviedetail-title {
@@ -123,14 +139,6 @@
 
 .genre-name a {
     color: white;
-}
-
-.bottom-line {
-    border-bottom: 1px solid #3a3a3a;
-    padding: 0 0 10px;
-    max-width: var(--content-maxwidth);
-    margin: 0 auto;
-    /* margin: 20px 0px 0px; */
 }
 
 .btn-watch {
@@ -221,11 +229,6 @@
     height: 250px;
 }
 
-.preview-cast {
-    display: flex;
-    max-width: var(--content-maxwidth);
-    margin: 0 auto;
-}
 
 .cast img {
     object-fit: cover;
@@ -251,6 +254,7 @@
         font-size: 15px;
         padding: 2px 0;
     }
+
     .title-cast,
     .title-trailer,
     .title-overview {
@@ -271,7 +275,7 @@
     }
 
     .info-container {
-        height: 100px;
+        height: 150px;
     }
 }
 
@@ -302,6 +306,7 @@
         font-size: 10px;
         padding: 5px 10px;
     }
+
     .title-cast,
     .title-trailer,
     .title-overview {
@@ -324,6 +329,9 @@
     .moviedetail-title {
         font-size: 15px;
         padding: 2px 0;
+    }
+    .custom-slick-arrow{
+        display: none;
     }
 
 }
