@@ -1,3 +1,6 @@
+:root{
+    --content-maxwidth:1250px;
+}
 .movie-detail {
     margin: 0 15px 10px;
 }
@@ -20,7 +23,7 @@
 }
 
 .trailer {
-    max-width: 1300px;
+    max-width: var(--content-maxwidth);
     margin: 0 auto;
 }
 
@@ -41,15 +44,16 @@
     display: flex;
     font-size: 30px;
     color: #FB9902;
-    max-width: 1300px;
+    max-width: var(--content-maxwidth);
     padding: 10px 0;
+    margin: 0 auto;
 }
 
 .overview-detail {
     font-size: 20px;
     /* padding: 10px 0; */
     text-align: justify;
-    max-width: 1300px;
+    max-width: var(--content-maxwidth);
     margin: 0 auto;
 }
 
@@ -124,7 +128,7 @@
 .bottom-line {
     border-bottom: 1px solid #3a3a3a;
     padding: 0 0 10px;
-    max-width: 1300px;
+    max-width: var(--content-maxwidth);
     margin: 0 auto;
     /* margin: 20px 0px 0px; */
 }
@@ -219,7 +223,7 @@
 
 .preview-cast {
     display: flex;
-    max-width: 1300px;
+    max-width: var(--content-maxwidth);
     margin: 0 auto;
 }
 
