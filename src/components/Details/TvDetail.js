@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import apiMovie from "../../api/axios";
 import { APIKey } from "../../api/apikey";
-import Grid from "@mui/material/Grid";
 import BannerDetail from "./componentdetails/BannerDetail";
 import InfoDetail from "./componentdetails/InfoDetail";
 import "./Details.css";
@@ -89,7 +88,7 @@ function MovieDetail({ posterMovieUrl }) {
         moviesVi={tvVI}
         cast={casts}
         trailers={trailers}
-        releaseDate={tv.last_air_date}
+        releaseDate={tv.first_air_date}
       />
     </div>
   );

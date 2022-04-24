@@ -20,8 +20,8 @@ function BannerDetail({ posterMovieUrl, movies, moviesVi, title, runtime }) {
           </div>
           <div className="genre">
             <label>Thể loại: </label>
-            {movies.genres &&
-              movies.genres.map((genre, index) => (
+            {moviesVi.genres &&
+              moviesVi.genres.map((genre, index) => (
                 <div className="genre-name" key={genre.id}>
                   <a href="">
                     {(index ? ", " : "") + `${genre.name}` ||

@@ -38,9 +38,9 @@ function RankMovie({ title, posterMovieUrl }) {
             {movies.map((movie, index) => (
               <tr className="top-film" key={movie.id}>
                 <td>{index + 1}</td>
-                <td width="30%">
+                <td className="rank-poster">
                   <Link to={`/movie/${movie.id}`}>
-                    <img
+                    <img className="poster"
                       src={`${posterMovieUrl + movie.poster_path}`}
                       alt="Poster"
                     />

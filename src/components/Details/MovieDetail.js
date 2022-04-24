@@ -81,7 +81,7 @@ function MovieDetail({ posterMovieUrl }) {
         posterMovieUrl={posterMovieUrl}
         movies={movies}
         moviesVi={moviesVI}
-        title={movies.title}
+        title={moviesVI.title}
         runtime={movies.runtime}
       />
       <InfoDetail

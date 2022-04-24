@@ -20,10 +20,8 @@ function MovieCard({
             {title || original_name || "Đang cập nhật..."}
           </div>
           <div className="movie-release">
-            Khởi chiếu: 
-            {release_date ||
-              first_air_date ||
-              "Đang cập nhật..."}
+            <label>Khởi chiếu: </label>
+            {release_date || first_air_date || "Đang cập nhật..."}
           </div>
         </div>
       </Link>

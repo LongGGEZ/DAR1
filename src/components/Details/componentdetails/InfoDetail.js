@@ -76,10 +76,14 @@ function InfoDetail({
           {cast.slice(0, 6).map((dv, index) => (
             <Grid item xs={2} key={dv.id}>
               <div className="cast">
-                <img
+              {dv.profile_path?(<img
                   src={`${posterMovieUrl}${dv.profile_path}`}
                   alt="Diễn viên"
-                />
+                />):(<img
+                  src="https://png.pngtree.com/png-clipart/20210608/ourlarge/pngtree-dark-gray-simple-avatar-png-image_3418404.jpg"
+                  alt="Diễn viên"
+                />)}
+                
                 <div className="info-container">
                   <h4>
                     <b>{dv.name}</b>

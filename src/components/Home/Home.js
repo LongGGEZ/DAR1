@@ -9,6 +9,7 @@ import StickyBox from "react-sticky-box";
 import "./Home.css";
 import MovieDetail from "../Details/MovieDetail";
 import TvDetail from "../Details/TvDetail";
+import NotFound from "../../NotFound";
 
 function Home() {
   const posterMovieUrl = process.env.REACT_APP_POSTER_URL;
@@ -67,6 +68,7 @@ function Home() {
                 path="/tv/:movie_id"
                 element={<TvDetail posterMovieUrl={posterMovieUrl} />}
               />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
         </Grid>
