@@ -12,17 +12,20 @@ function MovieCard({
   return (
     <div className="card-item">
       <Link to={`/${media_type || "movie"}/${movie_id}`}>
-          <div className="card-content">
-            <img src={poster} alt="Poster" />
+        <div className="card-content">
+          <img src={poster} alt="Poster" />
+        </div>
+        <div className="card-info">
+          <div className="movie-title">
+            {title || original_name || "Đang cập nhật..."}
           </div>
-          <div className="card-info">
-            <div className="movie-title">
-              {title || original_name || "Đang cập nhật..."}
-            </div>
-            <div className="movie-release">
-              Khởi chiếu: {release_date || first_air_date || "Đang cập nhật..."}
-            </div>
+          <div className="movie-release">
+            Khởi chiếu: 
+            {release_date ||
+              first_air_date ||
+              "Đang cập nhật..."}
           </div>
+        </div>
       </Link>
     </div>
   );
