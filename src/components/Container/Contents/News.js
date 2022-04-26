@@ -36,7 +36,7 @@ function News({ title, posterMovieUrl }) {
               <MovieCard
                 movie_id={movie.id}
                 title={movie.title}
-                poster={`${posterMovieUrl + movie.poster_path}`}
+                poster={movie.poster_path?`${posterMovieUrl + movie.poster_path}`:""}
                 release_date={movie.release_date}
               />
             </Grid>

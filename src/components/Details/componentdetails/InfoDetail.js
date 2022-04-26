@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Grid from "@mui/material/Grid";
 function InfoDetail({
   posterMovieUrl,
@@ -68,33 +67,43 @@ function InfoDetail({
           ></iframe>
         </div>
       )}
-      <div className="title-cast">
-        <label>Diễn viên:</label>
-      </div>
-      <div className="preview-cast">
-        <Grid container spacing={{ xs: 2 }} columns={{ xs: 4, sm: 6, md: 12 }}>
-          {cast.slice(0, 6).map((dv, index) => (
-            <Grid item xs={2} key={dv.id}>
-              <div className="cast">
-              {dv.profile_path?(<img
-                  src={`${posterMovieUrl}${dv.profile_path}`}
-                  alt="Diễn viên"
-                />):(<img
-                  src="https://png.pngtree.com/png-clipart/20210608/ourlarge/pngtree-dark-gray-simple-avatar-png-image_3418404.jpg"
-                  alt="Diễn viên"
-                />)}
-                
-                <div className="info-container">
-                  <h4>
-                    <b>{dv.name}</b>
-                  </h4>
-                  <p>{dv.character}</p>
-                </div>
-              </div>
+      {cast === undefined ? (
+        ""
+      ) : (
+        <>
+          <div className="title-cast">
+            <label>Diễn viên:</label>
+          </div>
+          <div className="preview-cast">
+            <Grid
+              container
+              spacing={{ xs: 2 }}
+              columns={{ xs: 4, sm: 6, md: 12 }}
+            >
+              {cast.slice(0, 6).map((dv, index) => (
+                <Grid item xs={2} key={dv.id}>
+                  <div className="cast">
+                    <img
+                      src={
+                        dv.profile_path
+                          ? `${posterMovieUrl}${dv.profile_path}`
+                          : "https://png.pngtree.com/png-clipart/20210608/ourlarge/pngtree-dark-gray-simple-avatar-png-image_3418404.jpg"
+                      }
+                      alt="Diễn viên"
+                    />
+                    <div className="info-container">
+                      <h4>
+                        <b>{dv.name}</b>
+                      </h4>
+                      <p>{dv.character}</p>
+                    </div>
+                  </div>
+                </Grid>
+              ))}
             </Grid>
-          ))}
-        </Grid>
-      </div>
+          </div>
+        </>
+      )}
     </>
   );
 }

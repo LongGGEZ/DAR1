@@ -16,6 +16,7 @@ function Trending({ title, posterMovieUrl }) {
       try {
         const { data } = await apiMovie.get(requests.fetchTrendingMovies);
         setMovies(data && data.results);
+        // console.log(data);
         // console.log(data && data.results);
       } catch (error) {
         console.error(error);
@@ -39,7 +40,7 @@ function Trending({ title, posterMovieUrl }) {
                   title={movie.title}
                   original_name={movie.original_name}
                   first_air_date={movie.first_air_date}
-                  poster={`${posterMovieUrl}${movie.poster_path}`}
+                  poster={movie.poster_path?`${posterMovieUrl}${movie.poster_path}`:""}
                   release_date={movie.release_date}
                 />
               </Grid>

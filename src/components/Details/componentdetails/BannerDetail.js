@@ -2,14 +2,21 @@ function BannerDetail({ posterMovieUrl, movies, moviesVi, title, runtime }) {
   return (
     <div
       style={{
-        backgroundImage: `url(${posterMovieUrl}${movies.backdrop_path})`,
+        backgroundImage: movies.backdrop_path? `url(${posterMovieUrl}${movies.backdrop_path})`:"",
       }}
       className="detail-container"
     >
       <div className="center-details">
         <div className="detail-left">
           <div className="poster-img">
-            <img src={`${posterMovieUrl + movies.poster_path}`} alt="Poster" />
+            <img
+              src={
+                movies.poster_path
+                  ? `${posterMovieUrl + movies.poster_path}`
+                  : ""
+              }
+              alt="Poster"
+            />
           </div>
         </div>
         <div className="detail-right">
@@ -35,7 +42,7 @@ function BannerDetail({ posterMovieUrl, movies, moviesVi, title, runtime }) {
           </div>
           <div className="runtime">
             <label>Thời lượng: </label>
-            {runtime === undefined ? "Đang cập nhật..." : runtime + " phút"}
+            {runtime === undefined ? "Đang cập nhật..." : runtime}
           </div>
           <div className="btn-watch">
             <div className="btn-wacth-movie">Xem Phim</div>

@@ -80,7 +80,7 @@ function MovieDetail({ posterMovieUrl }) {
         movies={tv}
         moviesVi={tvVI}
         title={tvVI.name}
-        runtime={tv.number_of_episodes}
+        runtime={tv.number_of_episodes + " tập"}
       />
       <InfoDetail
         posterMovieUrl={posterMovieUrl}
