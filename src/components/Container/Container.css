@@ -102,3 +102,33 @@ td a {
         margin: 0 15px;
     }
 }
+
+.disabled {
+    display: none;
+}
+
+.pagination {
+    display: inline-flex;
+    margin: 20px auto 0 auto;
+}
+
+.pagination li {
+    padding: 0   15px;
+    border-radius: 4px;
+}
+
+.pagination li:hover {
+    cursor: pointer;
+    background-color: #e8ebed;
+}
+
+.pagination .selected {
+    background-color: #e8ebed;
+}
+
+@media only screen and (max-width: 480px) {
+    .pagination .page-number {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}

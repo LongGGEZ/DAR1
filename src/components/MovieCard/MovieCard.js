@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "./MovieCard.css";
 function MovieCard({
+  posterMovieUrl,
   movie_id,
   media_type,
   title,
@@ -13,7 +14,7 @@ function MovieCard({
     <div className="card-item">
       <Link to={`/${media_type || "movie"}/${movie_id}`}>
         <div className="card-content">
-          <img src={poster} alt="Poster" />
+          <img src={poster?`${posterMovieUrl}${poster}`:"http://hoahieu.com.vn/wp-content/themes/kutetheme/images/placeholder.jpg"} alt="Poster" />
         </div>
         <div className="card-info">
           <div className="movie-title">

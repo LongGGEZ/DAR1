@@ -50,7 +50,7 @@ function MovieDetail({ posterMovieUrl }) {
           `/movie/${movie_id}/credits?api_key=${APIKey}&language=en-US`
         );
         setCasts(data && data.cast);
-        // console.log(data && data.cast);
+        console.log( data && data.cast);
       } catch (error) {
         console.error(error);
       }
@@ -67,7 +67,7 @@ function MovieDetail({ posterMovieUrl }) {
         let trailerIndex =
           data && data.results.findIndex((ti) => ti.type === "Trailer");
         setTrailers(data && data.results[trailerIndex]);
-        // console.log(data && data.results[trailerIndex]);
+        console.log(data && data.results[trailerIndex]);
       } catch (error) {
         console.error(error);
       }

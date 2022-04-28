@@ -13,7 +13,7 @@ function BannerDetail({ posterMovieUrl, movies, moviesVi, title, runtime }) {
               src={
                 movies.poster_path
                   ? `${posterMovieUrl + movies.poster_path}`
-                  : ""
+                  : "http://hoahieu.com.vn/wp-content/themes/kutetheme/images/placeholder.jpg"
               }
               alt="Poster"
             />

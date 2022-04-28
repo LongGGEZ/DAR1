@@ -67,9 +67,7 @@ function InfoDetail({
           ></iframe>
         </div>
       )}
-      {cast === undefined ? (
-        ""
-      ) : (
+      {cast ? (
         <>
           <div className="title-cast">
             <label>Diễn viên:</label>
@@ -103,6 +101,8 @@ function InfoDetail({
             </Grid>
           </div>
         </>
+      ) : (
+        ""
       )}
     </>
   );

@@ -1,20 +1,27 @@
 import { useState, useEffect } from "react";
 import { Grid } from "@mui/material";
 import apiMovie from "../../../api/axios";
-import requests from "../../../FecthDataMovie/FecthDataAll";
+import { APIKey } from "../../../api/apikey";
 import MovieCard from "../../MovieCard/MovieCard";
 import "../../Container/Container.css";
+import ReactPaginate from "react-paginate";
 
 function News({ title, posterMovieUrl }) {
+  const [pagesNumber, setPagesNumber] = useState(1);
+  const [datas, setDatas] = useState([]);
   useEffect(() => {
     document.title = title;
   });
+
   //fecth new movie
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const { data } = await apiMovie.get(requests.fetchNewMovies);
+        const { data } = await apiMovie.get(
+          `/movie/upcoming?api_key=${APIKey}&language=vi&page=${pagesNumber}`
+        );
+        setDatas(data);
         setMovies(data && data.results);
         // console.log(data && data.results);
       } catch (error) {
@@ -22,8 +29,13 @@ function News({ title, posterMovieUrl }) {
       }
     };
     fetchMovie();
-  }, []);
+    // console.log(pagesNumber);
+  }, [pagesNumber]);
 
+  const handlePageClick = (page) => {
+    setPagesNumber(page.selected + 1);
+    window.scrollTo(0, 0)
+  };
   return (
     <div className="main-content">
       <div className="title">
@@ -34,15 +46,37 @@ function News({ title, posterMovieUrl }) {
           {movies.map((movie) => (
             <Grid item xs={2.4} key={movie.id}>
               <MovieCard
+                posterMovieUrl={posterMovieUrl}
                 movie_id={movie.id}
                 title={movie.title}
-                poster={movie.poster_path?`${posterMovieUrl + movie.poster_path}`:""}
+                poster={movie.poster_path}
                 release_date={movie.release_date}
               />
             </Grid>
           ))}
         </Grid>
       </div>
+      <ReactPaginate
+        className="pagination"
+        onPageChange={handlePageClick}
+        breakLabel="..."
+        nextLabel={
+          <img onClick={()=>{window.scrollTo(0, 0)}}
+            src="https://img.icons8.com/material-outlined/24/000000/right.png"
+            alt="Next"
+          />
+        }
+        pageRangeDisplayed={3}
+        marginPagesDisplayed={1}
+        pageCount={datas.total_pages}
+        previousLabel={
+          <img onClick={()=>{window.scrollTo(0, 0)}}
+            src="https://img.icons8.com/material-outlined/24/000000/left.png"
+            alt="Left"
+          />
+        }
+        renderOnZeroPageCount={null}
+      />
     </div>
   );
 }

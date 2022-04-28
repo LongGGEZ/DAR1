@@ -31,9 +31,10 @@ function ListFilm({ title, fetchData, posterMovieUrl }) {
             {movies.slice(0, 6).map((movie) => (
               <Grid item xs={2} key={movie.id}>
                 <MovieCard
+                  posterMovieUrl={posterMovieUrl}
                   movie_id={movie.id}
                   title={movie.title}
-                  poster={`${posterMovieUrl + movie.poster_path}`}
+                  poster={movie.poster_path}
                   release_date={movie.release_date}
                 />
               </Grid>
