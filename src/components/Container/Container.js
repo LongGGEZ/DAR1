@@ -19,32 +19,44 @@ function Content({ title, posterMovieUrl }) {
         /> */}
         <ListFilm
           title={"Phim Hành Động"}
+          router={"action"}
           fetchData={requests.fetchActionMovies}
+          genre_id="28"
           posterMovieUrl={posterMovieUrl}
         />
         <ListFilm
           title={"Phim Hoạt Hình"}
+          router={"animation"}
           fetchData={requests.fetchAnimationMovies}
+          genre_id="16"
           posterMovieUrl={posterMovieUrl}
         />
         <ListFilm
           title={"Phim Hài"}
+          router={"comedy"}
           fetchData={requests.fetchComedyMovies}
+          genre_id="35"
           posterMovieUrl={posterMovieUrl}
         />
         <ListFilm
           title={"Phim Kinh Dị"}
+          router={"horor"}
           fetchData={requests.fetchHorrorMovies}
+          genre_id="27"
           posterMovieUrl={posterMovieUrl}
         />
         <ListFilm
           title={"Phim Tình Cảm"}
+          router={"romance"}
           fetchData={requests.fetchRomanceMovies}
+          genre_id="10749"
           posterMovieUrl={posterMovieUrl}
         />
         <ListFilm
           title={"Phim Tài Liệu"}
+          router={"document"}
           fetchData={requests.fetchDocumentaries}
+          genre_id="99"
           posterMovieUrl={posterMovieUrl}
         />
       </div>

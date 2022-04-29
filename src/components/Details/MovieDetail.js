@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import apiMovie from "../../api/axios";
 import { APIKey } from "../../api/apikey";
@@ -50,7 +50,7 @@ function MovieDetail({ posterMovieUrl }) {
           `/movie/${movie_id}/credits?api_key=${APIKey}&language=en-US`
         );
         setCasts(data && data.cast);
-        console.log( data && data.cast);
+        console.log(data && data.cast);
       } catch (error) {
         console.error(error);
       }

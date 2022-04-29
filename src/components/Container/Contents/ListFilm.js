@@ -1,30 +1,34 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { APIKey } from "../../../api/apikey";
 import apiMovie from "../../../api/axios";
 import MovieCard from "../../MovieCard/MovieCard";
 import Grid from "@mui/material/Grid";
-
-function ListFilm({ title, fetchData, posterMovieUrl }) {
+function ListFilm({ title, genre_id, posterMovieUrl }) {
+  // const { genre_id } = useParams();
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const { data } = await apiMovie.get(fetchData);
+        const { data } = await apiMovie.get(
+          `/discover/movie/?api_key=${APIKey}&with_genres=${genre_id}&language=vi`
+        );
         setMovies(data && data.results);
+        // console.log(data && data.results);
       } catch (error) {
         console.error(error);
       }
     };
     fetchMovie();
   }, []);
-
   return (
     <>
       <div className="list-film">
         <div className="title">
           <h1>{title}</h1>
-          <div className="center">
+          <Link to={`/genre/${genre_id}`} className="center">
             <span className="show-all">Xem tất cả</span>
-          </div>
+          </Link>
         </div>
         <div className="movie-flex">
           <Grid container columns={{ xs: 4, sm: 6, md: 12 }}>

@@ -6,15 +6,14 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ModalProvider } from "./Context/ModalContext";
 import ScrollToTop from "./components/ScrollTop";
-
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <ModalProvider>
-        <ScrollToTop />
-        <App />
-      </ModalProvider>
-    </Router>
+      <Router>
+        <ModalProvider>
+          <ScrollToTop />
+          <App />
+        </ModalProvider>
+      </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );

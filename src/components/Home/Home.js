@@ -10,6 +10,7 @@ import "./Home.css";
 import MovieDetail from "../Details/MovieDetail";
 import TvDetail from "../Details/TvDetail";
 import NotFound from "../../NotFound";
+import Contents from "../Container/Contents/Contents";
 
 function Home() {
   const posterMovieUrl = process.env.REACT_APP_POSTER_URL;
@@ -67,6 +68,10 @@ function Home() {
               <Route
                 path="/tv/:movie_id"
                 element={<TvDetail posterMovieUrl={posterMovieUrl} />}
+              />
+              <Route
+                path="/genre/:genre_id"
+                element={<Contents posterMovieUrl={posterMovieUrl} />}
               />
               <Route path="*" element={<NotFound />} />
             </Routes>
