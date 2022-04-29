@@ -2,7 +2,9 @@ function BannerDetail({ posterMovieUrl, movies, moviesVi, title, runtime }) {
   return (
     <div
       style={{
-        backgroundImage: movies.backdrop_path? `url(${posterMovieUrl}${movies.backdrop_path})`:"",
+        backgroundImage: movies.backdrop_path
+          ? `url(${posterMovieUrl}${movies.backdrop_path})`
+          : "",
       }}
       className="detail-container"
     >

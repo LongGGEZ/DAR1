@@ -12,14 +12,19 @@ function Content({ title, posterMovieUrl }) {
     <div className="main-content">
       <SlideBanner />
       <div className="layout-content">
-        <ListFilm
+        {/* <ListFilm
           title={"Phim đề cử"}
           fetchData={requests.fetchNewMovies}
           posterMovieUrl={posterMovieUrl}
-        />
+        /> */}
         <ListFilm
           title={"Phim Hành Động"}
           fetchData={requests.fetchActionMovies}
+          posterMovieUrl={posterMovieUrl}
+        />
+        <ListFilm
+          title={"Phim Hoạt Hình"}
+          fetchData={requests.fetchAnimationMovies}
           posterMovieUrl={posterMovieUrl}
         />
         <ListFilm

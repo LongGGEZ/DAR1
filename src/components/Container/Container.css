@@ -109,11 +109,12 @@ td a {
 
 .pagination {
     display: inline-flex;
+    align-items: center;
     margin: 20px auto 0 auto;
 }
 
 .pagination li {
-    padding: 0   15px;
+    padding: 0 10px;
     border-radius: 4px;
 }
 

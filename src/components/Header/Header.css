@@ -49,7 +49,7 @@ margin-right: 20px;
     font-size: 13px;
   }
   .logo a img{
-    display: none;
+    /* display: none; */
     width: 30px;
   }
   .logout img{

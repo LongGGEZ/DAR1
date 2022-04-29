@@ -5,6 +5,7 @@ const requests = {
   fetchNewMovies: `/movie/upcoming?api_key=${APIKey}&language=vi&page=1`,
 
   fetchActionMovies: `/discover/movie/?api_key=${APIKey}&with_genres=28&language=vi`,
+  fetchAnimationMovies: `/discover/movie/?api_key=${APIKey}&with_genres=16&language=vi`,
   fetchComedyMovies: `/discover/movie/?api_key=${APIKey}&with_genres=35&language=vi`,
   fetchHorrorMovies: `/discover/movie/?api_key=${APIKey}&with_genres=27&language=vi`,
   fetchRomanceMovies: `/discover/movie?api_key=${APIKey}&with_genres=10749&language=vi`,
