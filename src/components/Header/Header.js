@@ -25,17 +25,34 @@ function Header({ isSignedIn }) {
             <img src="https://img.icons8.com/ios-glyphs/30/000000/menu-rounded.png" alt="menu-mobile"/>
           </a>
         </div> */}
+        <div className="menu-bar">
+          <div className="menu-children"> 
+            <span>Thể loại</span>
+          </div>
+          <div className="menu-children">
+            <span>Quốc gia</span>
+          </div>
+          <div className="menu-children">
+            <span>Năm phát hành</span>
+          </div>
+          <div className="search">
+            <input type="text" placeholder="Search..."></input>
+          </div>
+        </div>
         <div className="user">
           <div className="notification" href="/">
-          <img src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/24/000000/external-bell-essentials-pack-tanah-basah-glyph-tanah-basah.png" alt="Thông báo"/>
+            <img
+              src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/24/000000/external-bell-essentials-pack-tanah-basah-glyph-tanah-basah.png"
+              alt="Thông báo"
+            />
           </div>
-
           {isSignedIn === true ? (
             <>
               <div className="display-user">
-                Chào mừng {firebase.auth().currentUser.displayName}!
+                Hello, {firebase.auth().currentUser.displayName}!
               </div>
-              <div className="logout"
+              <div
+                className="logout"
                 style={{ cursor: "pointer" }}
                 onClick={() => firebase.auth().signOut()}
               >

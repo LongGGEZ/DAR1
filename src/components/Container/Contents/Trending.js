@@ -8,7 +8,7 @@ import ReactPaginate from "react-paginate";
 
 function Trending({ title, posterMovieUrl }) {
   const [pagesNumber, setPagesNumber] = useState(1);
-  const [datas, setDatas] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
   useEffect(() => {
     document.title = title;
   });
@@ -21,8 +21,8 @@ function Trending({ title, posterMovieUrl }) {
           `/trending/all/day?api_key=${APIKey}&language=vi&page=${pagesNumber}`
         );
         setMovies(data && data.results);
-        setDatas(data);
-        console.log(data && data.results);
+        setPageCount(data.total_pages);
+        // console.log(data && data.results);
       } catch (error) {
         console.error(error);
       }
@@ -32,8 +32,8 @@ function Trending({ title, posterMovieUrl }) {
 
   const handlePageClick = (page) => {
     setPagesNumber(page.selected + 1);
-    console.log(page.selected);
-    window.scrollTo(0, 0)
+    // console.log(page.selected);
+    window.scrollTo(0, 0);
   };
   return (
     <div className="main-content">
@@ -75,7 +75,7 @@ function Trending({ title, posterMovieUrl }) {
         }
         pageRangeDisplayed={3}
         marginPagesDisplayed={1}
-        pageCount={datas.total_pages}
+        pageCount={pageCount}
         previousLabel={
           <img
             onClick={() => {

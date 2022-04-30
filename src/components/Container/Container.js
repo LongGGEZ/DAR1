@@ -46,7 +46,7 @@ function Content({ title, posterMovieUrl }) {
           posterMovieUrl={posterMovieUrl}
         />
         <ListFilm
-          title={"Phim Tình Cảm"}
+          title={"Phim Lãng Mạn"}
           router={"romance"}
           fetchData={requests.fetchRomanceMovies}
           genre_id="10749"

@@ -8,7 +8,7 @@ import ReactPaginate from "react-paginate";
 
 function News({ title, posterMovieUrl }) {
   const [pagesNumber, setPagesNumber] = useState(1);
-  const [datas, setDatas] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
   useEffect(() => {
     document.title = title;
   });
@@ -21,7 +21,7 @@ function News({ title, posterMovieUrl }) {
         const { data } = await apiMovie.get(
           `/movie/upcoming?api_key=${APIKey}&language=vi&page=${pagesNumber}`
         );
-        setDatas(data);
+        setPageCount(data.total_pages);
         setMovies(data && data.results);
         // console.log(data && data.results);
       } catch (error) {
@@ -34,7 +34,7 @@ function News({ title, posterMovieUrl }) {
 
   const handlePageClick = (page) => {
     setPagesNumber(page.selected + 1);
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
   };
   return (
     <div className="main-content">
@@ -61,16 +61,22 @@ function News({ title, posterMovieUrl }) {
         onPageChange={handlePageClick}
         breakLabel="..."
         nextLabel={
-          <img onClick={()=>{window.scrollTo(0, 0)}}
+          <img
+            onClick={() => {
+              window.scrollTo(0, 0);
+            }}
             src="https://img.icons8.com/material-outlined/24/000000/right.png"
             alt="Next"
           />
         }
         pageRangeDisplayed={3}
         marginPagesDisplayed={1}
-        pageCount={datas.total_pages}
+        pageCount={pageCount}
         previousLabel={
-          <img onClick={()=>{window.scrollTo(0, 0)}}
+          <img
+            onClick={() => {
+              window.scrollTo(0, 0);
+            }}
             src="https://img.icons8.com/material-outlined/24/000000/left.png"
             alt="Left"
           />

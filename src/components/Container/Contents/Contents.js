@@ -4,14 +4,15 @@ import { Grid } from "@mui/material";
 import apiMovie from "../../../api/axios";
 import { APIKey } from "../../../api/apikey";
 import MovieCard from "../../MovieCard/MovieCard";
-import "../../Container/Container.css";
 import ReactPaginate from "react-paginate";
-function Contents({ title, posterMovieUrl }) {
+import "../../Container/Container.css";
+function Contents({ posterMovieUrl }) {
   const { genre_id } = useParams();
   const [pagesNumber, setPagesNumber] = useState(1);
-  const [datas, setDatas] = useState([]);
+  const [genres, setGenres] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
   useEffect(() => {
-    document.title = title;
+    document.title = genres.name;
   });
 
   //fecth new movie
@@ -22,15 +23,28 @@ function Contents({ title, posterMovieUrl }) {
         const { data } = await apiMovie.get(
           `/discover/movie/?api_key=${APIKey}&with_genres=${genre_id}&language=vi&page=${pagesNumber}`
         );
-        setDatas(data);
+        setPageCount(data.total_pages);
         setMovies(data && data.results);
-        // console.log(data && data.results);
       } catch (error) {
         console.error(error);
       }
     };
     fetchMovie();
   }, [pagesNumber]);
+
+  useEffect(() => {
+    const fetchGenre = async () => {
+      try {
+        const { data } = await apiMovie.get(
+          `genre/movie/list?api_key=${APIKey}&language=vi`
+        );
+        setGenres(data.genres.find((genre) => genre.id == genre_id));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchGenre();
+  }, []);
 
   const handlePageClick = (page) => {
     setPagesNumber(page.selected + 1);
@@ -39,7 +53,7 @@ function Contents({ title, posterMovieUrl }) {
   return (
     <div className="main-content">
       <div className="title">
-        <h1>Phim mới</h1>
+        <h1>{genres.name}</h1>
       </div>
       <div className="movie">
         <Grid container columns={{ xs: 4.8, sm: 9.6, md: 12 }}>
@@ -59,7 +73,6 @@ function Contents({ title, posterMovieUrl }) {
       <ReactPaginate
         className="pagination"
         onPageChange={handlePageClick}
-        breakLabel="..."
         nextLabel={
           <img
             onClick={() => {
@@ -71,7 +84,7 @@ function Contents({ title, posterMovieUrl }) {
         }
         pageRangeDisplayed={3}
         marginPagesDisplayed={1}
-        pageCount={datas.total_pages}
+        pageCount={pageCount > 500 ? 500 : pageCount}
         previousLabel={
           <img
             onClick={() => {

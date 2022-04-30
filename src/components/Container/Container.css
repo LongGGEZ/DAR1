@@ -82,6 +82,33 @@ td a {
     color: black;
 }
 
+.disabled {
+    display: none;
+}
+
+.pagination {
+    display: inline-flex;
+    margin: 20px auto 0 auto;
+    align-items: center;
+}
+
+.pagination li {
+    width: 55px;
+    height: 25px;
+    margin: 0 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.pagination li:hover {
+    cursor: pointer;
+    background-color: #e8ebed;
+}
+
+.pagination .selected {
+    background-color: #e8ebed;
+}
+
 @media only screen and (max-width: 1024px) {
     .title {
         font-size: 11px;
@@ -101,35 +128,8 @@ td a {
     .main-content {
         margin: 0 15px;
     }
-}
 
-.disabled {
-    display: none;
-}
-
-.pagination {
-    display: inline-flex;
-    align-items: center;
-    margin: 20px auto 0 auto;
-}
-
-.pagination li {
-    padding: 0 10px;
-    border-radius: 4px;
-}
-
-.pagination li:hover {
-    cursor: pointer;
-    background-color: #e8ebed;
-}
-
-.pagination .selected {
-    background-color: #e8ebed;
-}
-
-@media only screen and (max-width: 480px) {
-    .pagination .page-number {
+    .pagination {
         display: flex;
-        flex-wrap: wrap;
     }
 }
