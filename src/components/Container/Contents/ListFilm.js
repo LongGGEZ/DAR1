@@ -1,16 +1,18 @@
-import { useEffect, useState, useContext,useRef } from "react";
+import { useEffect, useState, useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import { APIKey } from "../../../api/apikey";
 import apiMovie from "../../../api/axios";
 import MovieCard from "../../MovieCard/MovieCard";
 import Grid from "@mui/material/Grid";
+import ReactLoading from "react-loading";
 import { LoadingContext } from "../../../Context/LoadingContext";
-function ListFilm({ title, genre_id, posterMovieUrl }) {
+function ListFilm({ title, genre_id,fetchData, posterMovieUrl }) {
   // const { genre_id } = useParams();
   const context = useContext(LoadingContext);
   const [movies, setMovies] = useState([]);
+  
   useEffect(() => {
-    // context.setIsLoading(true);
+    // context.setIsLoading(true)
     const fetchMovie = async () => {
       try {
         const { data } = await apiMovie.get(
@@ -18,39 +20,44 @@ function ListFilm({ title, genre_id, posterMovieUrl }) {
         );
         setMovies(data && data.results);
         // console.log(data && data.results);
-      //  context.setIsLoading(false)
       } catch (error) {
         console.error(error);
       }
     };
     fetchMovie();
   }, []);
-  // console.log(context.isLoading);
+  // console.log(context.isLoadingHome);
   return (
     <>
-      <div className="list-film">
-        <div className="title">
-          <h1>{title}</h1>
-          <Link to={`/genre/${genre_id}`} className="center">
-            <span className="show-all">Xem tất cả</span>
-          </Link>
+      {context.isLoading ? (
+        <div className="isloading">
+          <ReactLoading type="bubbles" color={"black"} className="loading" />
         </div>
-        <div className="movie-flex">
-          <Grid container columns={{ xs: 4, sm: 6, md: 12 }}>
-            {movies.slice(0, 6).map((movie) => (
-              <Grid item xs={2} key={movie.id}>
-                <MovieCard
-                  posterMovieUrl={posterMovieUrl}
-                  movie_id={movie.id}
-                  title={movie.title}
-                  poster={movie.poster_path}
-                  release_date={movie.release_date}
-                />
-              </Grid>
-            ))}
-          </Grid>
+      ) : (
+        <div className="list-film">
+          <div className="title">
+            <h1>{title}</h1>
+            <Link to={`/genre/${genre_id}`} className="center">
+              <span className="show-all">Xem tất cả</span>
+            </Link>
+          </div>
+          <div className="movie-flex">
+            <Grid container columns={{ xs: 4, sm: 6, md: 12 }}>
+              {movies.slice(0, 6).map((movie) => (
+                <Grid item xs={2} key={movie.id}>
+                  <MovieCard
+                    posterMovieUrl={posterMovieUrl}
+                    movie_id={movie.id}
+                    title={movie.title}
+                    poster={movie.poster_path}
+                    release_date={movie.release_date}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

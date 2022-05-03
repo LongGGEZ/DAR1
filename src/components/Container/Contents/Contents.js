@@ -9,9 +9,6 @@ import "../../Container/Container.css";
 import ReactLoading from "react-loading";
 import { LoadingContext } from "../../../Context/LoadingContext";
 
-const list = {
-  prop: "bubbles",
-};
 function Contents({ posterMovieUrl }) {
   const { genre_id } = useParams();
   const [pagesNumber, setPagesNumber] = useState(1);
@@ -65,7 +62,7 @@ function Contents({ posterMovieUrl }) {
     <div className="main-content">
       {context.isLoading ? (
         <div className="isloading">
-          <ReactLoading type={list.prop} color={"black"} className="loading" />
+          <ReactLoading type="bubbles" color={"black"} className="loading" />
         </div>
       ) : (
         <>

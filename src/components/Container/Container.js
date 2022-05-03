@@ -16,7 +16,7 @@ function Content({ title, posterMovieUrl }) {
       {context.isLoading ? (
         <div className="isloading">
           <ReactLoading
-            type={context.loadingIcon.prop}
+            type="bubbles"
             color={"black"}
             className="loading"
           />
@@ -25,11 +25,6 @@ function Content({ title, posterMovieUrl }) {
         <>
           <SlideBanner />
           <div className="layout-content">
-            {/* <ListFilm
-          title={"Phim đề cử"}
-          fetchData={requests.fetchNewMovies}
-          posterMovieUrl={posterMovieUrl}
-        /> */}
             <ListFilm
               title={"Phim Hành Động"}
               fetchData={requests.fetchActionMovies}

@@ -86,11 +86,7 @@ function MovieDetail({ posterMovieUrl }) {
     <div className="movie-detail">
       {context.isLoading ? (
         <div className="isloading">
-          <ReactLoading
-            type={context.loadingIcon.prop}
-            color={"black"}
-            className="loading"
-          />
+          <ReactLoading type="bubbles" color={"black"} className="loading" />
         </div>
       ) : (
         <>

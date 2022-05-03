@@ -48,7 +48,7 @@ function Trending({ title, posterMovieUrl }) {
       {context.isLoading ? (
         <div className="isloading">
           <ReactLoading
-            type={context.loadingIcon.prop}
+            type="bubbles"
             color={"black"}
             className="loading"
           />
