@@ -6,11 +6,17 @@ import { APIKey } from "../../../api/apikey";
 import MovieCard from "../../MovieCard/MovieCard";
 import ReactPaginate from "react-paginate";
 import "../../Container/Container.css";
+import ReactLoading from "react-loading";
+
+const list = {
+  prop: "bubbles",
+};
 function Contents({ posterMovieUrl }) {
   const { genre_id } = useParams();
   const [pagesNumber, setPagesNumber] = useState(1);
   const [genres, setGenres] = useState([]);
   const [pageCount, setPageCount] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     document.title = genres.name;
   });
@@ -18,6 +24,7 @@ function Contents({ posterMovieUrl }) {
   //fecth new movie
   const [movies, setMovies] = useState([]);
   useEffect(() => {
+    setIsLoading(true);
     const fetchMovie = async () => {
       try {
         const { data } = await apiMovie.get(
@@ -25,6 +32,9 @@ function Contents({ posterMovieUrl }) {
         );
         setPageCount(data.total_pages);
         setMovies(data && data.results);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 700);
       } catch (error) {
         console.error(error);
       }
@@ -52,26 +62,32 @@ function Contents({ posterMovieUrl }) {
   };
   return (
     <div className="main-content">
-      <div className="title">
-        <h1>{genres.name}</h1>
-      </div>
-      <div className="movie">
-        <Grid container columns={{ xs: 4.8, sm: 9.6, md: 12 }}>
-          {movies.map((movie) => (
-            <Grid item xs={2.4} key={movie.id}>
-              <MovieCard
-                posterMovieUrl={posterMovieUrl}
-                movie_id={movie.id}
-                title={movie.title}
-                poster={movie.poster_path}
-                release_date={movie.release_date}
-              />
+      {isLoading ? (
+        <ReactLoading type={list.prop} color={"black"} className="isloading" />
+      ) : (
+        <>
+          <div className="title">
+            <h1>{genres.name}</h1>
+          </div>
+          <div className="movie">
+            <Grid container columns={{ xs: 4.8, sm: 9.6, md: 12 }}>
+              {movies.map((movie) => (
+                <Grid item xs={2.4} key={movie.id}>
+                  <MovieCard
+                    posterMovieUrl={posterMovieUrl}
+                    movie_id={movie.id}
+                    title={movie.title}
+                    poster={movie.poster_path}
+                    release_date={movie.release_date}
+                  />
+                </Grid>
+              ))}
             </Grid>
-          ))}
-        </Grid>
-      </div>
+          </div>
+        </>
+      )}
       <ReactPaginate
-        className="pagination"
+        className={`pagination ${isLoading ? "display-none" : ""}`}
         onPageChange={handlePageClick}
         nextLabel={
           <img

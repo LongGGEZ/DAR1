@@ -105,6 +105,10 @@ td a {
     background-color: #e8ebed;
 }
 
+.pagination li a {
+    display: block;
+}
+
 .pagination .selected {
     background-color: #e8ebed;
 }
@@ -132,4 +136,13 @@ td a {
     .pagination {
         display: flex;
     }
+}
+
+.display-none {
+    display: none;
+}
+
+.isloading {
+    margin: auto;
+    margin-top: 100px;
 }
