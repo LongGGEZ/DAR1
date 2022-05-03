@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import apiMovie from "../../api/axios";
 import { APIKey } from "../../api/apikey";
 import BannerDetail from "./componentdetails/BannerDetail";
 import InfoDetail from "./componentdetails/InfoDetail";
+import ReactLoading from "react-loading";
+import { LoadingContext } from "../../Context/LoadingContext";
 import "./Details.css";
 
 function MovieDetail({ posterMovieUrl }) {
@@ -12,6 +14,7 @@ function MovieDetail({ posterMovieUrl }) {
   const [casts, setCasts] = useState([]);
   const [tv, setTv] = useState([]);
   const [trailers, setTrailers] = useState({});
+  const context = useContext(LoadingContext);
   //TiengViet
   useEffect(() => {
     const fetchTv = async () => {
@@ -28,6 +31,7 @@ function MovieDetail({ posterMovieUrl }) {
     fetchTv();
   }, []);
   useEffect(() => {
+    context.setIsLoading(true);
     const fetchTv = async () => {
       try {
         const { data } = await apiMovie.get(
@@ -35,6 +39,9 @@ function MovieDetail({ posterMovieUrl }) {
         );
         setTv(data);
         // console.log(data);
+        setTimeout(() => {
+          context.setIsLoading(false);
+        }, 700);
       } catch (error) {
         console.error(error);
       }
@@ -75,21 +82,33 @@ function MovieDetail({ posterMovieUrl }) {
 
   return (
     <div className="movie-detail">
-      <BannerDetail
-        posterMovieUrl={posterMovieUrl}
-        movies={tv}
-        moviesVi={tvVI}
-        title={tvVI.name}
-        runtime={tv.number_of_episodes + " tập"}
-      />
-      <InfoDetail
-        posterMovieUrl={posterMovieUrl}
-        movies={tv}
-        moviesVi={tvVI}
-        cast={casts}
-        trailers={trailers}
-        releaseDate={tv.first_air_date}
-      />
+      {context.isLoading ? (
+        <div className="isloading">
+          <ReactLoading
+            type={context.loadingIcon.prop}
+            color={"black"}
+            className="loading"
+          />
+        </div>
+      ) : (
+        <>
+          <BannerDetail
+            posterMovieUrl={posterMovieUrl}
+            movies={tv}
+            moviesVi={tvVI}
+            title={tvVI.name}
+            runtime={tv.number_of_episodes + " tập"}
+          />
+          <InfoDetail
+            posterMovieUrl={posterMovieUrl}
+            movies={tv}
+            moviesVi={tvVI}
+            cast={casts}
+            trailers={trailers}
+            releaseDate={tv.first_air_date}
+          />
+        </>
+      )}
     </div>
   );
 }

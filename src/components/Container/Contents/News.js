@@ -4,8 +4,8 @@ import apiMovie from "../../../api/axios";
 import { APIKey } from "../../../api/apikey";
 import MovieCard from "../../MovieCard/MovieCard";
 import "../../Container/Container.css";
-import ReactLoading from "react-loading";
 import ReactPaginate from "react-paginate";
+import ReactLoading from "react-loading";
 import { LoadingContext } from "../../../Context/LoadingContext";
 
 function News({ title, posterMovieUrl }) {

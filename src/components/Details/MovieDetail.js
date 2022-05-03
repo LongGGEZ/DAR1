@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import apiMovie from "../../api/axios";
 import { APIKey } from "../../api/apikey";
 import BannerDetail from "./componentdetails/BannerDetail";
 import InfoDetail from "./componentdetails/InfoDetail";
+import ReactLoading from "react-loading";
+import { LoadingContext } from "../../Context/LoadingContext";
 import "./Details.css";
 
 function MovieDetail({ posterMovieUrl }) {
@@ -12,6 +14,7 @@ function MovieDetail({ posterMovieUrl }) {
   const [moviesVI, setMoviesVI] = useState([]);
   const [casts, setCasts] = useState([]);
   const [trailers, setTrailers] = useState({});
+  const context = useContext(LoadingContext);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -29,6 +32,7 @@ function MovieDetail({ posterMovieUrl }) {
   }, []);
   //Tieng Viet
   useEffect(() => {
+    context.setIsLoading(true);
     const fetchMoviesVI = async () => {
       try {
         const { data } = await apiMovie.get(
@@ -36,6 +40,9 @@ function MovieDetail({ posterMovieUrl }) {
         );
         setMoviesVI(data);
         // console.log(data);
+        setTimeout(() => {
+          context.setIsLoading(false);
+        }, 700);
       } catch (error) {
         console.error(error);
       }
@@ -77,21 +84,33 @@ function MovieDetail({ posterMovieUrl }) {
 
   return (
     <div className="movie-detail">
-      <BannerDetail
-        posterMovieUrl={posterMovieUrl}
-        movies={movies}
-        moviesVi={moviesVI}
-        title={moviesVI.title}
-        runtime={movies.runtime + " phút"}
-      />
-      <InfoDetail
-        posterMovieUrl={posterMovieUrl}
-        movies={movies}
-        moviesVi={moviesVI}
-        cast={casts}
-        trailers={trailers}
-        releaseDate={movies.release_date}
-      />
+      {context.isLoading ? (
+        <div className="isloading">
+          <ReactLoading
+            type={context.loadingIcon.prop}
+            color={"black"}
+            className="loading"
+          />
+        </div>
+      ) : (
+        <>
+          <BannerDetail
+            posterMovieUrl={posterMovieUrl}
+            movies={movies}
+            moviesVi={moviesVI}
+            title={moviesVI.title}
+            runtime={movies.runtime + " phút"}
+          />
+          <InfoDetail
+            posterMovieUrl={posterMovieUrl}
+            movies={movies}
+            moviesVi={moviesVI}
+            cast={casts}
+            trailers={trailers}
+            releaseDate={movies.release_date}
+          />
+        </>
+      )}
     </div>
   );
 }
