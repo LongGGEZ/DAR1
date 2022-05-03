@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Grid } from "@mui/material";
 import apiMovie from "../../../api/axios";
@@ -7,6 +7,7 @@ import MovieCard from "../../MovieCard/MovieCard";
 import ReactPaginate from "react-paginate";
 import "../../Container/Container.css";
 import ReactLoading from "react-loading";
+import { LoadingContext } from "../../../Context/LoadingContext";
 
 const list = {
   prop: "bubbles",
@@ -16,7 +17,7 @@ function Contents({ posterMovieUrl }) {
   const [pagesNumber, setPagesNumber] = useState(1);
   const [genres, setGenres] = useState([]);
   const [pageCount, setPageCount] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
+  const context = useContext(LoadingContext);
   useEffect(() => {
     document.title = genres.name;
   });
@@ -24,7 +25,7 @@ function Contents({ posterMovieUrl }) {
   //fecth new movie
   const [movies, setMovies] = useState([]);
   useEffect(() => {
-    setIsLoading(true);
+    context.setIsLoading(true);
     const fetchMovie = async () => {
       try {
         const { data } = await apiMovie.get(
@@ -33,7 +34,7 @@ function Contents({ posterMovieUrl }) {
         setPageCount(data.total_pages);
         setMovies(data && data.results);
         setTimeout(() => {
-          setIsLoading(false);
+          context.setIsLoading(false);
         }, 700);
       } catch (error) {
         console.error(error);
@@ -41,7 +42,7 @@ function Contents({ posterMovieUrl }) {
     };
     fetchMovie();
   }, [pagesNumber]);
-
+  // console.log(context.isLoading)
   useEffect(() => {
     const fetchGenre = async () => {
       try {
@@ -62,7 +63,7 @@ function Contents({ posterMovieUrl }) {
   };
   return (
     <div className="main-content">
-      {isLoading ? (
+      {context.isLoading ? (
         <div className="isloading">
           <ReactLoading type={list.prop} color={"black"} className="loading" />
         </div>
@@ -89,7 +90,7 @@ function Contents({ posterMovieUrl }) {
         </>
       )}
       <ReactPaginate
-        className={`pagination ${isLoading ? "display-none" : ""}`}
+        className={`pagination ${context.isLoading ? "display-none" : ""}`}
         onPageChange={handlePageClick}
         nextLabel={
           <img

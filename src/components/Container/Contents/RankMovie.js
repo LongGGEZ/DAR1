@@ -40,7 +40,8 @@ function RankMovie({ title, posterMovieUrl }) {
                 <td>{index + 1}</td>
                 <td className="rank-poster">
                   <Link to={`/movie/${movie.id}`}>
-                    <img className="poster"
+                    <img
+                      className="poster"
                       src={`${posterMovieUrl + movie.poster_path}`}
                       alt="Poster"
                     />

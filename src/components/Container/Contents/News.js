@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Grid } from "@mui/material";
 import apiMovie from "../../../api/axios";
 import { APIKey } from "../../../api/apikey";
@@ -6,15 +6,12 @@ import MovieCard from "../../MovieCard/MovieCard";
 import "../../Container/Container.css";
 import ReactLoading from "react-loading";
 import ReactPaginate from "react-paginate";
-
-const list = {
-  prop: "bubbles",
-};
+import { LoadingContext } from "../../../Context/LoadingContext";
 
 function News({ title, posterMovieUrl }) {
   const [pagesNumber, setPagesNumber] = useState(1);
   const [pageCount, setPageCount] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
+  const context = useContext(LoadingContext);
 
   useEffect(() => {
     document.title = title;
@@ -23,7 +20,7 @@ function News({ title, posterMovieUrl }) {
   //fecth new movie
   const [movies, setMovies] = useState([]);
   useEffect(() => {
-    setIsLoading(true);
+    context.setIsLoading(true);
     const fetchMovie = async () => {
       try {
         const { data } = await apiMovie.get(
@@ -32,7 +29,7 @@ function News({ title, posterMovieUrl }) {
         setPageCount(data.total_pages);
         setMovies(data && data.results);
         setTimeout(() => {
-          setIsLoading(false);
+          context.setIsLoading(false);
         }, 700);
         // console.log(data && data.results);
       } catch (error) {
@@ -42,7 +39,7 @@ function News({ title, posterMovieUrl }) {
     fetchMovie();
     // console.log(pagesNumber);
   }, [pagesNumber]);
-  console.log(isLoading);
+  // console.log(context.isLoading);
   const handlePageClick = (page) => {
     setPagesNumber(page.selected + 1);
     window.scrollTo(0, 0);
@@ -50,9 +47,13 @@ function News({ title, posterMovieUrl }) {
 
   return (
     <div className="main-content">
-      {isLoading ? (
+      {context.isLoading ? (
         <div className="isloading">
-          <ReactLoading type={list.prop} color={"black"} className="loading" />
+          <ReactLoading
+            type={context.loadingIcon.prop}
+            color={"black"}
+            className="loading"
+          />
         </div>
       ) : (
         <>
@@ -78,7 +79,7 @@ function News({ title, posterMovieUrl }) {
       )}
 
       <ReactPaginate
-        className={`pagination ${isLoading ? "display-none" : ""}`}
+        className={`pagination ${context.isLoading ? "display-none" : ""}`}
         onPageChange={handlePageClick}
         breakLabel="..."
         nextLabel={

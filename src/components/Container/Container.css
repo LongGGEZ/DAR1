@@ -107,6 +107,7 @@ td a {
 
 .pagination li a {
     display: block;
+    height: 100%;
 }
 
 .pagination .selected {
@@ -137,12 +138,6 @@ td a {
         display: flex;
     }
 
-    .isloading {
-        min-height: 500px;
-    }
-    .loading{
-        align-items: center;
-    }
 }
 
 .display-none {
@@ -152,8 +147,10 @@ td a {
 .isloading {
     display: flex;
     align-items: center;
+    min-height: 500px;
 }
 
 .loading {
     margin: auto;
+    align-items: center;
 }

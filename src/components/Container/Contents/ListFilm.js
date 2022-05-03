@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext,useRef } from "react";
 import { Link } from "react-router-dom";
 import { APIKey } from "../../../api/apikey";
 import apiMovie from "../../../api/axios";
 import MovieCard from "../../MovieCard/MovieCard";
 import Grid from "@mui/material/Grid";
+import { LoadingContext } from "../../../Context/LoadingContext";
 function ListFilm({ title, genre_id, posterMovieUrl }) {
   // const { genre_id } = useParams();
+  const context = useContext(LoadingContext);
   const [movies, setMovies] = useState([]);
   useEffect(() => {
+    // context.setIsLoading(true);
     const fetchMovie = async () => {
       try {
         const { data } = await apiMovie.get(
@@ -15,12 +18,14 @@ function ListFilm({ title, genre_id, posterMovieUrl }) {
         );
         setMovies(data && data.results);
         // console.log(data && data.results);
+      //  context.setIsLoading(false)
       } catch (error) {
         console.error(error);
       }
     };
     fetchMovie();
   }, []);
+  // console.log(context.isLoading);
   return (
     <>
       <div className="list-film">
