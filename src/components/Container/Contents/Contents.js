@@ -63,7 +63,9 @@ function Contents({ posterMovieUrl }) {
   return (
     <div className="main-content">
       {isLoading ? (
-        <ReactLoading type={list.prop} color={"black"} className="isloading" />
+        <div className="isloading">
+          <ReactLoading type={list.prop} color={"black"} className="loading" />
+        </div>
       ) : (
         <>
           <div className="title">

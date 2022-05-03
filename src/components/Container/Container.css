@@ -136,6 +136,13 @@ td a {
     .pagination {
         display: flex;
     }
+
+    .isloading {
+        min-height: 500px;
+    }
+    .loading{
+        align-items: center;
+    }
 }
 
 .display-none {
@@ -143,6 +150,10 @@ td a {
 }
 
 .isloading {
+    display: flex;
+    align-items: center;
+}
+
+.loading {
     margin: auto;
-    margin-top: 100px;
 }
