@@ -5,15 +5,18 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ModalProvider } from "./Context/ModalContext";
+import { LoadingProvider } from "./Context/LoadingContext";
 import ScrollToTop from "./components/ScrollTop";
 ReactDOM.render(
   <React.StrictMode>
-      <Router>
+    <Router>
+      <LoadingProvider>
         <ModalProvider>
           <ScrollToTop />
           <App />
         </ModalProvider>
-      </Router>
+      </LoadingProvider>
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );

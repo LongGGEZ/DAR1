@@ -47,7 +47,7 @@ a {
 .search input[type="text"] {
   padding: 5px 10px;
   border-radius: 100px;
-  width: 350px;
+  width: 450px;
 }
 
 .menu-bar {
@@ -64,6 +64,34 @@ a {
 .menu-children {
   margin-right: 20px;
 }
+
+.search-results {
+  display: block;
+  position: absolute;
+  text-align: initial;
+  background-color: white;
+  border-radius: 0px 0px 5px 5px;
+  z-index: 999;
+}
+
+.search-results-item {
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.search-results-item:hover {
+  background-color: #e8ebed;
+}
+
+.search-results-item .search-results-title {
+  margin-left: 10px;
+}
+
+/* .search input[type="text"]:focus ~ .search-results {
+  display: block;
+} */
 
 @media only screen and (max-width: 768px) {
   .menu-children {

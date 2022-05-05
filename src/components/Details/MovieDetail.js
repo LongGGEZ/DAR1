@@ -29,7 +29,7 @@ function MovieDetail({ posterMovieUrl }) {
       }
     };
     fetchMovies();
-  }, []);
+  }, [movie_id]);
   //Tieng Viet
   useEffect(() => {
     context.setIsLoading(true);
@@ -48,7 +48,7 @@ function MovieDetail({ posterMovieUrl }) {
       }
     };
     fetchMoviesVI();
-  }, []);
+  }, [movie_id]);
 
   useEffect(() => {
     const fetchCast = async () => {
@@ -63,7 +63,7 @@ function MovieDetail({ posterMovieUrl }) {
       }
     };
     fetchCast();
-  }, []);
+  }, [movie_id]);
 
   useEffect(() => {
     const fetchTrailers = async () => {
@@ -80,7 +80,7 @@ function MovieDetail({ posterMovieUrl }) {
       }
     };
     fetchTrailers();
-  }, []);
+  }, [movie_id]);
 
   return (
     <div className="movie-detail">

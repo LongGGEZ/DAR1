@@ -5,7 +5,6 @@ import Footer from "./components/Footer/Footer";
 import FormLogin from "./Login/FormLogin";
 import { useEffect, useState } from "react";
 import firebase from "firebase/compat/app";
-import { LoadingProvider } from "./Context/LoadingContext";
 
 // Configure Firebase.
 const config = {
@@ -39,9 +38,7 @@ function Main() {
             element={
               <>
                 <Header isSignedIn={isSignedIn} />
-                <LoadingProvider>
-                  <Home />
-                </LoadingProvider>
+                <Home />
                 <Footer />
               </>
             }

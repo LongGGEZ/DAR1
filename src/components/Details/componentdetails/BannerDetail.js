@@ -49,11 +49,12 @@ function BannerDetail({ posterMovieUrl, movies, moviesVi, title, runtime }) {
           <div className="btn-watch">
             <div className="btn-wacth-movie">Xem Phim</div>
             <div
-              onClick={() =>
-                document
-                  .getElementById("trailerId")
-                  .scrollIntoView({ behavior: "smooth" })
-              }
+              onClick={() => {
+                const idTrailer = document.getElementById("trailerId");
+                if (idTrailer) {
+                  idTrailer.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
               className="btn-wacth-trailer"
             >
               Xem Trailer
