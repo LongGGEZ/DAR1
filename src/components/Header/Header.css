@@ -66,9 +66,9 @@ a {
 }
 
 .search-results {
-  display: block;
   position: absolute;
   text-align: initial;
+  width: 100%;
   background-color: white;
   border-radius: 0px 0px 5px 5px;
   z-index: 999;
@@ -89,7 +89,10 @@ a {
   margin-left: 10px;
 }
 
-/* .search input[type="text"]:focus ~ .search-results {
+/* .search-results{
+
+}
+.search input[type="text"]:focus ~ .search-results {
   display: block;
 } */
 
@@ -134,6 +137,8 @@ a {
 
   .search input[type="text"] {
     width: 170px;
-    margin-left: -30px;
+  }
+  .menu-children {
+    display: none;
   }
 }
