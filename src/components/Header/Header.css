@@ -43,18 +43,25 @@ a {
 .menu-mobile {
   display: none;
 }
+
+.search {
+  position: relative;
+}
 .input-search {
-  padding: 5px 10px;
+  width: 400px;
   display: flex;
+  padding: 5px 10px;
+  align-items: center;
   border-radius: 100px;
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .input-search input[type="text"] {
-  padding: 0 5px;
+  font-size: medium;
+  padding: 0 10px;
   border: none;
   outline: none;
-  width: 400px;
+  flex: 1;
 }
 
 .menu-bar {
@@ -73,10 +80,10 @@ a {
 .search-results {
   position: absolute;
   text-align: initial;
-  max-width: 450px;
+  width: 100%;
   background-color: white;
   border-radius: 0px 0px 5px 5px;
-  z-index: 999;
+  z-index: 9999;
 }
 .search-item {
   margin: 10px;
@@ -100,12 +107,6 @@ a {
 .search-item .search-results-title {
   margin-left: 10px;
 }
-/* .search-results{
-
-}
-.search input[type="text"]:focus ~ .search-results {
-  display: block;
-} */
 
 @media only screen and (max-width: 768px) {
   .menu-children {
@@ -115,6 +116,18 @@ a {
   .menu-mobile {
     display: flex;
     padding-left: 15px;
+  }
+  .display-user {
+    display: none;
+    margin-right: 5px;
+  }
+  .logout img {
+    display: none;
+    width: 20px;
+  }
+  .input-search {
+    width: 250px;
+    padding: 3px 20px;
   }
 }
 
@@ -128,16 +141,6 @@ a {
     width: 30px;
   }
 
-  .logout img {
-    display: none;
-    width: 20px;
-  }
-
-  .display-user {
-    display: none;
-    margin-right: 5px;
-  }
-
   .user .notification {
     margin-right: 0;
   }
@@ -149,7 +152,11 @@ a {
   .menu-children {
     display: none;
   }
-  .input-search input[type="text"]{
-    width: 150px;
+  .input-search {
+    width: 160px;
+    padding: 3px 15px;
+  }
+  .input-search input[type="text"] {
+    width: 100px;
   }
 }

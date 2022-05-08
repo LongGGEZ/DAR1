@@ -19,7 +19,7 @@ function Home() {
       <Grid container>
         <Grid
           item
-          style={{ display: "flex", alignItems: "flex-start", width: "100px" }}
+          style={{ display: "flex", alignItems: "flex-start", width: "100px" ,boxSizing:"initial"}}
         >
           <StickyBox offsetTop={10}>
             <SiderBar />

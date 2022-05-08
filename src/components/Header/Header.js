@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import apiMovie from "../../api/axios";
 import { APIKey } from "../../api/apikey";
@@ -6,24 +6,12 @@ import "firebase/compat/auth";
 import firebase from "firebase/compat/app";
 import ReactLoading from "react-loading";
 import "./Header.css";
-// const usToggleOnFocus = (initialState = false) => {
-//   const [show, toggle] = useState(initialState);
-
-//   const eventHandlers = useMemo(
-//     () => ({
-//       onFocus: () => toggle(true),
-//       onBlur: () => toggle(false),
-//     }),
-//     []
-//   );
-
-//   return [show, eventHandlers];
-// };
 
 function Header({ isSignedIn }) {
   const [isLoading, setIsLoading] = useState(false);
   const [movies, setMovies] = useState([]);
   const [keywords, setKeyWords] = useState("");
+  const [show, setshow] = useState(false);
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -45,11 +33,12 @@ function Header({ isSignedIn }) {
       fetchMovie();
     }
   }, [keywords]);
-  const searchInput = useRef();
+
   const listResult = useRef();
+  const searchInput = useRef();
 
   const blurInput = () => {
-    listResult.current.style.display = "none";
+    // listResult.current.style.display = "none";
   };
   const focusInput = () => {
     listResult.current.style.display = "block";
@@ -59,7 +48,7 @@ function Header({ isSignedIn }) {
     setMovies([]);
   };
   return (
-    <div>
+    <>
       <div className="header">
         <div className="logo">
           <a href={"/"}>
@@ -102,7 +91,7 @@ function Header({ isSignedIn }) {
                 placeholder="Search..."
               ></input>
               {keywords && (
-                <i onClick={handleRemove} class="material-icons">
+                <i onClick={handleRemove} className="material-icons">
                   close
                 </i>
               )}
@@ -127,7 +116,12 @@ function Header({ isSignedIn }) {
                     <div className="search-label">Kết quả tìm kiếm: </div>
                   )}
                   {movies.slice(0, 7).map((movie) => (
-                    <div key={movie.id} onClick={blurInput}>
+                    <div
+                      onClick={() => {
+                        setshow(!show);
+                      }}
+                      key={movie.id}
+                    >
                       <Link className="search-item" to={`/movie/${movie.id}`}>
                         <img
                           src={
@@ -178,7 +172,7 @@ function Header({ isSignedIn }) {
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 }
 export default Header;
