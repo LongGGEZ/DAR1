@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { Link } from "react-router-dom";
 import apiMovie from "../../api/axios";
 import { APIKey } from "../../api/apikey";
@@ -6,17 +6,25 @@ import "firebase/compat/auth";
 import firebase from "firebase/compat/app";
 import ReactLoading from "react-loading";
 import "./Header.css";
+// const usToggleOnFocus = (initialState = false) => {
+//   const [show, toggle] = useState(initialState);
+
+//   const eventHandlers = useMemo(
+//     () => ({
+//       onFocus: () => toggle(true),
+//       onBlur: () => toggle(false),
+//     }),
+//     []
+//   );
+
+//   return [show, eventHandlers];
+// };
+
 function Header({ isSignedIn }) {
-  // const logo= document.getElementsByClassName("logo")
-  // const widthScreen =  window.innerWidth
-  // if(widthScreen <768){
-  //  //code
-  // }
-  // console.log(logo)
   const [isLoading, setIsLoading] = useState(false);
   const [movies, setMovies] = useState([]);
   const [keywords, setKeyWords] = useState("");
-  // console.log(context.isLoading)
+
   useEffect(() => {
     const fetchMovie = async () => {
       try {
@@ -37,6 +45,19 @@ function Header({ isSignedIn }) {
       fetchMovie();
     }
   }, [keywords]);
+  const searchInput = useRef();
+  const listResult = useRef();
+
+  const blurInput = () => {
+    listResult.current.style.display = "none";
+  };
+  const focusInput = () => {
+    listResult.current.style.display = "block";
+  };
+  const handleRemove = () => {
+    setKeyWords("");
+    setMovies([]);
+  };
   return (
     <div>
       <div className="header">
@@ -64,9 +85,13 @@ function Header({ isSignedIn }) {
             <span>Năm phát hành</span>
           </div>
           <div className="search">
-            <div className="input-search">
+            <div className="input-search w3-large ">
+              <i className="material-icons">search</i>
               <input
+                ref={searchInput}
                 value={keywords}
+                onFocus={focusInput}
+                onBlur={blurInput}
                 onChange={(e) => {
                   setKeyWords(e.target.value);
                   if (keywords !== "") {
@@ -75,38 +100,48 @@ function Header({ isSignedIn }) {
                 }}
                 type="text"
                 placeholder="Search..."
-              ></input>{" "}
+              ></input>
+              {keywords && (
+                <i onClick={handleRemove} class="material-icons">
+                  close
+                </i>
+              )}
             </div>
-            <div className="search-results">
+            <div ref={listResult} className="search-results">
               {isLoading ? (
                 <div className="isloading-search">
                   <ReactLoading
                     type="bubbles"
-                    color={"black"}
+                    color="black"
                     className="loading"
                   />
                 </div>
               ) : (
                 <>
-                  {movies.slice(0, 7).map((movie, index) => (
-                    <Link
-                      className="search-results-item"
-                      to={`/movie/${movie.id}`}
-                      key={index}
-                    >
-                      <img
-                        style={{ width: "10%" }}
-                        src={
-                          movie.poster_path
-                            ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                            : "http://hoahieu.com.vn/wp-content/themes/kutetheme/images/placeholder.jpg"
-                        }
-                        alt="Poster"
-                      />
-                      <div className="search-results-title">
-                        {movie.original_title}
-                      </div>
-                    </Link>
+                  {keywords && movies.length === 0 && (
+                    <div className="search-label">
+                      Không tìm thấy kết quả tìm kiếm
+                    </div>
+                  )}
+                  {keywords && movies.length > 0 && (
+                    <div className="search-label">Kết quả tìm kiếm: </div>
+                  )}
+                  {movies.slice(0, 7).map((movie) => (
+                    <div key={movie.id} onClick={blurInput}>
+                      <Link className="search-item" to={`/movie/${movie.id}`}>
+                        <img
+                          src={
+                            movie.poster_path
+                              ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                              : "http://hoahieu.com.vn/wp-content/themes/kutetheme/images/placeholder.jpg"
+                          }
+                          alt="Poster"
+                        />
+                        <div className="search-results-title">
+                          {movie.original_title}
+                        </div>
+                      </Link>
+                    </div>
                   ))}
                 </>
               )}
