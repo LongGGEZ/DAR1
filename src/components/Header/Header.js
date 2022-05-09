@@ -39,11 +39,11 @@ function Header({ isSignedIn }) {
   const search = useRef();
 
   const handleClickOutside = (e) => {
-    search.current.style.border = "2px solid rgba(0, 0, 0, 0.2)";
     if (listResult.current && !listResult.current.contains(e.target)) {
       handleClose();
     }
   };
+
   useEffect(() => {
     document.addEventListener("click", handleClickOutside, true);
     return () => {
@@ -54,9 +54,9 @@ function Header({ isSignedIn }) {
   const handleClose = () => {
     setShow(false);
   };
+
   const handleFocusInput = () => {
     setShow(true);
-    search.current.style.border = "2px solid black";
   };
   const handleRemove = () => {
     setKeyWords("");
@@ -94,8 +94,12 @@ function Header({ isSignedIn }) {
               <input
                 ref={searchInput}
                 value={keywords}
-                // onBlur={handleHideResults}
-                // onFocus={handleFocusInput}
+                onBlur={() => {
+                  search.current.style.border = "2px solid rgba(0, 0, 0, 0.2)";
+                }}
+                onFocus={() => {
+                  search.current.style.border = "2px solid black";
+                }}
                 onClick={handleFocusInput}
                 onChange={(e) => {
                   setKeyWords(e.target.value);

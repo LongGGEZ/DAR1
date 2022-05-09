@@ -16,27 +16,29 @@ function InfoDetail({
           {movies.production_countries &&
             movies.production_countries.map((pc, index) => (
               <div className="countries-name" key={index}>
-                <a href="">
-                  {(index ? ", " : "") + `${pc.name}` || "Đang cập nhật..."}
-                </a>
+                <a href="">{(index ? ", " : "") + `${pc.name}`}</a>
               </div>
             ))}
+          {movies.production_countries &&
+            movies.production_countries.length === 0 &&
+            "Đang cập nhật..."}
         </div>
 
         <div className="release-date">
           <label>Ngày khởi chiếu: </label>
-          {releaseDate || "Đang cập nhật..."}
+          {releaseDate && releaseDate.split('-').reverse().join("-") || "Đang cập nhật..."}
         </div>
         <div className="production-companies">
           <label>Công ty sản xuất: </label>
           {movies.production_companies &&
             movies.production_companies.map((pcn, index) => (
               <div className="companies-name" key={index}>
-                <a href="">
-                  {(index ? ", " : "") + `${pcn.name}` || "Đang cập nhật..."}
-                </a>
+                <a href="">{(index ? ", " : "") + `${pcn.name}`}</a>
               </div>
             ))}
+          {movies.production_companies &&
+            movies.production_companies.length === 0 &&
+            "Đang cập nhật..."}
         </div>
       </div>
       <div className="bottom-line">
