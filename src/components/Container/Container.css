@@ -137,6 +137,9 @@ td a {
     .pagination {
         display: flex;
     }
+    .isloading {
+        min-height: 500px;
+    }
 
 }
 
@@ -147,7 +150,7 @@ td a {
 .isloading {
     display: flex;
     align-items: center;
-    min-height: 500px;
+    min-height: 800px;
 }
 
 .loading {
