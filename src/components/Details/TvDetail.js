@@ -47,9 +47,6 @@ function MovieDetail({ posterMovieUrl }) {
       }
     };
     fetchTv();
-    return () => {
-      clearTimeout();
-    };
   }, []);
   useEffect(() => {
     const fetchTrailers = async () => {

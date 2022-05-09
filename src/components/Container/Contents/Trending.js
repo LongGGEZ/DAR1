@@ -35,9 +35,6 @@ function Trending({ title, posterMovieUrl }) {
       }
     };
     fetchMovie();
-    return () => {
-      clearTimeout();
-    };
   }, [pagesNumber]);
 
   const handlePageClick = (page) => {

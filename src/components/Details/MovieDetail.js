@@ -48,9 +48,6 @@ function MovieDetail({ posterMovieUrl }) {
       }
     };
     fetchMoviesVI();
-    return () => {
-      clearTimeout();
-    };
   }, [movie_id]);
 
   useEffect(() => {

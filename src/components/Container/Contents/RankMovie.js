@@ -25,9 +25,6 @@ function RankMovie({ title, posterMovieUrl }) {
       }
     };
     fetchMovie()
-    return () => {
-      clearTimeout();
-    };
   }, []);
 
   return (

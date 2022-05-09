@@ -33,9 +33,6 @@ function Header({ isSignedIn }) {
       setIsLoading(true);
       fetchMovie();
     }
-    return () => {
-      clearTimeout();
-    };
   }, [keywords]);
 
   const listResult = useRef();

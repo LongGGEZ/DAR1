@@ -151,6 +151,6 @@ td a {
     display: flex;
   }
   .isloading {
-    min-height: 500px;
+    min-height: 550px;
   }
 }

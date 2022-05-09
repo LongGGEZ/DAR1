@@ -38,9 +38,6 @@ function Contents({ posterMovieUrl }) {
       }
     };
     fetchMovie();
-    return () => {
-      clearTimeout();
-    };
   }, [pagesNumber]);
   // console.log(context.isLoading)
   useEffect(() => {
