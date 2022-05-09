@@ -11,7 +11,7 @@ function Header({ isSignedIn }) {
   const [isLoading, setIsLoading] = useState(false);
   const [movies, setMovies] = useState([]);
   const [keywords, setKeyWords] = useState("");
-  const [show, setshow] = useState(false);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -36,12 +36,26 @@ function Header({ isSignedIn }) {
 
   const listResult = useRef();
   const searchInput = useRef();
+  const search = useRef();
 
-  const blurInput = () => {
-    // listResult.current.style.display = "none";
+  const handleClickOutside = () => {
+    search.current.style.border = "2px solid rgba(0, 0, 0, 0.2)";
+    handleClose();
   };
-  const focusInput = () => {
-    listResult.current.style.display = "block";
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, []);
+
+  const handleClose = () => {
+    setShow(false);
+  };
+  const handleFocusInput = () => {
+    setShow(true);
+    search.current.style.border = "2px solid black";
   };
   const handleRemove = () => {
     setKeyWords("");
@@ -74,13 +88,14 @@ function Header({ isSignedIn }) {
             <span>Năm phát hành</span>
           </div>
           <div className="search">
-            <div className="input-search w3-large ">
+            <div ref={search} className="input-search w3-large ">
               <i className="material-icons">search</i>
               <input
                 ref={searchInput}
                 value={keywords}
-                onFocus={focusInput}
-                onBlur={blurInput}
+                // onBlur={handleHideResults}
+                // onFocus={handleFocusInput}
+                onClick={handleFocusInput}
                 onChange={(e) => {
                   setKeyWords(e.target.value);
                   if (keywords !== "") {
@@ -96,50 +111,51 @@ function Header({ isSignedIn }) {
                 </i>
               )}
             </div>
-            <div ref={listResult} className="search-results">
-              {isLoading ? (
-                <div className="isloading-search">
-                  <ReactLoading
-                    type="bubbles"
-                    color="black"
-                    className="loading"
-                  />
-                </div>
-              ) : (
-                <>
-                  {keywords && movies.length === 0 && (
-                    <div className="search-label">
-                      Không tìm thấy kết quả tìm kiếm
-                    </div>
-                  )}
-                  {keywords && movies.length > 0 && (
-                    <div className="search-label">Kết quả tìm kiếm: </div>
-                  )}
-                  {movies.slice(0, 7).map((movie) => (
-                    <div
-                      onClick={() => {
-                        setshow(!show);
-                      }}
-                      key={movie.id}
-                    >
-                      <Link className="search-item" to={`/movie/${movie.id}`}>
-                        <img
-                          src={
-                            movie.poster_path
-                              ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                              : "http://hoahieu.com.vn/wp-content/themes/kutetheme/images/placeholder.jpg"
-                          }
-                          alt="Poster"
-                        />
-                        <div className="search-results-title">
-                          {movie.original_title}
-                        </div>
-                      </Link>
-                    </div>
-                  ))}
-                </>
-              )}
-            </div>
+            {show && (
+              <div ref={listResult} className="search-results">
+                {isLoading ? (
+                  <div className="isloading-search">
+                    <ReactLoading
+                      type="bubbles"
+                      color="black"
+                      className="loading"
+                    />
+                  </div>
+                ) : (
+                  <>
+                    {keywords && movies.length === 0 && (
+                      <div className="search-label">
+                        Không tìm thấy kết quả tìm kiếm
+                      </div>
+                    )}
+                    {keywords && movies.length > 0 && (
+                      <div className="search-label">Kết quả tìm kiếm: </div>
+                    )}
+                    {movies.slice(0, 7).map((movie) => (
+                      <div key={movie.id}>
+                        <Link
+                          onClick={handleClose}
+                          className="search-item"
+                          to={`/movie/${movie.id}`}
+                        >
+                          <img
+                            src={
+                              movie.poster_path
+                                ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                                : "http://hoahieu.com.vn/wp-content/themes/kutetheme/images/placeholder.jpg"
+                            }
+                            alt="Poster"
+                          />
+                          <div className="search-results-title">
+                            {movie.original_title}
+                          </div>
+                        </Link>
+                      </div>
+                    ))}
+                  </>
+                )}
+              </div>
+            )}
           </div>
         </div>
         <div className="user">

@@ -17,7 +17,7 @@ function Content({ title, posterMovieUrl }) {
         <div className="isloading">
           <ReactLoading
             type="bubbles"
-            color={"black"}
+            color="black"
             className="loading"
           />
         </div>

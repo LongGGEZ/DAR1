@@ -37,9 +37,7 @@ function News({ title, posterMovieUrl }) {
       }
     };
     fetchMovie();
-    // console.log(pagesNumber);
   }, [pagesNumber]);
-  // console.log(context.isLoading);
   const handlePageClick = (page) => {
     setPagesNumber(page.selected + 1);
     window.scrollTo(0, 0);
@@ -51,7 +49,7 @@ function News({ title, posterMovieUrl }) {
         <div className="isloading">
           <ReactLoading
             type="bubbles"
-            color={"black"}
+            color="black"
             className="loading"
           />
         </div>

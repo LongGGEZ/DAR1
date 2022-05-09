@@ -11,4 +11,3 @@ function LoadingProvider({ children }) {
   );
 }
 export {LoadingContext,LoadingProvider}
-// export default LoadingProvider;
