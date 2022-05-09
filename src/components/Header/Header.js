@@ -38,11 +38,12 @@ function Header({ isSignedIn }) {
   const searchInput = useRef();
   const search = useRef();
 
-  const handleClickOutside = () => {
+  const handleClickOutside = (e) => {
     search.current.style.border = "2px solid rgba(0, 0, 0, 0.2)";
-    handleClose();
+    if (listResult.current && !listResult.current.contains(e.target)) {
+      handleClose();
+    }
   };
-
   useEffect(() => {
     document.addEventListener("click", handleClickOutside, true);
     return () => {

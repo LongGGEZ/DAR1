@@ -1,0 +1,17 @@
+[debug] [2022-05-09T15:36:22.483Z] ----------------------------------------------------------------------
+[debug] [2022-05-09T15:36:22.485Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\hoang\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2022-05-09T15:36:22.486Z] CLI Version:   10.8.0
+[debug] [2022-05-09T15:36:22.486Z] Platform:      win32
+[debug] [2022-05-09T15:36:22.486Z] Node Version:  v16.15.0
+[debug] [2022-05-09T15:36:22.495Z] Time:          Mon May 09 2022 22:36:22 GMT+0700 (Indochina Time)
+[debug] [2022-05-09T15:36:22.495Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-05-09T15:36:22.579Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-05-09T15:36:22.579Z] > authorizing via signed-in user (hoanglong15022k@gmail.com)
+[debug] [2022-05-09T15:36:22.579Z] [iam] checking project dar1-dd00a for permissions ["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]
+[debug] [2022-05-09T15:36:22.581Z] > refreshing access token with scopes: []
+[debug] [2022-05-09T15:36:22.582Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-05-09T15:36:22.735Z] <<< HTTP RESPONSE 200 {"date":"Mon, 09 May 2022 15:36:22 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-05-09T15:36:22.750Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/dar1-dd00a:testIamPermissions [none]
+[debug] [2022-05-09T15:36:22.751Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/dar1-dd00a:testIamPermissions {"permissions":["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]}
