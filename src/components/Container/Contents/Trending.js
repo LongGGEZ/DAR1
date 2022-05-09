@@ -35,6 +35,9 @@ function Trending({ title, posterMovieUrl }) {
       }
     };
     fetchMovie();
+    return () => {
+      clearTimeout();
+    };
   }, [pagesNumber]);
 
   const handlePageClick = (page) => {
@@ -47,11 +50,7 @@ function Trending({ title, posterMovieUrl }) {
     <div className="main-content">
       {context.isLoading ? (
         <div className="isloading">
-          <ReactLoading
-            type="bubbles"
-            color={"black"}
-            className="loading"
-          />
+          <ReactLoading type="bubbles" color={"black"} className="loading" />
         </div>
       ) : (
         <div>

@@ -24,7 +24,10 @@ function RankMovie({ title, posterMovieUrl }) {
         console.error(error);
       }
     };
-    fetchMovie();
+    fetchMovie()
+    return () => {
+      clearTimeout();
+    };
   }, []);
 
   return (

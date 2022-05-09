@@ -37,6 +37,9 @@ function News({ title, posterMovieUrl }) {
       }
     };
     fetchMovie();
+    return () => {
+      clearTimeout();
+    };
   }, [pagesNumber]);
   const handlePageClick = (page) => {
     setPagesNumber(page.selected + 1);

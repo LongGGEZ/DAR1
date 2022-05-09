@@ -38,6 +38,9 @@ function Contents({ posterMovieUrl }) {
       }
     };
     fetchMovie();
+    return () => {
+      clearTimeout();
+    };
   }, [pagesNumber]);
   // console.log(context.isLoading)
   useEffect(() => {
@@ -46,7 +49,7 @@ function Contents({ posterMovieUrl }) {
         const { data } = await apiMovie.get(
           `genre/movie/list?api_key=${APIKey}&language=vi`
         );
-        setGenres(data.genres.find((genre) => genre.id == genre_id));
+        setGenres(data.genres.find((genre) => genre.id === genre_id));
       } catch (error) {
         console.error(error);
       }

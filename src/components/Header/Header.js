@@ -8,6 +8,7 @@ import ReactLoading from "react-loading";
 import "./Header.css";
 
 function Header({ isSignedIn }) {
+  const posterMovieUrl = process.env.REACT_APP_POSTER_URL;
   const [isLoading, setIsLoading] = useState(false);
   const [movies, setMovies] = useState([]);
   const [keywords, setKeyWords] = useState("");
@@ -32,6 +33,9 @@ function Header({ isSignedIn }) {
       setIsLoading(true);
       fetchMovie();
     }
+    return () => {
+      clearTimeout();
+    };
   }, [keywords]);
 
   const listResult = useRef();
@@ -146,7 +150,7 @@ function Header({ isSignedIn }) {
                           <img
                             src={
                               movie.poster_path
-                                ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                                ? `${posterMovieUrl}${movie.poster_path}`
                                 : "http://hoahieu.com.vn/wp-content/themes/kutetheme/images/placeholder.jpg"
                             }
                             alt="Poster"
