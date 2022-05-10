@@ -10,9 +10,6 @@ const banners = [
       "https://cellphones.com.vn/sforum/wp-content/uploads/2021/06/d80646d0-4429-11eb-9dce-47010f84228e.jpg",
   },
   {
-    bannerurl: "http://www.skviral.com/wp-content/uploads/2016/06/image.png",
-  },
-  {
     bannerurl:
       "https://www.mortalkombatonline.com/csb/e8c231a83865bb20de369ec1654b420f/content/sha256:d27306ebba09dafb716ef3b0e9b3d84df99cafb9c5a678b1ecd9a3ccf73de5e6.webp",
   },
