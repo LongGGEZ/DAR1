@@ -9,7 +9,7 @@ import "../../Container/Container.css";
 import ReactLoading from "react-loading";
 import { LoadingContext } from "../../../Context/LoadingContext";
 
-function Contents({ posterMovieUrl }) {
+function Contents({title, posterMovieUrl }) {
   const { genre_id } = useParams();
   const [pagesNumber, setPagesNumber] = useState(1);
   const [genres, setGenres] = useState([]);
@@ -46,7 +46,7 @@ function Contents({ posterMovieUrl }) {
         const { data } = await apiMovie.get(
           `genre/movie/list?api_key=${APIKey}&language=vi`
         );
-        setGenres(data.genres.find((genre) => genre.id === genre_id));
+        setGenres(data.genres.find((genre) => genre.id == genre_id));
       } catch (error) {
         console.error(error);
       }

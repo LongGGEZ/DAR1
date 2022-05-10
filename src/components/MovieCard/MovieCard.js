@@ -32,7 +32,7 @@ function MovieCard({
             {(release_date && release_date.split("-").reverse().join("-")) ||
               (first_air_date &&
                 first_air_date.split("-").reverse().join("-")) ||
-              "Đang cập nhật..."}
+              ("Đang cập nhật...")}
           </div>
         </div>
       </Link>

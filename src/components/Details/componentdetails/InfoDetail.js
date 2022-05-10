@@ -26,7 +26,7 @@ function InfoDetail({
 
         <div className="release-date">
           <label>Ngày khởi chiếu: </label>
-          {releaseDate && releaseDate.split('-').reverse().join("-") || "Đang cập nhật..."}
+          {(releaseDate && releaseDate.split('-').reverse().join("-")) || ("Đang cập nhật...")}
         </div>
         <div className="production-companies">
           <label>Công ty sản xuất: </label>
