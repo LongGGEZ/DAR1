@@ -47,11 +47,7 @@ function News({ title, posterMovieUrl }) {
     <div className="main-content">
       {context.isLoading ? (
         <div className="isloading">
-          <ReactLoading
-            type="bubbles"
-            color="black"
-            className="loading"
-          />
+          <ReactLoading type="bubbles" color="black" className="loading" />
         </div>
       ) : (
         <>
@@ -94,9 +90,6 @@ function News({ title, posterMovieUrl }) {
         pageCount={pageCount}
         previousLabel={
           <img
-            onClick={() => {
-              window.scrollTo(0, 0);
-            }}
             src="https://img.icons8.com/material-outlined/24/000000/left.png"
             alt="Left"
           />

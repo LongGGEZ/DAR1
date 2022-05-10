@@ -12,5 +12,6 @@ const requests = {
   fetchDocumentaries: `/discover/movie?api_key=${APIKey}&with_genres=99&language=vi`,
 
   fecthGenreMovie: `/genre/movie/list?api_key=${APIKey}&language=vi`,
+  fecthCountries: `configuration/countries?api_key=${APIKey}&language=vi`,
 };
 export default requests;

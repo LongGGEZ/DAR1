@@ -9,7 +9,7 @@ import "../../Container/Container.css";
 import ReactLoading from "react-loading";
 import { LoadingContext } from "../../../Context/LoadingContext";
 
-function Contents({title, posterMovieUrl }) {
+function Contents({ title, posterMovieUrl }) {
   const { genre_id } = useParams();
   const [pagesNumber, setPagesNumber] = useState(1);
   const [genres, setGenres] = useState([]);
@@ -46,7 +46,9 @@ function Contents({title, posterMovieUrl }) {
         const { data } = await apiMovie.get(
           `genre/movie/list?api_key=${APIKey}&language=vi`
         );
-        setGenres(data.genres.find((genre) => genre.id == genre_id));
+        setGenres(
+          data.genres.find((genre) => genre.id && String(genre.id) === genre_id)
+        );
       } catch (error) {
         console.error(error);
       }
@@ -87,7 +89,7 @@ function Contents({title, posterMovieUrl }) {
         </>
       )}
       <ReactPaginate
-        className={`pagination ${context.isLoading ? "display-none" : ""}`}
+        className={`pagination ${context.isLoading && "display-none"}`}
         onPageChange={handlePageClick}
         nextLabel={
           <img
@@ -103,9 +105,6 @@ function Contents({title, posterMovieUrl }) {
         pageCount={pageCount > 500 ? 500 : pageCount}
         previousLabel={
           <img
-            onClick={() => {
-              window.scrollTo(0, 0);
-            }}
             src="https://img.icons8.com/material-outlined/24/000000/left.png"
             alt="Left"
           />

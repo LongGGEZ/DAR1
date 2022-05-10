@@ -80,9 +80,6 @@ function Trending({ title, posterMovieUrl }) {
         breakLabel="..."
         nextLabel={
           <img
-            onClick={() => {
-              window.scrollTo(0, 0);
-            }}
             src="https://img.icons8.com/material-outlined/24/000000/right.png"
             alt="Next"
           />
@@ -92,9 +89,6 @@ function Trending({ title, posterMovieUrl }) {
         pageCount={pageCount}
         previousLabel={
           <img
-            onClick={() => {
-              window.scrollTo(0, 0);
-            }}
             src="https://img.icons8.com/material-outlined/24/000000/left.png"
             alt="Left"
           />

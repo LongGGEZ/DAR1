@@ -109,7 +109,25 @@ a {
 .search-item .search-results-title {
   margin-left: 10px;
 }
-
+.menulist {
+  display: none;
+  position: absolute;
+  text-align: initial;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+  z-index: 9999;
+}
+.menu-children:hover > .menulist {
+  display: flex;
+  flex-direction: column;
+}
+.menulist ul li {
+  margin: 5px 10px;
+}
+.menulist ul li:hover {
+  background-color: #e8ebed;
+}
 @media only screen and (max-width: 768px) {
   .menu-children {
     display: none;

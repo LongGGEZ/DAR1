@@ -82,7 +82,8 @@ td a {
 }
 
 .disabled {
-  display: none;
+  /* display: none; */
+  opacity: 0.4;
 }
 
 .pagination {
@@ -120,7 +121,7 @@ td a {
 .isloading {
   display: flex;
   align-items: center;
-  min-height: 700px;
+  height: 90vh;
 }
 
 .loading {
@@ -149,8 +150,5 @@ td a {
 
   .pagination {
     display: flex;
-  }
-  .isloading {
-    min-height: 550px;
   }
 }
