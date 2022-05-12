@@ -27,7 +27,8 @@ function Header({ isSignedIn }) {
     const fetchMovie = async () => {
       try {
         const { data } = await apiMovie.get(
-          `/search/movie?api_key=${APIKey}&language=vi&page=1&include_adult=false&query=${keywords}`
+          // `/search/movie?api_key=${APIKey}&language=vi&page=1&include_adult=false&query=${keywords}`
+          `/search/multi?api_key=${APIKey}&language=vi&page=1&include_adult=false&query=${keywords}`
         );
         setMovies(data && data.results);
         setTimeout(() => {
@@ -96,6 +97,7 @@ function Header({ isSignedIn }) {
   const handleRemove = () => {
     setKeyWords("");
     setMovies([]);
+    handleClose()
   };
   const noResults = (
     <div className="search-label">Không tìm thấy kết quả tìm kiếm.</div>
@@ -193,7 +195,7 @@ function Header({ isSignedIn }) {
                 onClick={handleFocusInput}
                 onChange={(e) => {
                   setKeyWords(e.target.value);
-                  if (keywords !== "") {
+                  if (keywords.length !== 0) {
                     setMovies([]);
                   }
                 }}
@@ -232,7 +234,11 @@ function Header({ isSignedIn }) {
                         <Link
                           onClick={handleClose}
                           className="search-item"
-                          to={`/movie/${movie.id}`}
+                          to={
+                            movies.media_type && movies.media_type === "tv"
+                              ? `/tv/${movie.id}`
+                              : `/movie/${movie.id}`
+                          }
                         >
                           <img
                             src={
@@ -243,7 +249,7 @@ function Header({ isSignedIn }) {
                             alt="Poster"
                           />
                           <div className="search-results-title">
-                            {movie.original_title}
+                            {movie.name || movie.title || movie.original_title}
                           </div>
                         </Link>
                       </div>
