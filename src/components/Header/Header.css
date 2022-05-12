@@ -103,12 +103,15 @@ a {
 .search-item:hover {
   background-color: #e8ebed;
 }
+
 .search-item img {
   width: 50px;
 }
+
 .search-item .search-results-title {
   margin-left: 10px;
 }
+
 .menulist {
   display: none;
   position: absolute;
@@ -118,16 +121,41 @@ a {
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
   z-index: 9999;
 }
-.menu-children:hover > .menulist {
-  display: flex;
-  flex-direction: column;
+
+.menu-children:hover {
+  color: black;
 }
+
+.menulist {
+  padding: 5px 10px;
+  color: #757575;
+}
+
 .menulist ul li {
-  margin: 5px 10px;
+  margin: 5px 0;
 }
+
+.menulist ul li:hover {
+  color: black;
+}
+
+.menu-children:hover > .menulist {
+  display: block;
+}
+
+.list-year {
+  width: 150px;
+}
+
+.list-year li {
+  display: inline-block;
+  width: 50%;
+}
+
 .menulist ul li:hover {
   background-color: #e8ebed;
 }
+
 @media only screen and (max-width: 768px) {
   .menu-children {
     display: none;

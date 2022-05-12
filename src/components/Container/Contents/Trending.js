@@ -28,7 +28,7 @@ function Trending({ title, posterMovieUrl }) {
         setPageCount(data.total_pages);
         setTimeout(() => {
           context.setIsLoading(false);
-        }, 700);
+        }, 500);
         // console.log(data && data.results);
       } catch (error) {
         console.error(error);

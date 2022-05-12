@@ -42,7 +42,7 @@ function MovieDetail({ posterMovieUrl }) {
         // console.log(data);
         setTimeout(() => {
           context.setIsLoading(false);
-        }, 700);
+        }, 500);
       } catch (error) {
         console.error(error);
       }

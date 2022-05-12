@@ -33,7 +33,7 @@ function Header({ isSignedIn }) {
         setMovies(data && data.results);
         setTimeout(() => {
           setIsLoading(false);
-        }, 1000);
+        }, 500);
         // console.log(data && data.results);
       } catch (error) {
         console.error(error);
@@ -97,7 +97,7 @@ function Header({ isSignedIn }) {
   const handleRemove = () => {
     setKeyWords("");
     setMovies([]);
-    handleClose()
+    handleClose();
   };
   const noResults = (
     <div className="search-label">Không tìm thấy kết quả tìm kiếm.</div>
@@ -116,7 +116,7 @@ function Header({ isSignedIn }) {
       return null;
     }
   };
-
+  
   return (
     <>
       <div className="header">
@@ -149,7 +149,7 @@ function Header({ isSignedIn }) {
           </div>
           <div className="menu-children">
             <span>Quốc gia</span>
-            {
+            {/* {
               <div className="menulist">
                 {countries &&
                   countries.slice(0, 20).map((countrie, index) => (
@@ -158,12 +158,24 @@ function Header({ isSignedIn }) {
                     </ul>
                   ))}
               </div>
-            }
+            } */}
+            <div className="menulist">
+              <ul>
+                <li>Phim Trung Quốc</li>
+                <li>Phim Nhật Bản</li>
+                <li>Phim Thái Lan</li>
+                <li>Phim Ấn Độ</li>
+                <li>Phim Hàn Quốc</li>
+                <li>Phim Âu Mỹ</li>
+                <li>Phim Đài Loan</li>
+                <li>Phim Phim Hồng Kông</li>
+              </ul>
+            </div>
           </div>
           <div className="menu-children">
             <span>Năm phát hành</span>
-            <div style={{ width: "80px" }} className="menulist">
-              <ul>
+            <div className="menulist">
+              <ul className="list-year">
                 <li>2022</li>
                 <li>2021</li>
                 <li>2020</li>

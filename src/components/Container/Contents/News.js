@@ -30,7 +30,7 @@ function News({ title, posterMovieUrl }) {
         setMovies(data && data.results);
         setTimeout(() => {
           context.setIsLoading(false);
-        }, 700);
+        }, 500);
         // console.log(data && data.results);
       } catch (error) {
         console.error(error);
