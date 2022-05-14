@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import apiMovie from "../../api/axios";
 import { APIKey } from "../../api/apikey";
 import BannerDetail from "./componentdetails/BannerDetail";
@@ -15,7 +15,7 @@ function MovieDetail({ posterMovieUrl }) {
   const [casts, setCasts] = useState([]);
   const [trailers, setTrailers] = useState({});
   const context = useContext(LoadingContext);
-
+  let navigate = useNavigate();
   useEffect(() => {
     const fetchMovies = async () => {
       try {
@@ -25,7 +25,7 @@ function MovieDetail({ posterMovieUrl }) {
         setMovies(data);
         // console.log(data);
       } catch (error) {
-        console.error(error);
+        // console.error(error);
       }
     };
     fetchMovies();
@@ -44,7 +44,9 @@ function MovieDetail({ posterMovieUrl }) {
           context.setIsLoading(false);
         }, 500);
       } catch (error) {
-        console.error(error);
+        context.setIsLoading(false);
+        navigate("404");
+        // console.error(error)
       }
     };
     fetchMoviesVI();
@@ -59,7 +61,7 @@ function MovieDetail({ posterMovieUrl }) {
         setCasts(data && data.cast);
         // console.log(data && data.cast);
       } catch (error) {
-        console.error(error);
+        // console.error(error);
       }
     };
     fetchCast();
@@ -76,7 +78,7 @@ function MovieDetail({ posterMovieUrl }) {
         setTrailers(data && data.results[trailerIndex]);
         // console.log(data && data.results[trailerIndex]);
       } catch (error) {
-        console.error(error);
+        // console.error(error);
       }
     };
     fetchTrailers();
