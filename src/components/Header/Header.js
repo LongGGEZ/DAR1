@@ -246,8 +246,7 @@ function Header({ isSignedIn }) {
                         <Link
                           onClick={handleClose}
                           className="search-item"
-                          to={
-                            movies.media_type && movies.media_type === "tv"
+                          to={movies.map(type=>(type.media_type==="tv"))
                               ? `/tv/${movie.id}`
                               : `/movie/${movie.id}`
                           }
