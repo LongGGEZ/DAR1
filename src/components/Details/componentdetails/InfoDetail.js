@@ -26,7 +26,8 @@ function InfoDetail({
 
         <div className="release-date">
           <label>Ngày khởi chiếu: </label>
-          {(releaseDate && releaseDate.split('-').reverse().join("-")) || ("Đang cập nhật...")}
+          {(releaseDate && releaseDate.split("-").reverse().join("-")) ||
+            "Đang cập nhật..."}
         </div>
         <div className="production-companies">
           <label>Công ty sản xuất: </label>
@@ -69,7 +70,7 @@ function InfoDetail({
           ></iframe>
         </div>
       )}
-      {cast ? (
+      {cast.length !== 0 ? (
         <>
           <div className="title-cast">
             <label>Diễn viên:</label>

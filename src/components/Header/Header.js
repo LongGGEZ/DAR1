@@ -34,7 +34,6 @@ function Header({ isSignedIn }) {
         setTimeout(() => {
           setIsLoading(false);
         }, 500);
-        // console.log(data && data.results);
       } catch (error) {
         console.error(error);
       }
@@ -237,6 +236,7 @@ function Header({ isSignedIn }) {
                       <div className="search-label">Kết quả tìm kiếm: </div>
                     )} */}
                     <ResultSearch />
+                    {console.log(movies)}
                     {movies.slice(0, 7).map((movie) => (
                       <div key={movie.id}>
                         <Link
