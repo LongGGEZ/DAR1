@@ -105,18 +105,14 @@ function Header({ isSignedIn }) {
   const results = <div className="search-label">Kết quả tìm kiếm: </div>;
   const ResultSearch = () => {
     if (keywords && movies.length !== 0) {
-      if (keywords.indexOf(" ") >= 0) {
-        return noResults;
-      } else {
-        return results;
-      }
+      return results;
     } else if (keywords && movies.length === 0) {
       return noResults;
     } else {
       return null;
     }
   };
-  
+
   return (
     <>
       <div className="header">
@@ -246,7 +242,8 @@ function Header({ isSignedIn }) {
                         <Link
                           onClick={handleClose}
                           className="search-item"
-                          to={movies.map(type=>(type.media_type==="tv"))
+                          to={
+                            movie.media_type === "tv"
                               ? `/tv/${movie.id}`
                               : `/movie/${movie.id}`
                           }
