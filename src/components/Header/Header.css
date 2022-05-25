@@ -1,5 +1,6 @@
 a {
   text-decoration: none;
+  color: inherit; 
 }
 
 .header {
@@ -137,6 +138,7 @@ a {
 
 .menulist ul li:hover {
   color: black;
+  background-color: #e8ebed;
 }
 
 .menu-children:hover > .menulist {
@@ -150,10 +152,6 @@ a {
 .list-year li {
   display: inline-block;
   width: 50%;
-}
-
-.menulist ul li:hover {
-  background-color: #e8ebed;
 }
 
 @media only screen and (max-width: 768px) {

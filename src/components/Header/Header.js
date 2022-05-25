@@ -14,6 +14,7 @@ function Header({ isSignedIn }) {
   const [movies, setMovies] = useState([]);
   const [keywords, setKeyWords] = useState("");
   const [show, setShow] = useState(false);
+  const [isHover, setIsHover] = useState(false);
   // const [showList, setShowList] = useState(false);
   const [genres, setGenres] = useState([]);
   // const [countries, setCountries] = useState([]);
@@ -112,6 +113,12 @@ function Header({ isSignedIn }) {
     }
   };
 
+  const handleHover =()=>{
+    setIsHover(true)
+  }
+  const handleLeave =()=>{
+    setIsHover(false)
+  }
   return (
     <>
       <div className="header">
@@ -129,20 +136,19 @@ function Header({ isSignedIn }) {
           </a>
         </div> */}
         <div className="menu-bar">
-          <div className="menu-children">
+          <div onMouseEnter={handleHover} onMouseLeave={handleLeave} className="menu-children">
             <span>Thể loại</span>
-            {
-              <div className="menulist">
-                {genres &&
-                  genres.map((genre) => (
-                    <ul key={genre.id}>
-                      <li>{genre.name}</li>
-                    </ul>
-                  ))}
-              </div>
+            {isHover&&<div className="menulist">
+              {genres &&
+                genres.map((genre) => (
+                  <ul key={genre.id}>
+                    <li><Link onClick={handleLeave} to={`/genre/${genre.id}`}>{genre.name}</Link></li>
+                  </ul>
+                ))}
+            </div>
             }
           </div>
-          <div className="menu-children">
+          <div onMouseEnter={handleHover} onMouseLeave={handleLeave} className="menu-children">
             <span>Quốc gia</span>
             {/* {
               <div className="menulist">
@@ -154,38 +160,40 @@ function Header({ isSignedIn }) {
                   ))}
               </div>
             } */}
-            <div className="menulist">
+            {isHover&&<div className="menulist">
               <ul>
-                <li>Phim Trung Quốc</li>
-                <li>Phim Nhật Bản</li>
-                <li>Phim Thái Lan</li>
-                <li>Phim Ấn Độ</li>
-                <li>Phim Hàn Quốc</li>
-                <li>Phim Âu Mỹ</li>
-                <li>Phim Đài Loan</li>
-                <li>Phim Phim Hồng Kông</li>
+                <li><Link onClick={handleLeave} to={"#"}>Phim Trung Quốc</Link></li>
+                <li><Link onClick={handleLeave} to={"#"}>Phim Nhật Bản</Link></li>
+                <li><Link onClick={handleLeave} to={"#"}>Phim Thái Lan</Link></li>
+                <li><Link onClick={handleLeave} to={"#"}>Phim Ấn Độ</Link></li>
+                <li><Link onClick={handleLeave} to={"#"}>Phim Hàn Quốc</Link></li>
+                <li><Link onClick={handleLeave} to={"#"}>Phim Âu Mỹ</Link></li>
+                <li><Link onClick={handleLeave} to={"#"}>Phim Đài Loan</Link></li>
+                <li><Link onClick={handleLeave} to={"#"}>Phim Phim Hồng Kông</Link></li>
               </ul>
             </div>
+            }
           </div>
-          <div className="menu-children">
+          <div onMouseEnter={handleHover} onMouseLeave={handleLeave} className="menu-children">
             <span>Năm phát hành</span>
-            <div className="menulist">
+            {isHover&&<div className="menulist">
               <ul className="list-year">
-                <li>2022</li>
-                <li>2021</li>
-                <li>2020</li>
-                <li>2019</li>
-                <li>2018</li>
-                <li>2017</li>
-                <li>2016</li>
-                <li>2015</li>
-                <li>2014</li>
-                <li>2013</li>
-                <li>2012</li>
-                <li>2011</li>
-                <li>2010</li>
+                <li><Link onClick={handleLeave} to={"#"}>2022</Link></li>
+                <li><Link onClick={handleLeave} to={"#"}>2021</Link></li>
+                <li><Link onClick={handleLeave} to={"#"}>2020</Link></li>
+                <li><Link onClick={handleLeave} to={"#"}>2019</Link></li>
+                <li><Link onClick={handleLeave} to={"#"}>2018</Link></li>
+                <li><Link onClick={handleLeave} to={"#"}>2017</Link></li>
+                <li><Link onClick={handleLeave} to={"#"}>2016</Link></li>
+                <li><Link onClick={handleLeave} to={"#"}>2015</Link></li>
+                <li><Link onClick={handleLeave} to={"#"}>2014</Link></li>
+                <li><Link onClick={handleLeave} to={"#"}>2013</Link></li>
+                <li><Link onClick={handleLeave} to={"#"}>2012</Link></li>
+                <li><Link onClick={handleLeave} to={"#"}>2011</Link></li>
+                <li><Link onClick={handleLeave} to={"#"}>2010</Link></li>
+                <li><Link onClick={handleLeave} to={"#"}>2009</Link></li>
               </ul>
-            </div>
+            </div>}
           </div>
           <div className="search">
             <div ref={search} className="input-search w3-large ">
@@ -236,8 +244,8 @@ function Header({ isSignedIn }) {
                       <div className="search-label">Kết quả tìm kiếm: </div>
                     )} */}
                     <ResultSearch />
-                    {movies.filter((movie) =>
-                      movie.media_type !== "person").slice(0,7).map((movie) => (
+                    {/* {console.log(movies)} */}
+                    {movies.slice(0, 7).map((movie) => (
                       <div key={movie.id}>
                         <Link
                           onClick={handleClose}

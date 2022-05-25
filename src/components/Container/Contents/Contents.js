@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import { Grid } from "@mui/material";
 import apiMovie from "../../../api/axios";
 import { APIKey } from "../../../api/apikey";
@@ -16,10 +16,10 @@ function Contents({ title, posterMovieUrl }) {
   const [pageCount, setPageCount] = useState(0);
   const context = useContext(LoadingContext);
   useEffect(() => {
-    document.title = genres.name;
+    document.title = genres && genres.name;
   });
-
-  //fecth new movie
+  let navigate = useNavigate();
+  //fecth movie
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     context.setIsLoading(true);
@@ -30,15 +30,19 @@ function Contents({ title, posterMovieUrl }) {
         );
         setPageCount(data.total_pages);
         setMovies(data && data.results);
+        if(data && data.results.length===0){
+          navigate("404");
+        }
         setTimeout(() => {
           context.setIsLoading(false);
         }, 500);
       } catch (error) {
+        navigate("404");
         console.error(error);
       }
     };
     fetchMovie();
-  }, [pagesNumber]);
+  }, [genre_id,pagesNumber]);
   
   useEffect(() => {
     const fetchGenre = async () => {
@@ -69,7 +73,7 @@ function Contents({ title, posterMovieUrl }) {
       ) : (
         <>
           <div className="title">
-            <h1>{genres.name}</h1>
+            <h1>{genres && genres.name}</h1>
           </div>
           <div className="movie">
             <Grid container columns={{ xs: 4.8, sm: 9.6, md: 12 }}>
