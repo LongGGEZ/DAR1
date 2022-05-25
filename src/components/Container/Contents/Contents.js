@@ -93,9 +93,6 @@ function Contents({ title, posterMovieUrl }) {
         onPageChange={handlePageClick}
         nextLabel={
           <img
-            onClick={() => {
-              window.scrollTo(0, 0);
-            }}
             src="https://img.icons8.com/material-outlined/24/000000/right.png"
             alt="Next"
           />
