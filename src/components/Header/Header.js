@@ -16,7 +16,7 @@ function Header({ isSignedIn }) {
   const [show, setShow] = useState(false);
   // const [showList, setShowList] = useState(false);
   const [genres, setGenres] = useState([]);
-  const [countries, setCountries] = useState([]);
+  // const [countries, setCountries] = useState([]);
 
   // const [menu, setMenu] = useState({
   //   genres: [],
@@ -56,18 +56,18 @@ function Header({ isSignedIn }) {
     fetchList();
   }, []);
 
-  useEffect(() => {
-    const fetchList = async () => {
-      try {
-        const { data } = await apiMovie.get(requests.fecthCountries);
-        setCountries(data);
-        // console.log(data)
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchList();
-  }, []);
+  // useEffect(() => {
+  //   const fetchList = async () => {
+  //     try {
+  //       const { data } = await apiMovie.get(requests.fecthCountries);
+  //       setCountries(data);
+  //       // console.log(data)
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+  //   fetchList();
+  // }, []);
 
   const listResult = useRef();
   const searchInput = useRef();

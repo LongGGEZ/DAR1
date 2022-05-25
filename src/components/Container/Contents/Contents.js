@@ -39,7 +39,7 @@ function Contents({ title, posterMovieUrl }) {
     };
     fetchMovie();
   }, [pagesNumber]);
-  // console.log(context.isLoading)
+  
   useEffect(() => {
     const fetchGenre = async () => {
       try {
