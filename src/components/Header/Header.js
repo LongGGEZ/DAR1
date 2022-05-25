@@ -236,8 +236,8 @@ function Header({ isSignedIn }) {
                       <div className="search-label">Kết quả tìm kiếm: </div>
                     )} */}
                     <ResultSearch />
-                    {console.log(movies)}
-                    {movies.slice(0, 7).map((movie) => (
+                    {movies.filter((movie) =>
+                      movie.media_type !== "person").slice(0,7).map((movie) => (
                       <div key={movie.id}>
                         <Link
                           onClick={handleClose}
