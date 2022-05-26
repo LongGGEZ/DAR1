@@ -42,7 +42,7 @@ function Contents({ title, posterMovieUrl }) {
       }
     };
     fetchMovie();
-  }, [genre_id,pagesNumber]);
+  }, [genre_id, pagesNumber]);
   
   useEffect(() => {
     const fetchGenre = async () => {
@@ -58,7 +58,7 @@ function Contents({ title, posterMovieUrl }) {
       }
     };
     fetchGenre();
-  }, []);
+  }, [genre_id]);
 
   const handlePageClick = (page) => {
     setPagesNumber(page.selected + 1);

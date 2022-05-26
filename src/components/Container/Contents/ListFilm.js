@@ -25,7 +25,7 @@ function ListFilm({ title, genre_id,fetchData, posterMovieUrl }) {
       }
     };
     fetchMovie();
-  }, []);
+  }, [genre_id]);
   // console.log(context.isLoadingHome);
   return (
     <>
