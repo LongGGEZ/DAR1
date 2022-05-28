@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { Grid } from "@mui/material";
 import apiMovie from "../../../api/axios";
 import { APIKey } from "../../../api/apikey";
@@ -9,16 +10,19 @@ import ReactLoading from "react-loading";
 import { LoadingContext } from "../../../Context/LoadingContext";
 
 function News({ title, posterMovieUrl }) {
+  const { currentPage } = useParams();
+  const [movies, setMovies] = useState([]);
   const [pagesNumber, setPagesNumber] = useState(1);
-  const [pageCount, setPageCount] = useState(0);
+  const [pageCount, setPageCount] = useState(1);
   const context = useContext(LoadingContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = title;
   });
 
   //fecth new movie
-  const [movies, setMovies] = useState([]);
+
   useEffect(() => {
     context.setIsLoading(true);
     const fetchMovie = async () => {
@@ -30,16 +34,31 @@ function News({ title, posterMovieUrl }) {
         setMovies(data && data.results);
         setTimeout(() => {
           context.setIsLoading(false);
-        }, 500);
+        }, 800);
         // console.log(data && data.results);
       } catch (error) {
         console.error(error);
       }
     };
     fetchMovie();
+    return () => {
+      clearTimeout();
+    };
   }, [pagesNumber]);
+
+  useEffect(() => {
+    if (currentPage) {
+      if (currentPage < 0 || currentPage > pageCount) {
+        setPagesNumber(1);
+      } else {
+        setPagesNumber(currentPage);
+      }
+    }
+  }, [pageCount, currentPage]);
+
   const handlePageClick = (page) => {
-    setPagesNumber(page.selected + 1);
+    const pageX = page.selected + 1;
+    navigate(`/news/${pageX}`);
     window.scrollTo(0, 0);
   };
 
@@ -71,16 +90,13 @@ function News({ title, posterMovieUrl }) {
           </div>
         </>
       )}
-
       <ReactPaginate
-        className={`pagination ${context.isLoading ? "display-none" : ""}`}
+        className={`pagination ${!context.isLoading || "display-none"}`}
+        forcePage={pagesNumber - 1}
         onPageChange={handlePageClick}
         breakLabel="..."
         nextLabel={
           <img
-            onClick={() => {
-              window.scrollTo(0, 0);
-            }}
             src="https://img.icons8.com/material-outlined/24/000000/right.png"
             alt="Next"
           />

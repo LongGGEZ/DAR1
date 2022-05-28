@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { Link } from "react-router-dom";
 import apiMovie from "../../api/axios";
 import { APIKey } from "../../api/apikey";
@@ -6,6 +6,7 @@ import requests from "../../FecthDataMovie/FecthDataAll";
 import "firebase/compat/auth";
 import firebase from "firebase/compat/app";
 import ReactLoading from "react-loading";
+import { ModalContext } from "../../Context/ModalContext";
 import "./Header.css";
 
 function Header({ isSignedIn }) {
@@ -15,14 +16,8 @@ function Header({ isSignedIn }) {
   const [keywords, setKeyWords] = useState("");
   const [show, setShow] = useState(false);
   const [isHover, setIsHover] = useState(false);
-  // const [showList, setShowList] = useState(false);
   const [genres, setGenres] = useState([]);
-  // const [countries, setCountries] = useState([]);
-
-  // const [menu, setMenu] = useState({
-  //   genres: [],
-  //   countries: [],
-  // });
+  const context = useContext(ModalContext);
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -34,7 +29,7 @@ function Header({ isSignedIn }) {
         setMovies(data && data.results);
         setTimeout(() => {
           setIsLoading(false);
-        }, 500);
+        }, 1000);
       } catch (error) {
         console.error(error);
       }
@@ -43,6 +38,9 @@ function Header({ isSignedIn }) {
       setIsLoading(true);
       fetchMovie();
     }
+    return () => {
+      clearTimeout();
+    };
   }, [keywords]);
 
   useEffect(() => {
@@ -56,19 +54,6 @@ function Header({ isSignedIn }) {
     };
     fetchList();
   }, []);
-
-  // useEffect(() => {
-  //   const fetchList = async () => {
-  //     try {
-  //       const { data } = await apiMovie.get(requests.fecthCountries);
-  //       setCountries(data);
-  //       // console.log(data)
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-  //   fetchList();
-  // }, []);
 
   const listResult = useRef();
   const searchInput = useRef();
@@ -87,6 +72,20 @@ function Header({ isSignedIn }) {
     };
   }, []);
 
+  const menuProfile = useRef();
+
+  const handleClickOutSideMenuProfile = (e) => {
+    if (menuProfile.current && !menuProfile.current.contains(e.target)) {
+      context.handleCloseModal();
+    }
+  };
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutSideMenuProfile);
+    return () => {
+      document.removeEventListener("click", handleClickOutSideMenuProfile);
+    };
+  }, []);
+
   const handleClose = () => {
     setShow(false);
   };
@@ -100,7 +99,7 @@ function Header({ isSignedIn }) {
     handleClose();
   };
   const noResults = (
-    <div className="search-label">Không tìm thấy kết quả tìm kiếm.</div>
+    <div className="search-label">Không tìm thấy kết quả tìm kiếm!</div>
   );
   const results = <div className="search-label">Kết quả tìm kiếm: </div>;
   const ResultSearch = () => {
@@ -113,12 +112,12 @@ function Header({ isSignedIn }) {
     }
   };
 
-  const handleHover =()=>{
-    setIsHover(true)
-  }
-  const handleLeave =()=>{
-    setIsHover(false)
-  }
+  const handleHover = () => {
+    setIsHover(true);
+  };
+  const handleLeave = () => {
+    setIsHover(false);
+  };
   return (
     <>
       <div className="header">
@@ -136,19 +135,32 @@ function Header({ isSignedIn }) {
           </a>
         </div> */}
         <div className="menu-bar">
-          <div onMouseEnter={handleHover} onMouseLeave={handleLeave} className="menu-children">
+          <div
+            onMouseEnter={handleHover}
+            onMouseLeave={handleLeave}
+            className="menu-children"
+          >
             <span>Thể loại</span>
-            {isHover&&<div className="menulist">
-              {genres &&
-                genres.map((genre) => (
-                  <ul key={genre.id}>
-                    <li><Link onClick={handleLeave} to={`/genre/${genre.id}`}>{genre.name}</Link></li>
-                  </ul>
-                ))}
-            </div>
-            }
+            {isHover && (
+              <div className="menulist">
+                {genres &&
+                  genres.map((genre) => (
+                    <ul key={genre.id}>
+                      <li>
+                        <Link onClick={handleLeave} to={`/genre/${genre.id}`}>
+                          {genre.name}
+                        </Link>
+                      </li>
+                    </ul>
+                  ))}
+              </div>
+            )}
           </div>
-          <div onMouseEnter={handleHover} onMouseLeave={handleLeave} className="menu-children">
+          <div
+            onMouseEnter={handleHover}
+            onMouseLeave={handleLeave}
+            className="menu-children"
+          >
             <span>Quốc gia</span>
             {/* {
               <div className="menulist">
@@ -160,40 +172,135 @@ function Header({ isSignedIn }) {
                   ))}
               </div>
             } */}
-            {isHover&&<div className="menulist">
-              <ul>
-                <li><Link onClick={handleLeave} to={"#"}>Phim Trung Quốc</Link></li>
-                <li><Link onClick={handleLeave} to={"#"}>Phim Nhật Bản</Link></li>
-                <li><Link onClick={handleLeave} to={"#"}>Phim Thái Lan</Link></li>
-                <li><Link onClick={handleLeave} to={"#"}>Phim Ấn Độ</Link></li>
-                <li><Link onClick={handleLeave} to={"#"}>Phim Hàn Quốc</Link></li>
-                <li><Link onClick={handleLeave} to={"#"}>Phim Âu Mỹ</Link></li>
-                <li><Link onClick={handleLeave} to={"#"}>Phim Đài Loan</Link></li>
-                <li><Link onClick={handleLeave} to={"#"}>Phim Phim Hồng Kông</Link></li>
-              </ul>
-            </div>
-            }
+            {isHover && (
+              <div className="menulist">
+                <ul>
+                  <li>
+                    <Link onClick={handleLeave} to={"#"}>
+                      Phim Trung Quốc
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={handleLeave} to={"#"}>
+                      Phim Nhật Bản
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={handleLeave} to={"#"}>
+                      Phim Thái Lan
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={handleLeave} to={"#"}>
+                      Phim Ấn Độ
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={handleLeave} to={"#"}>
+                      Phim Hàn Quốc
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={handleLeave} to={"#"}>
+                      Phim Âu Mỹ
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={handleLeave} to={"#"}>
+                      Phim Đài Loan
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={handleLeave} to={"#"}>
+                      Phim Phim Hồng Kông
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
-          <div onMouseEnter={handleHover} onMouseLeave={handleLeave} className="menu-children">
+          <div
+            onMouseEnter={handleHover}
+            onMouseLeave={handleLeave}
+            className="menu-children"
+          >
             <span>Năm phát hành</span>
-            {isHover&&<div className="menulist">
-              <ul className="list-year">
-                <li><Link onClick={handleLeave} to={"#"}>2022</Link></li>
-                <li><Link onClick={handleLeave} to={"#"}>2021</Link></li>
-                <li><Link onClick={handleLeave} to={"#"}>2020</Link></li>
-                <li><Link onClick={handleLeave} to={"#"}>2019</Link></li>
-                <li><Link onClick={handleLeave} to={"#"}>2018</Link></li>
-                <li><Link onClick={handleLeave} to={"#"}>2017</Link></li>
-                <li><Link onClick={handleLeave} to={"#"}>2016</Link></li>
-                <li><Link onClick={handleLeave} to={"#"}>2015</Link></li>
-                <li><Link onClick={handleLeave} to={"#"}>2014</Link></li>
-                <li><Link onClick={handleLeave} to={"#"}>2013</Link></li>
-                <li><Link onClick={handleLeave} to={"#"}>2012</Link></li>
-                <li><Link onClick={handleLeave} to={"#"}>2011</Link></li>
-                <li><Link onClick={handleLeave} to={"#"}>2010</Link></li>
-                <li><Link onClick={handleLeave} to={"#"}>2009</Link></li>
-              </ul>
-            </div>}
+            {isHover && (
+              <div className="menulist">
+                <ul className="list-year">
+                  <li>
+                    <Link onClick={handleLeave} to={"#"}>
+                      2022
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={handleLeave} to={"#"}>
+                      2021
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={handleLeave} to={"#"}>
+                      2020
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={handleLeave} to={"#"}>
+                      2019
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={handleLeave} to={"#"}>
+                      2018
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={handleLeave} to={"#"}>
+                      2017
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={handleLeave} to={"#"}>
+                      2016
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={handleLeave} to={"#"}>
+                      2015
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={handleLeave} to={"#"}>
+                      2014
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={handleLeave} to={"#"}>
+                      2013
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={handleLeave} to={"#"}>
+                      2012
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={handleLeave} to={"#"}>
+                      2011
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={handleLeave} to={"#"}>
+                      2010
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={handleLeave} to={"#"}>
+                      2009
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
           <div className="search">
             <div ref={search} className="input-search w3-large ">
@@ -235,16 +342,7 @@ function Header({ isSignedIn }) {
                   </div>
                 ) : (
                   <>
-                    {/* {(keywords && movies.length === 0)|| (keywords.indexOf(' ') >= 0 && movies.length === 0)  && (
-                      <div className="search-label">
-                        Không tìm thấy kết quả tìm kiếm
-                      </div>
-                    )}
-                    {keywords && movies.length > 0 && (
-                      <div className="search-label">Kết quả tìm kiếm: </div>
-                    )} */}
                     <ResultSearch />
-                    {/* {console.log(movies)} */}
                     {movies.slice(0, 7).map((movie) => (
                       <div key={movie.id}>
                         <Link
@@ -283,20 +381,56 @@ function Header({ isSignedIn }) {
               alt="Thông báo"
             />
           </div>
-          {isSignedIn === true ? (
+          <div className="language" href="/">
+            <img
+              src="https://img.icons8.com/material-outlined/24/000000/geography.png"
+              alt="Languege"
+            />
+          </div>
+          {isSignedIn && isSignedIn === true ? (
             <>
-              <div className="display-user">
-                Hello, {firebase.auth().currentUser.displayName}!
-              </div>
-              <div
+              {/* <div className="display-user">
+                Hello, 
+                {firebase.auth().currentUser.displayName}
+                !
+              </div> */}
+              {/* <div
                 className="logout"
-                style={{ cursor: "pointer" }}
                 onClick={() => firebase.auth().signOut()}
               >
                 <img
-                  src="https://img.icons8.com/ios-glyphs/24/000000/logout-rounded--v1.png"
+                  src="https://img.icons8.com/external-sbts2018-mixed-sbts2018/24/000000/external-logout-social-media-basic-1-sbts2018-mixed-sbts2018.png"
                   alt="Sign Out"
                 />
+              </div> */}
+              <div
+                ref={menuProfile}
+                onClick={context.handleShowModal}
+                className="user-profile"
+              >
+                <img
+                  src="https://img.icons8.com/fluency/24/000000/user-male-circle.png"
+                  alt="Profile"
+                />
+                {context.showModal && (
+                  <div className="menu-profile">
+                    <ul>
+                      <li className="display-user">
+                        <span>Hello, </span>
+                        {firebase.auth().currentUser.displayName}!
+                      </li>
+                      <hr />
+                      <li>Trang cá nhân</li>
+                      <hr />
+                      <li>List phim yêu thích</li>
+                      <hr />
+                      <li>Cài đặt</li>
+                      <li onClick={() => firebase.auth().signOut()}>
+                        Đăng Xuất
+                      </li>
+                    </ul>
+                  </div>
+                )}
               </div>
             </>
           ) : (

@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import apiMovie from "../../../api/axios";
 import MovieCard from "../../MovieCard/MovieCard";
 import Grid from "@mui/material/Grid";
@@ -9,9 +10,12 @@ import ReactLoading from "react-loading";
 import { LoadingContext } from "../../../Context/LoadingContext";
 
 function Trending({ title, posterMovieUrl }) {
+  const { currentPage } = useParams();
   const [pagesNumber, setPagesNumber] = useState(1);
-  const [pageCount, setPageCount] = useState(0);
+  const [pageCount, setPageCount] = useState(1);
   const context = useContext(LoadingContext);
+  const navigate = useNavigate();
+
   useEffect(() => {
     document.title = title;
   });
@@ -28,21 +32,34 @@ function Trending({ title, posterMovieUrl }) {
         setPageCount(data.total_pages);
         setTimeout(() => {
           context.setIsLoading(false);
-        }, 500);
+        }, 800);
         // console.log(data && data.results);
       } catch (error) {
         console.error(error);
       }
     };
     fetchMovie();
+    return () => {
+      clearTimeout();
+    };
   }, [pagesNumber]);
 
+  useEffect(() => {
+    if (currentPage) {
+      if (currentPage < 0 || currentPage > pageCount) {
+        setPagesNumber(1);
+      } else {
+        setPagesNumber(currentPage);
+      }
+    }
+  }, [pageCount, currentPage]);
+
   const handlePageClick = (page) => {
-    setPagesNumber(page.selected + 1);
-    // console.log(page.selected);
+    const pageX = page.selected + 1;
+    navigate(`/trending/${pageX}`);
     window.scrollTo(0, 0);
   };
-  // console.log(context.isLoading);
+
   return (
     <div className="main-content">
       {context.isLoading ? (
@@ -76,6 +93,7 @@ function Trending({ title, posterMovieUrl }) {
       )}
       <ReactPaginate
         className={`pagination ${context.isLoading ? "display-none" : ""}`}
+        forcePage={pagesNumber - 1}
         onPageChange={handlePageClick}
         breakLabel="..."
         nextLabel={

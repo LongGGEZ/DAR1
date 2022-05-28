@@ -42,7 +42,7 @@ function MovieDetail({ posterMovieUrl }) {
         // console.log(data);
         setTimeout(() => {
           context.setIsLoading(false);
-        }, 500);
+        }, 800);
       } catch (error) {
         context.setIsLoading(false);
         navigate("404");
@@ -50,6 +50,9 @@ function MovieDetail({ posterMovieUrl }) {
       }
     };
     fetchMoviesVI();
+    return () => {
+      clearTimeout();
+    };
   }, [movie_id]);
 
   useEffect(() => {

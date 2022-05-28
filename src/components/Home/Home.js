@@ -34,7 +34,7 @@ function Home() {
                   <ContentPage title={"Home"} posterMovieUrl={posterMovieUrl} />
                 }
               />
-              <Route
+                 <Route
                 path="/news"
                 element={
                   <NewsPage
@@ -44,7 +44,25 @@ function Home() {
                 }
               />
               <Route
+                path="/news/:currentPage"
+                element={
+                  <NewsPage
+                    title={"Phim mới"}
+                    posterMovieUrl={posterMovieUrl}
+                  />
+                }
+              />
+              <Route
                 path="/trending"
+                element={
+                  <TrendingPage
+                    title={"Phim thịnh hành"}
+                    posterMovieUrl={posterMovieUrl}
+                  />
+                }
+              />
+                <Route
+                path="/trending/:currentPage"
                 element={
                   <TrendingPage
                     title={"Phim thịnh hành"}
@@ -71,6 +89,10 @@ function Home() {
               />
               <Route
                 path="/genre/:genre_id"
+                element={<Contents posterMovieUrl={posterMovieUrl} />}
+              />
+               <Route
+                path="/genre/:genre_id/:currentPage"
                 element={<Contents posterMovieUrl={posterMovieUrl} />}
               />
               <Route path="*" element={<NotFound />} />

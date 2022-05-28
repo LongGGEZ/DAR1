@@ -19,12 +19,15 @@ function RankMovie({ title, posterMovieUrl }) {
         setMovies(data && data.results);
         setTimeout(() => {
           context.setIsLoading(false);
-        }, 500);
+        }, 800);
       } catch (error) {
         console.error(error);
       }
     };
-    fetchMovie()
+    fetchMovie();
+    return () => {
+      clearTimeout();
+    };
   }, []);
 
   return (

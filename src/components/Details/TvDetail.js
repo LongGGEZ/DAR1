@@ -15,7 +15,7 @@ function MovieDetail({ posterMovieUrl }) {
   const [tv, setTv] = useState([]);
   const [trailers, setTrailers] = useState({});
   const context = useContext(LoadingContext);
-  let navigate = useNavigate()
+  let navigate = useNavigate();
   //TiengViet
   useEffect(() => {
     context.setIsLoading(true);
@@ -27,15 +27,18 @@ function MovieDetail({ posterMovieUrl }) {
         setTvVI(data);
         setTimeout(() => {
           context.setIsLoading(false);
-        }, 500);
+        }, 800);
         // console.log(data);
       } catch (error) {
         context.setIsLoading(false);
-        navigate("404")
+        navigate("404");
         // console.error(error)
       }
     };
-      fetchTv();
+    fetchTv();
+    return () => {
+      clearTimeout();
+    };
   }, [movie_id]);
 
   useEffect(() => {
@@ -51,7 +54,7 @@ function MovieDetail({ posterMovieUrl }) {
       }
     };
     fetchTv();
-  }, []);
+  }, [movie_id]);
   useEffect(() => {
     const fetchTrailers = async () => {
       try {

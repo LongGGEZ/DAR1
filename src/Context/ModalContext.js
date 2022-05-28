@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 const ModalContext = createContext();
 function ModalProvider({ children }) {
   const [showModal, setShowModal] = useState(false);
@@ -7,15 +7,17 @@ function ModalProvider({ children }) {
     setShowModal(true);
   };
   const handleCloseModal = () => {
-      setShowModal(false);
+    setShowModal(false);
   };
   const value = {
     showModal,
     handleShowModal,
-    handleCloseModal,
+    handleCloseModal
   };
   return (
-    <ModalContext.Provider value={value} setShowModal={setShowModal}>{children}</ModalContext.Provider>
+    <ModalContext.Provider value={value} setShowModal={setShowModal}>
+      {children}
+    </ModalContext.Provider>
   );
 }
 export { ModalContext, ModalProvider };

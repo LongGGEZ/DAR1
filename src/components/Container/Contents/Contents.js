@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams,useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Grid } from "@mui/material";
 import apiMovie from "../../../api/axios";
 import { APIKey } from "../../../api/apikey";
@@ -10,10 +10,11 @@ import ReactLoading from "react-loading";
 import { LoadingContext } from "../../../Context/LoadingContext";
 
 function Contents({ title, posterMovieUrl }) {
+  const { currentPage } = useParams();
   const { genre_id } = useParams();
   const [pagesNumber, setPagesNumber] = useState(1);
   const [genres, setGenres] = useState([]);
-  const [pageCount, setPageCount] = useState(0);
+  const [pageCount, setPageCount] = useState(1);
   const context = useContext(LoadingContext);
   useEffect(() => {
     document.title = genres && genres.name;
@@ -30,20 +31,23 @@ function Contents({ title, posterMovieUrl }) {
         );
         setPageCount(data.total_pages);
         setMovies(data && data.results);
-        if(data && data.results.length===0){
+        if (data && data.results.length === 0) {
           navigate("404");
         }
         setTimeout(() => {
           context.setIsLoading(false);
-        }, 500);
+        }, 800);
       } catch (error) {
         navigate("404");
         console.error(error);
       }
     };
     fetchMovie();
+    return () => {
+      clearTimeout();
+    };
   }, [genre_id, pagesNumber]);
-  
+
   useEffect(() => {
     const fetchGenre = async () => {
       try {
@@ -60,8 +64,19 @@ function Contents({ title, posterMovieUrl }) {
     fetchGenre();
   }, [genre_id]);
 
+  useEffect(() => {
+    if (currentPage) {
+      if (currentPage < 0 || currentPage > pageCount) {
+        setPagesNumber(1);
+      } else {
+        setPagesNumber(currentPage);
+      }
+    }
+  }, [pageCount, currentPage]);
+
   const handlePageClick = (page) => {
-    setPagesNumber(page.selected + 1);
+    const pageX = page.selected + 1;
+    navigate(`/genre/${genre_id}/${pageX}`);
     window.scrollTo(0, 0);
   };
   return (
@@ -94,6 +109,7 @@ function Contents({ title, posterMovieUrl }) {
       )}
       <ReactPaginate
         className={`pagination ${context.isLoading && "display-none"}`}
+        forcePage={pagesNumber - 1}
         onPageChange={handlePageClick}
         nextLabel={
           <img
