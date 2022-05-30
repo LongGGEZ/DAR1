@@ -24,6 +24,7 @@ function Main() {
       .onAuthStateChanged((user) => {
         setIsSignedIn(!!user);
         // const token = user.getIdToken();
+        // console.log(token)
       });
 
     return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.

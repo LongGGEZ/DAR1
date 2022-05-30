@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom"
 function BannerDetail({ posterMovieUrl, movies, moviesVi, title, runtime }) {
   return (
     <div
@@ -32,10 +33,10 @@ function BannerDetail({ posterMovieUrl, movies, moviesVi, title, runtime }) {
             {moviesVi.genres &&
               moviesVi.genres.map((genre, index) => (
                 <div className="genre-name" key={genre.id}>
-                  <a href="">
+                  <Link to={`/genre/${genre.id}`}>
                     {(index ? ", " : "") + `${genre.name}` ||
                       "Đang cập nhật..."}
-                  </a>
+                  </Link>
                 </div>
               ))}
           </div>
