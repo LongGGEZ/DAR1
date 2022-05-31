@@ -35,7 +35,7 @@ function MenuMobile({ isSignedIn }) {
         >
           <img
             src="https://img.icons8.com/ios-glyphs/32/000000/delete-sign.png"
-            alt="Menu mobile"
+            alt="Close menu"
           />
         </div>
         <ul id="menu-mobile-list">

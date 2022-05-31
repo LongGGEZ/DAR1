@@ -128,7 +128,7 @@ function Header({ isSignedIn }) {
           className="menu-mobile"
         >
           <img
-            src="https://img.icons8.com/ios-glyphs/32/000000/menu-rounded.png"
+            src="https://img.icons8.com/ios-glyphs/24/000000/menu-rounded.png"
             alt="Menu"
           />
         </div>
@@ -384,13 +384,13 @@ function Header({ isSignedIn }) {
         <div className="user">
           <div className="notification" href="/">
             <img
-              src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/32/000000/external-bell-essentials-pack-tanah-basah-glyph-tanah-basah.png"
+              src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/24/000000/external-bell-essentials-pack-tanah-basah-glyph-tanah-basah.png"
               alt="Thông báo"
             />
           </div>
           <div className="language" href="/">
             <img
-              src="https://img.icons8.com/material-outlined/32/000000/geography.png"
+              src="https://img.icons8.com/material-outlined/24/000000/geography.png"
               alt="Languege"
             />
           </div>
@@ -416,7 +416,7 @@ function Header({ isSignedIn }) {
                 className="user-profile"
               >
                 <img
-                  src="https://img.icons8.com/fluency/32/000000/user-male-circle.png"
+                  src="https://img.icons8.com/fluency/24/000000/user-male-circle.png"
                   alt="Profile"
                 />
                 {context.showModal && (
