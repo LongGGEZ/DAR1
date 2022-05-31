@@ -132,12 +132,12 @@ a {
 }
 
 .menulist {
-  padding: 5px 10px;
+  padding: 5px 15px;
   color: #757575;
 }
 
 .menulist ul li {
-  margin: 5px 0;
+  margin: 10px 0;
 }
 
 .menulist ul li:hover {
@@ -149,7 +149,7 @@ a {
 }
 
 .list-year {
-  width: 150px;
+  width: 130px;
 }
 
 .list-year li {

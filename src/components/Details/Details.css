@@ -82,10 +82,6 @@
     padding: 5px 0;
 }
 
-/* .moviedetail-title label {
-    margin-left: 10px;
-} */
-
 .right {
     margin-left: 40px;
 }
@@ -177,7 +173,9 @@
     background: #428bca;
 }
 
-
+.genre-name a:hover{
+    color: rgba(255,255,255,0.7);
+}
 @media only screen and (max-width: 1366px) {
     .moviedetail-title {
         font-size: 30px;

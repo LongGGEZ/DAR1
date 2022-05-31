@@ -4,6 +4,7 @@ import requests from "../../../FecthDataMovie/FecthDataAll";
 import apiMovie from "../../../api/axios";
 import ReactLoading from "react-loading";
 import { LoadingContext } from "../../../Context/LoadingContext";
+import moment from 'moment';
 import "../../Container/Container.css";
 function RankMovie({ title, posterMovieUrl }) {
   useEffect(() => {
@@ -73,7 +74,7 @@ function RankMovie({ title, posterMovieUrl }) {
                         alt="vote"
                       />
                     </td>
-                    <td>{movie.release_date}</td>
+                    <td>{moment(movie.release_date).format('DD/MM/YYYY')}</td>
                   </tr>
                 ))}
               </tbody>

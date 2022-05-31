@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import moment from 'moment';
 import "./MovieCard.css";
 function MovieCard({
   posterMovieUrl,
@@ -29,12 +30,11 @@ function MovieCard({
           </div>
           <div className="movie-release">
             <label>Khởi chiếu: </label>
-            {(release_date && release_date.split("-").reverse().join("-")) ||
-              (first_air_date &&
-                first_air_date.split("-").reverse().join("-")) ||
+            {(moment(release_date).format('DD/MM/YYYY')) ||(moment(first_air_date).format('DD/MM/YYYY')) ||
               ("Đang cập nhật...")}
           </div>
         </div>
+        <div className="watch-movie">Xem Phim</div>
       </Link>
     </div>
   );

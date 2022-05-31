@@ -1,4 +1,5 @@
 import Grid from "@mui/material/Grid";
+import moment from 'moment';
 function InfoDetail({
   posterMovieUrl,
   movies,
@@ -26,7 +27,7 @@ function InfoDetail({
 
         <div className="release-date">
           <label>Ngày khởi chiếu: </label>
-          {(releaseDate && releaseDate.split("-").reverse().join("-")) ||
+          {moment(releaseDate).format('DD/MM/YYYY') ||
             "Đang cập nhật..."}
         </div>
         <div className="production-companies">
