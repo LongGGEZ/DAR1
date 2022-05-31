@@ -11,6 +11,7 @@ function MenuMobileProvider({ children }) {
   };
   const value = {
     showMenuMobile,
+    setShowMenuMobile,
     handleShowMenuMobile,
     handleCloseMenuMobile,
   };

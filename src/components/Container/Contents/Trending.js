@@ -67,52 +67,59 @@ function Trending({ title, posterMovieUrl }) {
           <ReactLoading type="bubbles" color={"black"} className="loading" />
         </div>
       ) : (
-        <div>
-          <div className="title">
-            <h1>Phim thịnh hành</h1>
+        <>
+          <div>
+            <div className="title">
+              <h1>Phim thịnh hành</h1>
+            </div>
+            <div className="movie">
+              <Grid
+                container
+                spacing={3}
+                columns={{ xs: 4.8, sm: 9.6, md: 12 }}
+              >
+                {movies.map((movie) => (
+                  <Grid item xs={2.4} key={movie.id}>
+                    <MovieCard
+                      posterMovieUrl={posterMovieUrl}
+                      movie_id={movie.id}
+                      media_type={movie.media_type}
+                      title={movie.title}
+                      original_name={movie.original_name}
+                      first_air_date={movie.first_air_date}
+                      poster={movie.poster_path}
+                      release_date={movie.release_date}
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+            </div>
           </div>
-          <div className="movie">
-            <Grid container spacing={3} columns={{ xs: 4.8, sm: 9.6, md: 12 }}>
-              {movies.map((movie) => (
-                <Grid item xs={2.4} key={movie.id}>
-                  <MovieCard
-                    posterMovieUrl={posterMovieUrl}
-                    movie_id={movie.id}
-                    media_type={movie.media_type}
-                    title={movie.title}
-                    original_name={movie.original_name}
-                    first_air_date={movie.first_air_date}
-                    poster={movie.poster_path}
-                    release_date={movie.release_date}
-                  />
-                </Grid>
-              ))}
-            </Grid>
-          </div>
-        </div>
+
+          <ReactPaginate
+            className="pagination"
+            forcePage={pagesNumber - 1}
+            onPageChange={handlePageClick}
+            breakLabel="..."
+            nextLabel={
+              <img
+                src="https://img.icons8.com/material-outlined/24/000000/right.png"
+                alt="Next"
+              />
+            }
+            pageRangeDisplayed={3}
+            marginPagesDisplayed={1}
+            pageCount={pageCount}
+            previousLabel={
+              <img
+                src="https://img.icons8.com/material-outlined/24/000000/left.png"
+                alt="Left"
+              />
+            }
+            renderOnZeroPageCount={null}
+          />
+        </>
       )}
-      <ReactPaginate
-        className={`pagination ${context.isLoading ? "display-none" : ""}`}
-        forcePage={pagesNumber - 1}
-        onPageChange={handlePageClick}
-        breakLabel="..."
-        nextLabel={
-          <img
-            src="https://img.icons8.com/material-outlined/24/000000/right.png"
-            alt="Next"
-          />
-        }
-        pageRangeDisplayed={3}
-        marginPagesDisplayed={1}
-        pageCount={pageCount}
-        previousLabel={
-          <img
-            src="https://img.icons8.com/material-outlined/24/000000/left.png"
-            alt="Left"
-          />
-        }
-        renderOnZeroPageCount={null}
-      />
     </div>
   );
 }

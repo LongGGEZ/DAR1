@@ -20,6 +20,7 @@
   width: 80%;
   background-color: white;
   height: 100%;
+  transform: translate(-100, 0);
   animation: mymove 0.5s forwards;
 }
 
@@ -33,23 +34,25 @@
   padding: 30px;
 }
 #menu-mobile-list li {
-  margin: 15px 0;
+  margin: 20px 0;
   text-align: initial;
 }
+#menu-mobile-list li a {
+  display: flex;
+  align-items: center;
+}
+#menu-mobile-list li a img {
+  width: 24px;
+  margin-right: 20px;
+}
+
 #menu-mobile-list hr {
   border: none;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   margin: 8px 0;
 }
-/* .wrapper{
-  animation: fade-in 0.5s;
+@media only screen and (max-width: 480px) {
+  .logo a img {
+    width: 45px;
+  }
 }
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-} */

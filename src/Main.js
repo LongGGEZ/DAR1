@@ -42,7 +42,9 @@ function Main() {
             path="*"
             element={
               <>
-                {context.showMenuMobile && <MenuMobile />}
+                {context.showMenuMobile && (
+                  <MenuMobile isSignedIn={isSignedIn} />
+                )}
                 <Header isSignedIn={isSignedIn} />
                 <Home />
                 <Footer />

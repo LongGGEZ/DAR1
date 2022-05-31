@@ -3,8 +3,8 @@ import "firebase/compat/auth";
 import firebase from "firebase/compat/app";
 import "./MenuMobile.css";
 import { MenuMobileContext } from "../../Context/MenuMobileContext";
-import { NavLink } from "react-router-dom";
-function MenuMobile() {
+import { NavLink, Link } from "react-router-dom";
+function MenuMobile({ isSignedIn }) {
   const context = useContext(MenuMobileContext);
   const menuMobileRef = useRef();
   const handleCloseOutSide = (e) => {
@@ -14,13 +14,17 @@ function MenuMobile() {
   };
 
   useEffect(() => {
-
     document.addEventListener("click", handleCloseOutSide, true);
 
     return () => {
       document.removeEventListener("click", handleCloseOutSide, true);
     };
   }, []);
+
+  const handleLogout = () => {
+    firebase.auth().signOut();
+    context.handleCloseMenuMobile();
+  };
 
   return (
     <div className="menu-mobile-custom">
@@ -29,57 +33,101 @@ function MenuMobile() {
           onClick={context.handleCloseMenuMobile}
           className="close-menu-mobile"
         >
-          <img src="https://img.icons8.com/ios-glyphs/24/000000/delete-sign.png" alt="Menu mobile" />
+          <img
+            src="https://img.icons8.com/ios-glyphs/32/000000/delete-sign.png"
+            alt="Menu mobile"
+          />
         </div>
         <ul id="menu-mobile-list">
-          <li>
-            <span>Hello, </span>
-            {/* {firebase.auth().currentUser.displayName}! */}
-          </li>
-          <hr />
-          <li>
-            <NavLink onClick={context.handleCloseMenuMobile} to="#">
-              Trang cá nhân
-            </NavLink>
-          </li>
-          <li>
-            <NavLink onClick={context.handleCloseMenuMobile} to="#">
-              List Phim yêu thích
-            </NavLink>
-          </li>
+          {isSignedIn ? (
+            <>
+              <li>
+                <span>Hello, </span>
+                {firebase.auth().currentUser.displayName}!
+              </li>
+              <hr />
+              <li>
+                <NavLink onClick={context.handleCloseMenuMobile} to="#">
+                  <img
+                    src="https://img.icons8.com/ios-filled/32/000000/identification-documents.png"
+                    alt="Cá Nhân"
+                  />
+                  Trang cá nhân
+                </NavLink>
+              </li>
+              <li>
+                <NavLink onClick={context.handleCloseMenuMobile} to="#">
+                  <img
+                    src="https://img.icons8.com/pastel-glyph/32/000000/hearts--v2.png"
+                    alt="Favourite"
+                  />
+                  List phim yêu thích
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+          )}
           <hr />
           <li>
             <NavLink onClick={context.handleCloseMenuMobile} to="/">
-              Home
+              <img
+                src="https://img.icons8.com/material-outlined/32/000000/home--v2.png"
+                alt="Icon Menu"
+              />
+              <span>Home</span>
             </NavLink>
           </li>
           <li>
             <NavLink onClick={context.handleCloseMenuMobile} to="/news">
-              Phim mới
+              <img
+                src="https://img.icons8.com/ios/32/000000/film-reel--v2.png"
+                alt="Phim mới"
+              />
+              <span>Phim mới</span>
             </NavLink>
           </li>
           <li>
             <NavLink onClick={context.handleCloseMenuMobile} to="/trending">
-              Phim thịnh hành
+              <img
+                src="https://img.icons8.com/ios-glyphs/32/000000/fire-element--v1.png"
+                alt="Phim thịnh hành"
+              />
+              <span> Phim thịnh hành</span>
             </NavLink>
           </li>
           <li>
             <NavLink onClick={context.handleCloseMenuMobile} to="/rank">
-              Xếp hạng phim
+              <img
+                src="https://img.icons8.com/external-smashingstocks-glyph-smashing-stocks/32/000000/external-ranking-sports-and-awards-smashingstocks-glyph-smashing-stocks.png"
+                alt="Rank Movie"
+              />
+              <span>Xếp hạng phim</span>
             </NavLink>
           </li>
           <hr />
           <li>
             <NavLink onClick={context.handleCloseMenuMobile} to="#">
-              Cài đặt
+              <img
+                src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/32/000000/external-setting-essentials-pack-tanah-basah-glyph-tanah-basah.png"
+                alt="Setting"
+              />
+              <span>Cài đặt</span>
             </NavLink>
           </li>
-          <li
-            onClick={context.handleCloseMenuMobile}
-            // onClick={() => firebase.auth().signOut()}
-          >
-            Đăng Xuất
-          </li>
+          {isSignedIn && (
+            <li onClick={handleLogout}>
+              <a>
+                <img
+                  src="https://img.icons8.com/metro/32/000000/exit.png"
+                  alt="Logout"
+                />
+                Đăng Xuất
+              </a>
+            </li>
+          )}
         </ul>
       </div>
     </div>

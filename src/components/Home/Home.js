@@ -19,9 +19,14 @@ function Home() {
       <Grid container>
         <Grid
           item
-          style={{ display: "flex", alignItems: "flex-start", width: "100px" ,boxSizing:"initial"}}
+          style={{
+            display: "flex",
+            alignItems: "flex-start",
+            width: "100px",
+            boxSizing: "initial",
+          }}
         >
-          <StickyBox offsetTop={10}>
+          <StickyBox offsetTop={70}>
             <SiderBar />
           </StickyBox>
         </Grid>
@@ -34,7 +39,7 @@ function Home() {
                   <ContentPage title={"Home"} posterMovieUrl={posterMovieUrl} />
                 }
               />
-                 <Route
+              <Route
                 path="/news"
                 element={
                   <NewsPage
@@ -61,7 +66,7 @@ function Home() {
                   />
                 }
               />
-                <Route
+              <Route
                 path="/trending/:currentPage"
                 element={
                   <TrendingPage
@@ -91,7 +96,7 @@ function Home() {
                 path="/genre/:genre_id"
                 element={<Contents posterMovieUrl={posterMovieUrl} />}
               />
-               <Route
+              <Route
                 path="/genre/:genre_id/:currentPage"
                 element={<Contents posterMovieUrl={posterMovieUrl} />}
               />

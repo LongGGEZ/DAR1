@@ -88,30 +88,31 @@ function News({ title, posterMovieUrl }) {
               ))}
             </Grid>
           </div>
+
+          <ReactPaginate
+            className="pagination"
+            forcePage={pagesNumber - 1}
+            onPageChange={handlePageClick}
+            breakLabel="..."
+            nextLabel={
+              <img
+                src="https://img.icons8.com/material-outlined/24/000000/right.png"
+                alt="Next"
+              />
+            }
+            pageRangeDisplayed={3}
+            marginPagesDisplayed={1}
+            pageCount={pageCount}
+            previousLabel={
+              <img
+                src="https://img.icons8.com/material-outlined/24/000000/left.png"
+                alt="Left"
+              />
+            }
+            renderOnZeroPageCount={null}
+          />
         </>
       )}
-      <ReactPaginate
-        className={`pagination ${!context.isLoading || "display-none"}`}
-        forcePage={pagesNumber - 1}
-        onPageChange={handlePageClick}
-        breakLabel="..."
-        nextLabel={
-          <img
-            src="https://img.icons8.com/material-outlined/24/000000/right.png"
-            alt="Next"
-          />
-        }
-        pageRangeDisplayed={3}
-        marginPagesDisplayed={1}
-        pageCount={pageCount}
-        previousLabel={
-          <img
-            src="https://img.icons8.com/material-outlined/24/000000/left.png"
-            alt="Left"
-          />
-        }
-        renderOnZeroPageCount={null}
-      />
     </div>
   );
 }
