@@ -1,10 +1,12 @@
+import { useContext, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import firebase from "firebase/compat/app";
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import Footer from "./components/Footer/Footer";
 import FormLogin from "./Login/FormLogin";
-import { useEffect, useState } from "react";
-import firebase from "firebase/compat/app";
+import MenuMobile from "./components/MenuMobile/MenuMobile";
+import { MenuMobileContext } from "./Context/MenuMobileContext";
 
 // Configure Firebase.
 const config = {
@@ -14,6 +16,8 @@ const config = {
 };
 firebase.initializeApp(config);
 function Main() {
+  const context = useContext(MenuMobileContext);
+
   // const widthScreen = window.innerWidth;
   const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
 
@@ -38,6 +42,7 @@ function Main() {
             path="*"
             element={
               <>
+                {context.showMenuMobile && <MenuMobile />}
                 <Header isSignedIn={isSignedIn} />
                 <Home />
                 <Footer />

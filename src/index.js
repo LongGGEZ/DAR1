@@ -7,14 +7,17 @@ import reportWebVitals from "./reportWebVitals";
 import { ModalProvider } from "./Context/ModalContext";
 import { LoadingProvider } from "./Context/LoadingContext";
 import ScrollToTop from "./components/ScrollTop";
+import { MenuMobileProvider } from "./Context/MenuMobileContext";
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <LoadingProvider>
-        <ModalProvider>
-          <ScrollToTop />
-          <App />
-        </ModalProvider>
+        <MenuMobileProvider>
+          <ModalProvider>
+            <ScrollToTop />
+            <App />
+          </ModalProvider>
+        </MenuMobileProvider>
       </LoadingProvider>
     </Router>
   </React.StrictMode>,

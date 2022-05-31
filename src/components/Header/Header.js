@@ -7,6 +7,7 @@ import "firebase/compat/auth";
 import firebase from "firebase/compat/app";
 import ReactLoading from "react-loading";
 import { ModalContext } from "../../Context/ModalContext";
+import { MenuMobileContext } from "../../Context/MenuMobileContext";
 import "./Header.css";
 
 function Header({ isSignedIn }) {
@@ -18,6 +19,7 @@ function Header({ isSignedIn }) {
   const [isHover, setIsHover] = useState(false);
   const [genres, setGenres] = useState([]);
   const context = useContext(ModalContext);
+  const contextMenuMobile = useContext(MenuMobileContext);
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -121,6 +123,15 @@ function Header({ isSignedIn }) {
   return (
     <>
       <div className="header">
+        <div
+          onClick={contextMenuMobile.handleShowMenuMobile}
+          className="menu-mobile"
+        >
+          <img
+            src="https://img.icons8.com/ios-glyphs/30/000000/menu-rounded.png"
+            alt="Menu"
+          />
+        </div>
         <div className="logo">
           <a href={"/"}>
             <img
@@ -129,11 +140,7 @@ function Header({ isSignedIn }) {
             />
           </a>
         </div>
-        {/* <div className="menu-mobile">
-          <a href={"/"}>
-            <img src="https://img.icons8.com/ios-glyphs/30/000000/menu-rounded.png" alt="menu-mobile"/>
-          </a>
-        </div> */}
+
         <div className="menu-bar">
           <div
             onMouseEnter={handleHover}

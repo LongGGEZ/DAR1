@@ -72,7 +72,7 @@ function Trending({ title, posterMovieUrl }) {
             <h1>Phim thịnh hành</h1>
           </div>
           <div className="movie">
-            <Grid container columns={{ xs: 4.8, sm: 9.6, md: 12 }}>
+            <Grid container spacing={3} columns={{ xs: 4.8, sm: 9.6, md: 12 }}>
               {movies.map((movie) => (
                 <Grid item xs={2.4} key={movie.id}>
                   <MovieCard

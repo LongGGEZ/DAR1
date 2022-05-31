@@ -3,6 +3,10 @@ a {
   color: inherit;
 }
 
+.menu-mobile {
+  display: none;
+}
+
 .header {
   display: flex;
   width: 100%;
@@ -43,10 +47,6 @@ a {
 
 .display-user {
   margin-right: 10px;
-}
-
-.menu-mobile {
-  display: none;
 }
 
 .search {
@@ -216,6 +216,9 @@ a {
     width: 250px;
     padding: 3px 20px;
   }
+  .logo{
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 480px) {
@@ -245,5 +248,12 @@ a {
   }
   .input-search input[type="text"] {
     width: 100px;
+  }
+  .language,
+  .user-profile {
+    display: none;
+  }
+  .search{
+    display: none;
   }
 }

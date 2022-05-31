@@ -1,14 +1,4 @@
 .card-item {
-    margin: 20px 15px;
-    /* border-radius: 4px; */
-}
-
-/* .card-item:hover {
-    transform: scale(1.1);
-    transition: all 0.3s;
-} */
-
-.card-item a {
     text-decoration: none;
 }
 
@@ -49,19 +39,11 @@
         height: 20vw;
     }
 
-    .card-item {
-        margin: 15px;
-    }
-
 }
 
 @media only screen and (max-width: 1024px) {
     .card-content img {
         height: 20vw;
-    }
-
-    .card-item {
-        margin: 10px;
     }
 
     .card-item:hover {
@@ -78,7 +60,7 @@
 
 @media only screen and (max-width: 480px) {
     .card-content img {
-        height: 40vw;
+        height: 50vw;
     }
 
     .card-info .movie-title,

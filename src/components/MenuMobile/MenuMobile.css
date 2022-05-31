@@ -1,0 +1,55 @@
+.menu-mobile-custom {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 9999;
+  background-color: rgb(0, 0, 0, 0.2);
+}
+
+@keyframes mymove {
+  from {
+    left: -100px;
+  }
+  to {
+    left: 0;
+  }
+}
+
+.wrapper {
+  position: fixed;
+  width: 80%;
+  background-color: white;
+  height: 100%;
+  animation: mymove 0.5s forwards;
+}
+
+.close-menu-mobile {
+  display: block;
+  padding: 10px;
+  float: right;
+}
+#menu-mobile-list {
+  display: block;
+  padding: 30px;
+}
+#menu-mobile-list li {
+  margin: 15px 0;
+  text-align: initial;
+}
+#menu-mobile-list hr {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  margin: 8px 0;
+}
+/* .wrapper{
+  animation: fade-in 0.5s;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+} */

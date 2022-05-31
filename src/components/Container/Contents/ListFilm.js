@@ -42,7 +42,7 @@ function ListFilm({ title, genre_id,fetchData, posterMovieUrl }) {
             </Link>
           </div>
           <div className="movie-flex">
-            <Grid container columns={{ xs: 4, sm: 6, md: 12 }}>
+            <Grid container spacing={3} columns={{ xs: 4, sm: 6, md: 12 }}>
               {movies.slice(0, 6).map((movie) => (
                 <Grid item xs={2} key={movie.id}>
                   <MovieCard
