@@ -350,31 +350,36 @@ function Header({ isSignedIn }) {
                 ) : (
                   <>
                     <ResultSearch />
-                    {movies.slice(0, 7).map((movie) => (
-                      <div key={movie.id}>
-                        <Link
-                          onClick={handleClose}
-                          className="search-item"
-                          to={
-                            movie.media_type === "tv"
-                              ? `/tv/${movie.id}`
-                              : `/movie/${movie.id}`
-                          }
-                        >
-                          <img
-                            src={
-                              movie.poster_path
-                                ? `${posterMovieUrl}${movie.poster_path}`
-                                : "http://hoahieu.com.vn/wp-content/themes/kutetheme/images/placeholder.jpg"
+                    {movies
+                      .filter((movie) => movie.media_type !== "person")
+                      .slice(0, 7)
+                      .map((movie) => (
+                        <div key={movie.id}>
+                          <Link
+                            onClick={handleClose}
+                            className="search-item"
+                            to={
+                              movie.media_type === "tv"
+                                ? `/tv/${movie.id}`
+                                : `/movie/${movie.id}`
                             }
-                            alt="Poster"
-                          />
-                          <div className="search-results-title">
-                            {movie.name || movie.title || movie.original_title}
-                          </div>
-                        </Link>
-                      </div>
-                    ))}
+                          >
+                            <img
+                              src={
+                                movie.poster_path
+                                  ? `${posterMovieUrl}${movie.poster_path}`
+                                  : "http://hoahieu.com.vn/wp-content/themes/kutetheme/images/placeholder.jpg"
+                              }
+                              alt="Poster"
+                            />
+                            <div className="search-results-title">
+                              {movie.name ||
+                                movie.title ||
+                                movie.original_title}
+                            </div>
+                          </Link>
+                        </div>
+                      ))}
                   </>
                 )}
               </div>
@@ -396,20 +401,6 @@ function Header({ isSignedIn }) {
           </div>
           {isSignedIn ? (
             <>
-              {/* <div className="display-user">
-                Hello, 
-                {firebase.auth().currentUser.displayName}
-                !
-              </div> */}
-              {/* <div
-                className="logout"
-                onClick={() => firebase.auth().signOut()}
-              >
-                <img
-                  src="https://img.icons8.com/external-sbts2018-mixed-sbts2018/24/000000/external-logout-social-media-basic-1-sbts2018-mixed-sbts2018.png"
-                  alt="Sign Out"
-                />
-              </div> */}
               <div
                 ref={menuProfile}
                 onClick={context.handleShowModal}
